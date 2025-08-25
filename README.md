@@ -2,7 +2,7 @@
 - 👀 I’m interested in hacking
 - 🌱 I’m currently learning python
 - 💞️ I’m looking to collaborate on work
-- 📫 How to reach me: +998947871189
+- 📫 How to reach me: +998331158851
 - 😄 Pronouns: ...
 - ⚡ Fun fact: ...
 
