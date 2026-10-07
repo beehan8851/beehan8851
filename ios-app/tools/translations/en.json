@@ -1,0 +1,26 @@
+{
+  "%lld days in a row": {
+    "one": "%lld day in a row",
+    "other": "%lld days in a row"
+  },
+  "%lld in a row": {
+    "one": "%lld in a row",
+    "other": "%lld in a row"
+  },
+  "%lld mornings this month": {
+    "one": "%lld morning this month",
+    "other": "%lld mornings this month"
+  },
+  "%lld points": {
+    "one": "%lld point",
+    "other": "%lld points"
+  },
+  "%lld seconds left": {
+    "one": "%lld second left",
+    "other": "%lld seconds left"
+  },
+  "%lld tries left": {
+    "one": "%lld try left",
+    "other": "%lld tries left"
+  }
+}

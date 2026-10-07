@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Dawnwick" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">@color/paper</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+    </style>
+    <style name="Theme.Dawnwick.Ring" parent="Theme.Dawnwick">
+        <item name="android:windowBackground">@color/yolk</item>
+    </style>
+    <color name="paper">#F4F2ED</color>
+    <color name="yolk">#FFC629</color>
+    <color name="ink">#1B1A17</color>
+    <color name="night">#131210</color>
+</resources>
