@@ -12,7 +12,7 @@ Kotlin, Jetpack Compose, no cross-platform layer.
 | 3 | Today: weather (Open-Meteo), calendar, morning brief, streak | **done** |
 | 4 | Sleep: tracking, noise monitor, white noise, wind-down, bedtime reminder, Health Connect | **done** |
 | 5 | Games: Catch the cat, Laser, Which box?, Cat Naps, Play tab, Today's game | **done** |
-| 6 | Onboarding **done** (untested: no Android SDK in the cloud box); Widgets (Glance), Premium (RevenueCat) to do | in progress |
+| 6 | Onboarding, Premium (RevenueCat paywall, free-tier gates), widgets (Glance: Next Alarm, Cat, Streak, Sleep) | **done**, not yet built: written without an Android SDK |
 
 ## How an alarm rings
 
@@ -29,6 +29,20 @@ The iOS invariants are kept (`RingController`):
 - while an alarm rings a re-arm two minutes out is always registered, so a killed
   process or a reboot cannot end the ring without the mission;
 - reboot, clock and time-zone changes reschedule everything (`RescheduleReceiver`).
+
+## Premium (RevenueCat)
+
+Put RevenueCat's public Google key (`goog_…`, app.revenuecat.com → Project → API keys)
+in `local.properties`:
+
+```
+revenuecat.key=goog_xxxxxxxx
+```
+
+or pass `-PrevenuecatKey=goog_xxxxxxxx`. RevenueCat needs an entitlement `premium`
+and an offering `default` with annual and monthly packages. Without a key there is no
+store: debug builds run with Premium open so everything can be tried, release builds
+run free.
 
 ## Build
 

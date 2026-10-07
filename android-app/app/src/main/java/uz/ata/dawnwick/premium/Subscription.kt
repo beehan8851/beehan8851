@@ -71,8 +71,8 @@ class SubscriptionService(private val context: Context, private val store: KeyVa
     fun start() {
         if (!configured) return
         Purchases.configure(PurchasesConfiguration.Builder(context, BuildConfig.REVENUECAT_API_KEY).build())
-        Purchases.sharedInstance.updatedCustomerInfoListener = com.revenuecat.purchases.interfaces.UpdatedCustomerInfoListener { apply(it) }
-        Purchases.sharedInstance.getCustomerInfoWith(onError = {}, onSuccess = ::apply)
+        Purchases.sharedInstance.updatedCustomerInfoListener = com.revenuecat.purchases.interfaces.UpdatedCustomerInfoListener { update(it) }
+        Purchases.sharedInstance.getCustomerInfoWith(onError = {}, onSuccess = ::update)
     }
 
     fun loadPlans() {
@@ -96,7 +96,7 @@ class SubscriptionService(private val context: Context, private val store: KeyVa
         Purchases.sharedInstance.purchaseWith(
             PurchaseParams.Builder(activity, plan.pack).build(),
             onError = { error, cancelled -> done(if (cancelled) PurchaseOutcome.Cancelled else PurchaseOutcome.Failed(error.message)) },
-            onSuccess = { _, info -> apply(info); done(if (_premium.value) PurchaseOutcome.Purchased else PurchaseOutcome.Failed("not active")) },
+            onSuccess = { _, info -> update(info); done(if (_premium.value) PurchaseOutcome.Purchased else PurchaseOutcome.Failed("not active")) },
         )
     }
 
@@ -104,15 +104,16 @@ class SubscriptionService(private val context: Context, private val store: KeyVa
         if (!configured) { done(PurchaseOutcome.Failed("not configured")); return }
         Purchases.sharedInstance.restorePurchasesWith(
             onError = { done(PurchaseOutcome.Failed(it.message)) },
-            onSuccess = { apply(it); done(if (_premium.value) PurchaseOutcome.Purchased else PurchaseOutcome.NothingToRestore) },
+            onSuccess = { update(it); done(if (_premium.value) PurchaseOutcome.Purchased else PurchaseOutcome.NothingToRestore) },
         )
     }
 
-    private fun apply(info: CustomerInfo) {
+    private fun update(info: CustomerInfo) {
         val entitlement = info.entitlements[ENTITLEMENT_ID]
         val active = entitlement?.isActive == true
         store.putBoolean(KEY_PREMIUM, active)
         store.putString(KEY_EXPIRES, (entitlement?.expirationDate?.time ?: 0L).toString())
+        if (_premium.value != active) uz.ata.dawnwick.widgets.DawnWidgets.refresh(context)
         _premium.value = active
     }
 

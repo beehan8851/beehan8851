@@ -524,6 +524,29 @@ Ishonch bilan uyg\'oning.</string>
     <string name="settings_premium_get">Premium olish</string>
     <string name="settings_manage_subscription">Obunani boshqarish</string>
     <string name="premium_mission_locked">Bu missiya Premium\'da.</string>
+    <string name="widget_next_alarm">Keyingi budilnik</string>
+    <string name="widget_next_alarm_desc">Keyingi budilnik va uni o\'chiradigan missiyalar.</string>
+    <string name="widget_cat">Mushuk</string>
+    <string name="widget_cat_desc">Mushuk siz bilan uxlaydi va tonglaringizni nishonlaydi.</string>
+    <string name="widget_streak">Seriya</string>
+    <string name="widget_streak_desc">Seriyangiz va shu hafta — har tongga bitta panja.</string>
+    <string name="widget_sleep">Uyqu</string>
+    <string name="widget_sleep_desc">Kechagi tun va haftaning tunlari.</string>
+    <string name="widget_tap_to_set">Qo\'yish uchun bosing.</string>
+    <string name="widget_cat_asleep_until">Uxlayapti. %s da turadi.</string>
+    <string name="widget_cat_asleep">Uxlayapti.</string>
+    <string name="widget_cat_won_day">Tong yutildi. %d-kun.</string>
+    <string name="widget_cat_won">Tong yutildi.</string>
+    <string name="widget_cat_missed">Bittasi o\'tkazib yuborildi. Ertaga hisoblanadi.</string>
+    <string name="widget_cat_ready">Bu kechaga tayyor.</string>
+    <string name="widget_cat_no_alarm">Hali budilnik yo\'q.</string>
+    <string name="widget_days_in_row">Ketma-ket %d kun</string>
+    <string name="widget_best">Eng yaxshi: %d</string>
+    <string name="widget_average">O\'rtacha %s</string>
+    <string name="widget_last_night">Kechagi tun</string>
+    <string name="widget_no_nights">Hali tunlar yo\'q</string>
+    <string name="widget_locked">Premium vidjet. Ochish uchun bosing.</string>
+    <string name="widget_hours_minutes">%1$d soat %2$d daq</string>
     <string-array name="weekday_letter">
         <item>Ya</item>
         <item>Du</item>

@@ -525,6 +525,29 @@ Wake confidently.</string>
     <string name="settings_premium_get">Get Premium</string>
     <string name="settings_manage_subscription">Manage subscription</string>
     <string name="premium_mission_locked">This mission is Premium.</string>
+    <string name="widget_next_alarm">Next Alarm</string>
+    <string name="widget_next_alarm_desc">Your next alarm and the missions that turn it off.</string>
+    <string name="widget_cat">Cat</string>
+    <string name="widget_cat_desc">The cat sleeps when you do and celebrates your mornings.</string>
+    <string name="widget_streak">Streak</string>
+    <string name="widget_streak_desc">Your streak and this week, one paw per morning.</string>
+    <string name="widget_sleep">Sleep</string>
+    <string name="widget_sleep_desc">Last night and the week\'s nights.</string>
+    <string name="widget_tap_to_set">Tap to set one.</string>
+    <string name="widget_cat_asleep_until">Asleep. Up at %s.</string>
+    <string name="widget_cat_asleep">Asleep.</string>
+    <string name="widget_cat_won_day">Morning won. Day %d.</string>
+    <string name="widget_cat_won">Morning won.</string>
+    <string name="widget_cat_missed">Missed one. Tomorrow counts.</string>
+    <string name="widget_cat_ready">Ready for tonight.</string>
+    <string name="widget_cat_no_alarm">No alarm yet.</string>
+    <string name="widget_days_in_row">%d days in a row</string>
+    <string name="widget_best">Best %d</string>
+    <string name="widget_average">Average %s</string>
+    <string name="widget_last_night">Last night</string>
+    <string name="widget_no_nights">No nights yet</string>
+    <string name="widget_locked">Premium widget. Tap to unlock.</string>
+    <string name="widget_hours_minutes">%1$dh %2$dm</string>
     <string-array name="weekday_letter">
         <item>S</item>
         <item>M</item>

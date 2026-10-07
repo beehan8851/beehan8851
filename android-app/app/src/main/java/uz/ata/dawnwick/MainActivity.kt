@@ -81,12 +81,21 @@ class MainActivity : ComponentActivity() {
     private fun route(intent: Intent?) {
         val tab = intent?.getIntExtra(EXTRA_TAB, -1) ?: -1
         if (tab >= 0) graph.navigation.value = tab to intent!!.getBooleanExtra(EXTRA_WIND_DOWN, false)
+        // A locked Premium widget's way in.
+        if (intent?.getBooleanExtra(EXTRA_PAYWALL, false) == true) graph.showPaywall(uz.ata.dawnwick.premium.PremiumFeature.HOME_WIDGET)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        // Whatever changed while the app was open — alarms, streak, Premium — the widgets show it.
+        uz.ata.dawnwick.widgets.DawnWidgets.refresh(this)
     }
 
     companion object {
         const val EXTRA_TAB = "tab"
         const val EXTRA_WIND_DOWN = "wind_down"
         const val EXTRA_WAKE_CHECK = "wake_check"
+        const val EXTRA_PAYWALL = "paywall"
     }
 }
 

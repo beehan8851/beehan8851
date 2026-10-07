@@ -220,6 +220,7 @@ class SleepTracker(private val context: Context, private val store: KeyValueStor
         _active.value = null
         isRestored = false
         SleepService.stop(context)
+        uz.ata.dawnwick.widgets.DawnWidgets.refresh(context)
         return done
     }
 

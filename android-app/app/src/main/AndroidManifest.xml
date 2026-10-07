@@ -114,5 +114,21 @@
             android:grantUriPermissions="true">
             <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths" />
         </provider>
+        <receiver android:name=".widgets.NextAlarmWidgetReceiver" android:exported="true" android:label="@string/widget_next_alarm">
+            <intent-filter><action android:name="android.appwidget.action.APPWIDGET_UPDATE" /></intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/widget_next_alarm" />
+        </receiver>
+        <receiver android:name=".widgets.CatWidgetReceiver" android:exported="true" android:label="@string/widget_cat">
+            <intent-filter><action android:name="android.appwidget.action.APPWIDGET_UPDATE" /></intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/widget_cat" />
+        </receiver>
+        <receiver android:name=".widgets.StreakWidgetReceiver" android:exported="true" android:label="@string/widget_streak">
+            <intent-filter><action android:name="android.appwidget.action.APPWIDGET_UPDATE" /></intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/widget_streak" />
+        </receiver>
+        <receiver android:name=".widgets.SleepWidgetReceiver" android:exported="true" android:label="@string/widget_sleep">
+            <intent-filter><action android:name="android.appwidget.action.APPWIDGET_UPDATE" /></intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/widget_sleep" />
+        </receiver>
     </application>
 </manifest>

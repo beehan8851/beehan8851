@@ -524,6 +524,29 @@
     <string name="settings_premium_get">Получить Premium</string>
     <string name="settings_manage_subscription">Управление подпиской</string>
     <string name="premium_mission_locked">Это задание доступно в Premium.</string>
+    <string name="widget_next_alarm">Следующий будильник</string>
+    <string name="widget_next_alarm_desc">Ближайший будильник и задания, которые его выключат.</string>
+    <string name="widget_cat">Кот</string>
+    <string name="widget_cat_desc">Кот спит вместе с вами и радуется вашим утрам.</string>
+    <string name="widget_streak">Серия</string>
+    <string name="widget_streak_desc">Ваша серия и эта неделя — по лапке за утро.</string>
+    <string name="widget_sleep">Сон</string>
+    <string name="widget_sleep_desc">Прошлая ночь и ночи этой недели.</string>
+    <string name="widget_tap_to_set">Нажмите, чтобы поставить.</string>
+    <string name="widget_cat_asleep_until">Спит. Встанет в %s.</string>
+    <string name="widget_cat_asleep">Спит.</string>
+    <string name="widget_cat_won_day">Утро за вами. День %d.</string>
+    <string name="widget_cat_won">Утро за вами.</string>
+    <string name="widget_cat_missed">Одно утро пропущено. Завтра считается.</string>
+    <string name="widget_cat_ready">Готов к ночи.</string>
+    <string name="widget_cat_no_alarm">Будильника пока нет.</string>
+    <string name="widget_days_in_row">%d дн. подряд</string>
+    <string name="widget_best">Лучшая: %d</string>
+    <string name="widget_average">В среднем %s</string>
+    <string name="widget_last_night">Прошлая ночь</string>
+    <string name="widget_no_nights">Ночей пока нет</string>
+    <string name="widget_locked">Виджет Premium. Нажмите, чтобы открыть.</string>
+    <string name="widget_hours_minutes">%1$d ч %2$d мин</string>
     <string-array name="weekday_letter">
         <item>Вс</item>
         <item>Пн</item>
