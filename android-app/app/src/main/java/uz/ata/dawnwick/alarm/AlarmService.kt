@@ -45,6 +45,8 @@ sealed interface SaveError {
     data class Persistence(val error: Throwable) : SaveError
     /** The free tier's limit would be passed; the caller shows the paywall. */
     data object FreeAlarmLimit : SaveError
+    /** A Premium mission on a free account; the caller shows the paywall. */
+    data object PremiumMission : SaveError
 }
 
 /**
@@ -96,6 +98,9 @@ class AlarmService(
         val existing = repository.fetchAll()
         val isNew = existing.none { it.id == alarm.id }
         if (isNew && existing.size >= FreeTier.ENABLED_ALARM_LIMIT) return SaveError.FreeAlarmLimit
+        // New Premium missions are refused; ones kept from a lapsed subscription stay, so nothing set up is lost.
+        val stored = existing.firstOrNull { it.id == alarm.id }
+        if (alarm.missions != stored?.missions && alarm.missions.any { it.kind.isPremium }) return SaveError.PremiumMission
         if (!alarm.isEnabled) return null
         if (existing.firstOrNull { it.id == alarm.id }?.isEnabled == true) return null
         val othersOn = existing.count { it.id != alarm.id && it.isEnabled }

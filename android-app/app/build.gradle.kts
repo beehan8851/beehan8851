@@ -15,6 +15,13 @@ android {
         targetSdk = 36
         versionCode = 1
         versionName = "1.0.0"
+        // RevenueCat's public Google key (goog_…), from local.properties or -PrevenuecatKey.
+        // Empty: no store. Debug builds then open Premium, release builds stay free.
+        val rcKey = (project.findProperty("revenuecatKey") as String?)
+            ?: rootProject.file("local.properties").takeIf { it.exists() }?.readLines()
+                ?.firstOrNull { it.startsWith("revenuecat.key=") }?.substringAfter("=")?.trim()
+            ?: ""
+        buildConfigField("String", "REVENUECAT_API_KEY", "\"$rcKey\"")
     }
 
     buildTypes {
@@ -62,6 +69,7 @@ dependencies {
     implementation("com.google.mlkit:barcode-scanning:17.3.0")
     implementation("com.google.android.play:review-ktx:2.0.2")
     implementation("androidx.health.connect:connect-client:1.1.0")
+    implementation("com.revenuecat.purchases:purchases:8.10.6")
     debugImplementation("androidx.compose.ui:ui-tooling")
 
     testImplementation("junit:junit:4.13.2")

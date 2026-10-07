@@ -200,7 +200,7 @@ fun CatNapScreen(onClose: () -> Unit) {
         if (!fresh) record.unlimitedSeed(l)?.let { return it }
         if (unlimitedOpen) return record.newUnlimitedSeed(l)
         if (record.freeTriesLeft() > 0) { record.useFreeTry(); return record.newUnlimitedSeed(l) }
-        android.widget.Toast.makeText(context, R.string.premium_soon, android.widget.Toast.LENGTH_LONG).show()
+        graph.showPaywall(uz.ata.dawnwick.premium.PremiumFeature.CAT_NAPS_UNLIMITED)
         return null
     }
 
@@ -354,6 +354,7 @@ private fun NapBoard(
     onClose: () -> Unit, onChanged: () -> Unit,
 ) {
     BackHandler(onBack = onClose)
+    val context = LocalContext.current
     val haptics = rememberHaptics()
     // The clock ticks once a second; the cats breathe every frame.
     val now = frameClock(true)
@@ -388,7 +389,7 @@ private fun NapBoard(
                 ButtonLabel(stringResource(R.string.clear), Icons.Rounded.CleaningServices)
             }
             SoftButton({
-                if (!premium) return@SoftButton
+                if (!premium) { context.graph.showPaywall(uz.ata.dawnwick.premium.PremiumFeature.CAT_NAPS); return@SoftButton }
                 haptics.perform(Haptic.MEDIUM); game.hint(System.currentTimeMillis()); onChanged()
             }, Modifier.weight(1f), enabled = !game.solved) {
                 ButtonLabel(stringResource(R.string.naps_hint), Icons.Rounded.Lightbulb)

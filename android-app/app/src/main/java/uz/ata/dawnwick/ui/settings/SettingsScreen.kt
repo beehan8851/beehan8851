@@ -19,6 +19,7 @@ import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -72,6 +73,26 @@ fun SettingsScreen() {
     Column(Modifier.fillMaxSize().background(colors.background).verticalScroll(rememberScrollState())) {
         Text(stringResource(R.string.tab_settings), style = DawnType.display(34), color = colors.textPrimary,
             modifier = Modifier.padding(start = Spacing.s, top = Spacing.s, bottom = Spacing.xs))
+
+        val subscription = context.graph.subscription
+        val premiumOn by subscription.premiumFlow.collectAsState()
+        Section(stringResource(R.string.premium)) {
+            if (premiumOn && subscription.storeAvailable) {
+                val ends = subscription.expiresAt.takeIf { it > 0 }?.let {
+                    java.text.DateFormat.getDateInstance(java.text.DateFormat.MEDIUM).format(java.util.Date(it))
+                }
+                SectionRow(stringResource(R.string.settings_premium_active),
+                    subtitle = ends?.let { stringResource(R.string.settings_premium_renews, it) }) {
+                    Icon(Icons.Rounded.CheckCircle, null, tint = colors.success, modifier = Modifier.size(22.dp))
+                }
+                RowDivider()
+                SectionRow(stringResource(R.string.settings_manage_subscription),
+                    onClick = { uz.ata.dawnwick.ui.premium.openManageSubscriptions(context) })
+            } else {
+                SectionRow(stringResource(R.string.settings_premium_get), subtitle = stringResource(R.string.pw_subtitle),
+                    onClick = { context.graph.showPaywall() })
+            }
+        }
 
         Section(stringResource(R.string.reliability), footer = stringResource(R.string.reliability_footer)) {
             AlarmPermission.entries.forEachIndexed { i, p ->

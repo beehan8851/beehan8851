@@ -195,6 +195,9 @@ fun AlarmEditor(existing: Alarm?, onClose: () -> Unit) {
                     is SaveError.Validation -> e.reason
                     is SaveError.Persistence -> e.error.localizedMessage ?: e.toString()
                     SaveError.FreeAlarmLimit -> context.getString(R.string.free_alarm_limit)
+                        .also { graph.showPaywall(uz.ata.dawnwick.premium.PremiumFeature.UNLIMITED_ALARMS) }
+                    SaveError.PremiumMission -> context.getString(R.string.premium_mission_locked)
+                        .also { graph.showPaywall(uz.ata.dawnwick.premium.PremiumFeature.ADVANCED_MISSIONS) }
                 }
                 errorNeedsSettings = false
             }

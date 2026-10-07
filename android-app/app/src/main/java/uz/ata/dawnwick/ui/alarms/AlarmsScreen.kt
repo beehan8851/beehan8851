@@ -144,13 +144,15 @@ fun AlarmsScreen(alarms: List<Alarm>, onOpen: (Alarm?) -> Unit, onChanged: () ->
                             when (result) {
                                 is uz.ata.dawnwick.alarm.SaveResult.PartialSuccess ->
                                     Toast.makeText(context, R.string.alarm_saved_not_scheduled, Toast.LENGTH_LONG).show()
-                                // Until the paywall exists, say why the switch did not move.
-                                is uz.ata.dawnwick.alarm.SaveResult.Failure -> Toast.makeText(context,
-                                    when (val e = result.error) {
-                                        uz.ata.dawnwick.alarm.SaveError.FreeAlarmLimit -> context.getString(R.string.free_alarm_limit)
-                                        is uz.ata.dawnwick.alarm.SaveError.Validation -> e.reason
-                                        else -> context.getString(R.string.alarm_saved_not_scheduled)
-                                    }, Toast.LENGTH_LONG).show()
+                                is uz.ata.dawnwick.alarm.SaveResult.Failure -> when (val e = result.error) {
+                                    uz.ata.dawnwick.alarm.SaveError.FreeAlarmLimit ->
+                                        graph.showPaywall(uz.ata.dawnwick.premium.PremiumFeature.UNLIMITED_ALARMS)
+                                    uz.ata.dawnwick.alarm.SaveError.PremiumMission ->
+                                        graph.showPaywall(uz.ata.dawnwick.premium.PremiumFeature.ADVANCED_MISSIONS)
+                                    is uz.ata.dawnwick.alarm.SaveError.Validation ->
+                                        Toast.makeText(context, e.reason, Toast.LENGTH_LONG).show()
+                                    else -> Toast.makeText(context, R.string.alarm_saved_not_scheduled, Toast.LENGTH_LONG).show()
+                                }
                                 else -> Unit
                             }
                         }

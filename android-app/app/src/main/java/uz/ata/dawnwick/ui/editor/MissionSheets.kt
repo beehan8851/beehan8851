@@ -1,5 +1,6 @@
 package uz.ata.dawnwick.ui.editor
 
+import uz.ata.dawnwick.graph
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
@@ -148,6 +149,10 @@ fun MissionPicker(current: List<MissionConfig>, onDone: (List<MissionConfig>) ->
                                             position != null -> { haptics.perform(Haptic.SELECTION); missions = missions.filterIndexed { i, _ -> i != position } }
                                             unavailable != null -> { haptics.perform(Haptic.WARNING); android.widget.Toast.makeText(context, unavailable, android.widget.Toast.LENGTH_LONG).show() }
                                             full -> haptics.perform(Haptic.WARNING)
+                                            kind.isPremium && !context.graph.isPremium -> {
+                                                haptics.perform(Haptic.WARNING)
+                                                context.graph.showPaywall(uz.ata.dawnwick.premium.PremiumFeature.ADVANCED_MISSIONS)
+                                            }
                                             else -> { haptics.perform(Haptic.SELECTION); missions = missions + kind.defaultConfig }
                                         }
                                     },

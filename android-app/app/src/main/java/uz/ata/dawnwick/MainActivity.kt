@@ -140,6 +140,16 @@ private fun AppRoot() {
         return
     }
 
+    val paywall by graph.paywall.collectAsState()
+    paywall?.let { reason ->
+        androidx.compose.ui.window.Dialog(
+            onDismissRequest = { graph.paywall.value = null },
+            properties = androidx.compose.ui.window.DialogProperties(usePlatformDefaultWidth = false, decorFitsSystemWindows = false),
+        ) {
+            uz.ata.dawnwick.ui.premium.PaywallScreen(reason) { graph.paywall.value = null; reload() }
+        }
+    }
+
     val promptAt = graph.ring.wakeCheckPromptAt()
     if (wakeCheck != null && promptAt != null && now >= promptAt) {
         CatTricksProvider(best) { WakeCheckPrompt(onAwake = { graph.ring.acknowledgeWakeCheck() }, onFellAsleep = { graph.ring.failWakeCheck() }) }

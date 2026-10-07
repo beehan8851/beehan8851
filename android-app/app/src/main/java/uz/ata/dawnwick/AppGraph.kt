@@ -19,12 +19,13 @@ class AppGraph(context: Context) {
     val registry = ReArmRegistry(store)
     val engine = SystemAlarmEngine(context, store)
 
-    /**
-     * Premium is not wired yet (RevenueCat comes with the paywall): until it is,
-     * everything is open, so nobody meets a limit there is no way past.
-     */
+    val subscription = uz.ata.dawnwick.premium.SubscriptionService(context, store)
     val alarmService = AlarmService(repository, engine, registry, entitlements = { isPremium })
-    val isPremium get() = true
+    val isPremium get() = subscription.isPremium
+
+    /** A paywall someone asked for, with the reason; the app's root shows it over everything. */
+    val paywall = kotlinx.coroutines.flow.MutableStateFlow<uz.ata.dawnwick.premium.PremiumFeature?>(null)
+    fun showPaywall(reason: uz.ata.dawnwick.premium.PremiumFeature = uz.ata.dawnwick.premium.PremiumFeature.GENERAL) { paywall.value = reason }
     val ring = RingController(context, this)
     val streak = uz.ata.dawnwick.streak.StreakStore(store)
     val brief = uz.ata.dawnwick.today.MorningBriefRepository(context, store)
@@ -43,6 +44,7 @@ class DawnwickApp : Application() {
     override fun onCreate() {
         super.onCreate()
         graph = AppGraph(this)
+        graph.subscription.start()
         RingNotifications.createChannels(this)
         uz.ata.dawnwick.ui.cat.CatSounds.init(this)
     }

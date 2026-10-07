@@ -201,7 +201,7 @@ private fun FirstAlarmStep(onFinished: () -> Unit) {
                 when (val e = result.error) {
                     is SaveError.Validation -> e.reason
                     is SaveError.Persistence -> e.error.message.orEmpty()
-                    SaveError.FreeAlarmLimit -> ""
+                    SaveError.FreeAlarmLimit, SaveError.PremiumMission -> ""
                 },
             )
         }

@@ -101,6 +101,12 @@ enum class MissionKind {
             CATCH_CAT -> MissionConfig.CatchCat(8)
         }
 
+    /**
+     * Math and Shake stay free: a free account must still be able to build an alarm
+     * that wakes someone, and neither needs hardware or a setup step.
+     */
+    val isPremium: Boolean get() = this != MATH && this != SHAKE
+
     /** Missions that need a setup flow before they work at alarm time. */
     val requiresSetup: Boolean get() = this == QR_CODE || this == DRAW
 }
