@@ -461,6 +461,26 @@
     <string name="naps_free_note">Cheksiz boshqotirmalarni bepul sinab ko\'ring, Premium bilan esa har safar yangi taxta.</string>
     <string name="naps_premium_note">Premium: har safar yangi taxta, barcha o\'tgan kunlar va maslahatlar.</string>
     <string name="premium_soon">Premium keyingi yangilanishda qo\'shiladi.</string>
+    <string name="onb_tagline">Tinch uxlang.
+Ishonch bilan uyg\'oning.</string>
+    <string name="onb_subtitle">Dawnwick telefon ovozsiz bo\'lsa ham jiringlaydi va to\'xtashidan oldin bitta kichik ish so\'raydi.</string>
+    <string name="onb_point_alarm">Oddiy bildirishnoma emas, haqiqiy budilnik</string>
+    <string name="onb_point_missions">Rostdan turganingizni tekshiradigan missiyalar</string>
+    <string name="onb_point_sleep">Hech narsa taqmasdan uyqu kuzatuvi</string>
+    <string name="onb_permissions_title">Haqiqatan jiringlaydigan budilnik</string>
+    <string name="onb_permissions_subtitle">Android bular uchun ruxsatingizni so\'raydi. Sozlamani ochish uchun bosing.</string>
+    <string name="onb_permission_granted">Yoqilgan</string>
+    <string name="onb_permission_optional">Tavsiya etiladi</string>
+    <string name="onb_permissions_missing">Dastlabki uchtasisiz budilnik kechikishi yoki qulf ekranida chiqmasligi mumkin.</string>
+    <string name="onb_first_alarm_title">Birinchi budilnikni qo\'ying</string>
+    <string name="onb_first_alarm_subtitle">Vaqt va missiyani tanlang. Keyin o\'zgartirishingiz mumkin.</string>
+    <string name="onb_mission_math_detail">Budilnik to\'xtashidan oldin bitta oson misol yeching.</string>
+    <string name="onb_mission_shake_detail">Rostdan uyg\'onguningizcha telefonni silkiting.</string>
+    <string name="onb_default_label">Uyg\'oning</string>
+    <string name="onb_get_started">Boshlash</string>
+    <string name="onb_set_alarm">Budilnikni qo\'yish</string>
+    <string name="onb_skip">Hozircha o\'tkazib yuborish</string>
+    <string name="onb_save_failed">Budilnikni saqlab bo\'lmadi: %s</string>
     <string-array name="weekday_letter">
         <item>Ya</item>
         <item>Du</item>

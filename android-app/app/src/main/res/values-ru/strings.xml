@@ -461,6 +461,26 @@
     <string name="naps_free_note">Попробуйте безлимит бесплатно, а с Premium — новое поле каждый раз.</string>
     <string name="naps_premium_note">Premium: новое поле каждый раз, все прошлые дни и подсказки.</string>
     <string name="premium_soon">Premium появится в следующем обновлении.</string>
+    <string name="onb_tagline">Спокойно засыпайте.
+Уверенно просыпайтесь.</string>
+    <string name="onb_subtitle">Dawnwick звонит даже на беззвучном и просит сделать одно маленькое дело, прежде чем замолчать.</string>
+    <string name="onb_point_alarm">Настоящий будильник, а не просто уведомление</string>
+    <string name="onb_point_missions">Задания, которые проверяют, что вы встали</string>
+    <string name="onb_point_sleep">Сон под контролем без браслета</string>
+    <string name="onb_permissions_title">Будильник, который точно зазвонит</string>
+    <string name="onb_permissions_subtitle">Android просит вашего согласия. Нажмите на пункт, чтобы открыть настройку.</string>
+    <string name="onb_permission_granted">Включено</string>
+    <string name="onb_permission_optional">Рекомендуется</string>
+    <string name="onb_permissions_missing">Без первых трёх будильник может запоздать или не появиться на экране блокировки.</string>
+    <string name="onb_first_alarm_title">Поставьте первый будильник</string>
+    <string name="onb_first_alarm_subtitle">Выберите время и задание. Потом всё можно изменить.</string>
+    <string name="onb_mission_math_detail">Решите один простой пример, чтобы будильник замолчал.</string>
+    <string name="onb_mission_shake_detail">Трясите телефон, пока не проснётесь.</string>
+    <string name="onb_default_label">Подъём</string>
+    <string name="onb_get_started">Начать</string>
+    <string name="onb_set_alarm">Поставить будильник</string>
+    <string name="onb_skip">Пропустить</string>
+    <string name="onb_save_failed">Не удалось сохранить будильник: %s</string>
     <string-array name="weekday_letter">
         <item>Вс</item>
         <item>Пн</item>

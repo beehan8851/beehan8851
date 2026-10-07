@@ -12,7 +12,7 @@ Kotlin, Jetpack Compose, no cross-platform layer.
 | 3 | Today: weather (Open-Meteo), calendar, morning brief, streak | **done** |
 | 4 | Sleep: tracking, noise monitor, white noise, wind-down, bedtime reminder, Health Connect | **done** |
 | 5 | Games: Catch the cat, Laser, Which box?, Cat Naps, Play tab, Today's game | **done** |
-| 6 | Widgets (Glance), Premium (RevenueCat), onboarding | to do |
+| 6 | Onboarding **done** (untested: no Android SDK in the cloud box); Widgets (Glance), Premium (RevenueCat) to do | in progress |
 
 ## How an alarm rings
 

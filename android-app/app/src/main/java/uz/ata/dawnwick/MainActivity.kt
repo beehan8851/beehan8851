@@ -1,14 +1,10 @@
 package uz.ata.dawnwick
 
-import android.Manifest
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
-import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.consumeWindowInsets
@@ -133,13 +129,15 @@ private fun AppRoot() {
         while (wakeCheck != null) { kotlinx.coroutines.delay(5_000); now = System.currentTimeMillis() }
     }
 
-    // Notifications carry the ring screen: ask once, on first launch.
-    val askNotifications = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) {}
-    LaunchedEffect(Unit) {
-        if (Build.VERSION.SDK_INT >= 33 && !graph.preferences.onboardingCompleted) {
-            askNotifications.launch(Manifest.permission.POST_NOTIFICATIONS)
+    // First launch: onboarding explains and asks for what an alarm needs, then sets the first alarm.
+    var onboarding by androidx.compose.runtime.remember { mutableStateOf(!graph.preferences.onboardingCompleted) }
+    if (onboarding) {
+        uz.ata.dawnwick.ui.onboarding.OnboardingScreen {
             graph.preferences.onboardingCompleted = true
+            onboarding = false
+            reload()
         }
+        return
     }
 
     val promptAt = graph.ring.wakeCheckPromptAt()

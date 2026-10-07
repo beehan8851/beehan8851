@@ -462,6 +462,26 @@
     <string name="naps_free_note">Try unlimited puzzles free, then go Premium for a new board every time.</string>
     <string name="naps_premium_note">Premium: a new board every time, every past day, and hints.</string>
     <string name="premium_soon">Premium arrives with the next update.</string>
+    <string name="onb_tagline">Sleep peacefully.
+Wake confidently.</string>
+    <string name="onb_subtitle">Dawnwick rings even when your phone is silent, then asks you to do one small thing before it stops.</string>
+    <string name="onb_point_alarm">A real alarm, not just a notification</string>
+    <string name="onb_point_missions">Missions that make sure you\'re actually up</string>
+    <string name="onb_point_sleep">Your sleep, tracked without wearing anything</string>
+    <string name="onb_permissions_title">Alarms that actually ring</string>
+    <string name="onb_permissions_subtitle">Android needs your say-so for these. Tap each one to open its setting.</string>
+    <string name="onb_permission_granted">On</string>
+    <string name="onb_permission_optional">Recommended</string>
+    <string name="onb_permissions_missing">Without the first three, your alarm may ring late or not show over the lock screen.</string>
+    <string name="onb_first_alarm_title">Set your first alarm</string>
+    <string name="onb_first_alarm_subtitle">Pick a time and a mission. You can change both later.</string>
+    <string name="onb_mission_math_detail">Solve one easy sum before the alarm stops.</string>
+    <string name="onb_mission_shake_detail">Shake the phone until you\'re properly awake.</string>
+    <string name="onb_default_label">Wake up</string>
+    <string name="onb_get_started">Get started</string>
+    <string name="onb_set_alarm">Set alarm</string>
+    <string name="onb_skip">Skip for now</string>
+    <string name="onb_save_failed">Couldn\'t save the alarm: %s</string>
     <string-array name="weekday_letter">
         <item>S</item>
         <item>M</item>
