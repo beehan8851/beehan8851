@@ -82,6 +82,12 @@ fun PetPortrait(pet: Pet, mood: CatMood, modifier: Modifier = Modifier, animated
  */
 @Composable
 fun PetPicker(onClose: () -> Unit) {
+    FullPage(stringResource(R.string.pets_title), onClose) { PetPickerContent() }
+}
+
+/** The picker's page, without its frame. `start`: the companion shown large at first; the chosen one by default. */
+@Composable
+fun PetPickerContent(start: Pet? = null) {
     val context = LocalContext.current
     val graph = context.graph
     val chosen by graph.companions.chosen.collectAsState()
@@ -89,7 +95,7 @@ fun PetPicker(onClose: () -> Unit) {
     val purchased by graph.subscription.purchased.collectAsState()
     val premium by graph.subscription.premiumFlow.collectAsState()
     var progress by remember { mutableStateOf(graph.companionProgress()) }
-    var focus by remember { mutableStateOf(chosen) }
+    var focus by remember { mutableStateOf(start ?: chosen) }
     var busy by remember { mutableStateOf(false) }
 
     LaunchedEffect(Unit) { graph.subscription.loadCompanionProducts(Pet.productIds) }
@@ -101,7 +107,7 @@ fun PetPicker(onClose: () -> Unit) {
         uz.ata.dawnwick.widgets.DawnWidgets.refresh(context)
     }
 
-    FullPage(stringResource(R.string.pets_title), onClose) {
+    Column(verticalArrangement = Arrangement.spacedBy(Spacing.m)) {
         Text(stringResource(R.string.pets_footer), style = DawnType.footnote, color = Dawn.colors.textSecondary)
 
         Pet.entries.chunked(3).forEach { row ->

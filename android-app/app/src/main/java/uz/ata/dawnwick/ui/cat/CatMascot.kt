@@ -5,6 +5,7 @@ import android.os.SystemClock
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.getValue
@@ -129,10 +130,7 @@ fun CatOnly(content: @Composable () -> Unit) =
 @Composable
 fun currentCompanion(): Pet {
     LocalForcedCompanion.current?.let { return it }
-    val context = LocalContext.current
-    return androidx.compose.runtime.produceState(context.graph.companion.value) {
-        context.graph.companion.collect { value = it }
-    }.value
+    return LocalContext.current.graph.companion.collectAsState().value
 }
 
 fun companionDesignSize(sp: Pet, mood: CatMood) = if (sp == Pet.CAT) CatArt.designSize(mood) else CompanionArt.designSize(mood)
