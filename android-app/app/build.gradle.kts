@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -27,7 +29,7 @@ android {
     // The release key, from keystore.properties next to settings.gradle.kts (never committed):
     //   storeFile=/path/to/dawnwick.jks  storePassword=…  keyAlias=…  keyPassword=…
     val keystoreProps = rootProject.file("keystore.properties").takeIf { it.exists() }?.let { f ->
-        java.util.Properties().apply { f.inputStream().use { load(it) } }
+        Properties().apply { f.inputStream().use { load(it) } }
     }
     signingConfigs {
         if (keystoreProps != null) create("release") {
