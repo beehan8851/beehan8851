@@ -48,6 +48,8 @@ import uz.ata.dawnwick.ui.theme.DawnColors
 import uz.ata.dawnwick.ui.theme.DawnTheme
 
 class MainActivity : ComponentActivity() {
+    override fun attachBaseContext(base: android.content.Context) = super.attachBaseContext(uz.ata.dawnwick.core.AppLanguage.wrap(base))
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // The app crashed last time: say what happened before anything else.

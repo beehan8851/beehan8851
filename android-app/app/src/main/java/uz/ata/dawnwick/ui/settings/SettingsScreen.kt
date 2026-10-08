@@ -63,6 +63,11 @@ import uz.ata.dawnwick.ui.cat.CatMood
 import uz.ata.dawnwick.ui.theme.Dawn
 import uz.ata.dawnwick.ui.theme.DawnType
 import uz.ata.dawnwick.ui.theme.Spacing
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.RadioButton
+import androidx.compose.material3.RadioButtonDefaults
+import androidx.compose.material3.TextButton
+import uz.ata.dawnwick.ui.premium.findActivity
 
 @Composable
 fun SettingsScreen() {
@@ -172,6 +177,14 @@ fun SettingsScreen() {
                 }
             }
             RowDivider()
+            var languagePicker by remember { mutableStateOf(false) }
+            val language = remember(languagePicker) { uz.ata.dawnwick.core.AppLanguage.current(context) }
+            SectionRow(stringResource(R.string.language), onClick = { languagePicker = true }) {
+                Text(uz.ata.dawnwick.core.AppLanguage.name(language) ?: stringResource(R.string.language_system),
+                    style = DawnType.body, color = colors.accent)
+            }
+            if (languagePicker) LanguagePicker(language) { languagePicker = false }
+            RowDivider()
             var petPicker by remember { mutableStateOf(false) }
             val pet = uz.ata.dawnwick.ui.cat.currentCompanion()
             SectionRow(stringResource(R.string.pets_title), subtitle = stringResource(petName(pet)), onClick = { petPicker = true }) {
@@ -234,4 +247,34 @@ private fun LinkRow(icon: androidx.compose.ui.graphics.vector.ImageVector, title
         Text(title, style = DawnType.body, color = Dawn.colors.textPrimary, modifier = Modifier.weight(1f))
         Icon(Icons.AutoMirrored.Rounded.OpenInNew, null, tint = Dawn.colors.textTertiary, modifier = Modifier.size(18.dp))
     }
+}
+
+/** The app's language: the phone's, or one of its own. */
+@Composable
+private fun LanguagePicker(current: String?, onClose: () -> Unit) {
+    val context = LocalContext.current
+    val options = listOf<Pair<String?, String>>(null to stringResource(R.string.language_system)) + uz.ata.dawnwick.core.AppLanguage.all
+    AlertDialog(
+        onDismissRequest = onClose,
+        confirmButton = { TextButton(onClick = onClose) { Text(stringResource(R.string.cancel), color = Dawn.colors.accent) } },
+        title = { Text(stringResource(R.string.language), style = DawnType.headline) },
+        containerColor = Dawn.colors.surfacePrimary,
+        text = {
+            Column(Modifier.verticalScroll(rememberScrollState())) {
+                options.forEach { (tag, name) ->
+                    Row(
+                        Modifier.fillMaxWidth().clickable {
+                            onClose()
+                            if (tag != current) context.findActivity()?.let { uz.ata.dawnwick.core.AppLanguage.set(it, tag) }
+                        }.padding(vertical = 12.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        RadioButton(selected = tag == current, onClick = null,
+                            colors = RadioButtonDefaults.colors(selectedColor = Dawn.colors.accent))
+                        Text(name, style = DawnType.body, color = Dawn.colors.textPrimary, modifier = Modifier.padding(start = Spacing.sm))
+                    }
+                }
+            }
+        },
+    )
 }

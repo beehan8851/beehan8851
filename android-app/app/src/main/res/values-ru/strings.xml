@@ -608,6 +608,8 @@
     <string name="crash_share">Поделиться</string>
     <string name="crash_continue">Продолжить</string>
     <string name="crash_copied">Скопировано</string>
+    <string name="language">Язык</string>
+    <string name="language_system">Язык телефона</string>
     <string-array name="weekday_letter">
         <item>Вс</item>
         <item>Пн</item>

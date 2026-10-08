@@ -608,6 +608,8 @@ Réveillez-vous sereinement.</string>
     <string name="crash_share">Partager</string>
     <string name="crash_continue">Continuer</string>
     <string name="crash_copied">Copié</string>
+    <string name="language">Langue</string>
+    <string name="language_system">Langue du téléphone</string>
     <string-array name="weekday_letter">
         <item>D</item>
         <item>L</item>

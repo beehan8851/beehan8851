@@ -37,6 +37,8 @@ class RingActivity : ComponentActivity() {
 
     private enum class Stage { RING, MISSION, SUCCESS }
 
+    override fun attachBaseContext(base: android.content.Context) = super.attachBaseContext(uz.ata.dawnwick.core.AppLanguage.wrap(base))
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         showOverLockScreen()

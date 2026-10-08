@@ -67,6 +67,8 @@ object CrashReporter {
 
 /** The last crash, in words a developer can use: copy it, share it, or carry on. Plain views, no app state. */
 class CrashActivity : Activity() {
+    override fun attachBaseContext(base: android.content.Context) = super.attachBaseContext(AppLanguage.wrap(base))
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val report = CrashReporter.pending(this) ?: run { restart(); return }

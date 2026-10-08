@@ -609,6 +609,8 @@ Wake confidently.</string>
     <string name="crash_share">Share</string>
     <string name="crash_continue">Continue</string>
     <string name="crash_copied">Copied</string>
+    <string name="language">Language</string>
+    <string name="language_system">Phone\'s language</string>
     <string-array name="weekday_letter">
         <item>S</item>
         <item>M</item>

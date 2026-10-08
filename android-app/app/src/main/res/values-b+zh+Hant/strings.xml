@@ -608,6 +608,8 @@
     <string name="crash_share">分享</string>
     <string name="crash_continue">繼續</string>
     <string name="crash_copied">已複製</string>
+    <string name="language">語言</string>
+    <string name="language_system">手機語言</string>
     <string-array name="weekday_letter">
         <item>日</item>
         <item>一</item>

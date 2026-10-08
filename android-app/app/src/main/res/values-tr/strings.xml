@@ -608,6 +608,8 @@ Güvenle uyan.</string>
     <string name="crash_share">Paylaş</string>
     <string name="crash_continue">Devam</string>
     <string name="crash_copied">Kopyalandı</string>
+    <string name="language">Dil</string>
+    <string name="language_system">Telefonun dili</string>
     <string-array name="weekday_letter">
         <item>P</item>
         <item>P</item>

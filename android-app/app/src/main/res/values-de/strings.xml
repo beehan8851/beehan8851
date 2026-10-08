@@ -608,6 +608,8 @@ Wach sicher auf.</string>
     <string name="crash_share">Teilen</string>
     <string name="crash_continue">Weiter</string>
     <string name="crash_copied">Kopiert</string>
+    <string name="language">Sprache</string>
+    <string name="language_system">Sprache des Telefons</string>
     <string-array name="weekday_letter">
         <item>S</item>
         <item>M</item>

@@ -155,6 +155,8 @@
   "jumps_label": "ジャンプ回数",
   "keep_editing": "編集を続ける",
   "label": "名前",
+  "language": "言語",
+  "language_system": "端末の言語",
   "laser_combo": "コンボ · かわすたびに×2",
   "laser_got_it": "つかまった",
   "laser_hint": "飛びかかりをかわそう",

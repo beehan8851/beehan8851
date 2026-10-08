@@ -621,6 +621,8 @@ S = {  # key: (en, uz, ru)
  "crash_share": ("Share", "Ulashish", "Поделиться"),
  "crash_continue": ("Continue", "Davom etish", "Продолжить"),
  "crash_copied": ("Copied", "Nusxa olindi", "Скопировано"),
+ "language": ("Language", "Til", "Язык"),
+ "language_system": ("Phone's language", "Telefon tili", "Язык телефона"),
 }
 
 ARRAYS = {

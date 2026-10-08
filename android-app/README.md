@@ -108,4 +108,4 @@ Strings live in `tools/strings.py` (English, Uzbek, Russian) and `tools/translat
 and Traditional Chinese: the iOS app's languages). Run `python3 tools/strings.py` after editing
 either; never edit the generated `strings.xml`. Most of the ten come from the iOS app's
 translations; the Android-only strings were translated without a native speaker and are worth
-a review. Android 13+ lists every language in the app's system language setting.
+a review. Settings › Appearance › Language picks one in the app (`core/AppLanguage.kt`): on Android 13+ through the system's per-app language, which also lists every language in system Settings; before 13 the app keeps the choice and applies it to each context it starts with.

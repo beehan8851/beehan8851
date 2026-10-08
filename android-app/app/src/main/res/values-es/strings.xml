@@ -608,6 +608,8 @@ Despierta con seguridad.</string>
     <string name="crash_share">Compartir</string>
     <string name="crash_continue">Continuar</string>
     <string name="crash_copied">Copiado</string>
+    <string name="language">Idioma</string>
+    <string name="language_system">Idioma del teléfono</string>
     <string-array name="weekday_letter">
         <item>D</item>
         <item>L</item>

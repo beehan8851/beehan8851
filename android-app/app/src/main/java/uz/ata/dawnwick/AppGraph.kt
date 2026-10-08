@@ -59,6 +59,8 @@ class DawnwickApp : Application() {
     lateinit var graph: AppGraph
         private set
 
+    override fun attachBaseContext(base: android.content.Context) = super.attachBaseContext(uz.ata.dawnwick.core.AppLanguage.wrap(base))
+
     override fun onCreate() {
         super.onCreate()
         uz.ata.dawnwick.core.CrashReporter.install(this)

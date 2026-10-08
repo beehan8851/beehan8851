@@ -608,6 +608,8 @@
     <string name="crash_share">공유</string>
     <string name="crash_continue">계속</string>
     <string name="crash_copied">복사됨</string>
+    <string name="language">언어</string>
+    <string name="language_system">휴대전화 언어</string>
     <string-array name="weekday_letter">
         <item>일</item>
         <item>월</item>

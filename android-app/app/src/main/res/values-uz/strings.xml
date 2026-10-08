@@ -608,6 +608,8 @@ Ishonch bilan uyg\'oning.</string>
     <string name="crash_share">Ulashish</string>
     <string name="crash_continue">Davom etish</string>
     <string name="crash_copied">Nusxa olindi</string>
+    <string name="language">Til</string>
+    <string name="language_system">Telefon tili</string>
     <string-array name="weekday_letter">
         <item>Ya</item>
         <item>Du</item>

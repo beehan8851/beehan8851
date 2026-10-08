@@ -155,6 +155,8 @@
   "jumps_label": "점프 횟수",
   "keep_editing": "계속 편집",
   "label": "이름",
+  "language": "언어",
+  "language_system": "휴대전화 언어",
   "laser_combo": "콤보 · 피할 때마다 ×2",
   "laser_got_it": "잡혔다",
   "laser_hint": "덮치기를 피하세요",
