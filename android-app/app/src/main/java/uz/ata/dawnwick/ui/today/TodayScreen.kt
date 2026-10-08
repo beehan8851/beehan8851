@@ -427,12 +427,12 @@ fun trickName(t: CatTrick) = when (t) {
     CatTrick.MEDAL -> R.string.trick_medal
 }
 
-fun trickDetail(t: CatTrick) = when (t) {
-    CatTrick.WAVE -> R.string.trick_wave_detail
+fun trickDetail(t: CatTrick, pet: uz.ata.dawnwick.companion.Pet = uz.ata.dawnwick.companion.Pet.CAT) = when (t) {
+    CatTrick.WAVE -> if (pet == uz.ata.dawnwick.companion.Pet.CAT) R.string.trick_wave_detail else R.string.trick_wave_detail_pet
     CatTrick.SOMERSAULT -> R.string.trick_somersault_detail
     CatTrick.LEAP -> R.string.trick_leap_detail
     CatTrick.SPARKLE -> R.string.trick_sparkle_detail
-    CatTrick.COLLAR -> R.string.trick_collar_detail
+    CatTrick.COLLAR -> if (pet == uz.ata.dawnwick.companion.Pet.CAT) R.string.trick_collar_detail else R.string.trick_collar_detail_pet
     CatTrick.MEDAL -> R.string.trick_medal_detail
 }
 

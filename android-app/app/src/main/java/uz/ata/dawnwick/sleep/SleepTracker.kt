@@ -220,6 +220,8 @@ class SleepTracker(private val context: Context, private val store: KeyValueStor
         _active.value = null
         isRestored = false
         SleepService.stop(context)
+        // Seven tracked nights earn the owl.
+        (context.applicationContext as uz.ata.dawnwick.DawnwickApp).graph.refreshCompanion()
         uz.ata.dawnwick.widgets.DawnWidgets.refresh(context)
         return done
     }

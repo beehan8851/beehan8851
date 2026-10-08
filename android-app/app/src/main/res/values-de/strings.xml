@@ -568,6 +568,40 @@ Wach sicher auf.</string>
     <string name="onb_step_of">Schritt %1$d von %2$d</string>
     <string name="onb_wake_time">Weckzeit</string>
     <string name="onb_how_turn_off">Wie du ihn ausschaltest</string>
+    <string name="pets_title">Begleiter</string>
+    <string name="pets_footer">Dein Begleiter ist bei dir auf „Heute“, beim Wecker, beim Schlaf und auf den Widgets, und sein Ruf ersetzt den „Miau“-Ton des Weckers. Die Spiele bleiben bei der Katze.</string>
+    <string name="pet_cat">Katze</string>
+    <string name="pet_puppy">Welpe</string>
+    <string name="pet_chick">Küken</string>
+    <string name="pet_canary">Kanarienvogel</string>
+    <string name="pet_lamb">Lamm</string>
+    <string name="pet_owl">Eulchen</string>
+    <string name="pet_hamster">Hamster</string>
+    <string name="pet_chosen">Ausgewählt</string>
+    <string name="pet_choose">Auswählen</string>
+    <string name="pet_tap_to_hear">Stimme anhören</string>
+    <string name="pet_unlock_streak">Wach %d Morgen in Folge auf, um es freizuschalten</string>
+    <string name="pet_unlock_nights">Zeichne %d Nächte deinen Schlaf auf, um es freizuschalten</string>
+    <string name="pet_buy">Kaufen · %s</string>
+    <string name="pet_or_premium">Oder alle Begleiter mit Premium</string>
+    <string name="pet_store_unavailable">Der Store ist in diesem Build noch nicht eingerichtet.</string>
+    <string name="pet_unlocked">%s gehört jetzt dir!</string>
+    <string name="voice_cat">Miau</string>
+    <string name="voice_puppy">Wuff</string>
+    <string name="voice_chick">Kikeriki</string>
+    <string name="voice_canary">Vogelgesang</string>
+    <string name="voice_lamb">Mäh</string>
+    <string name="voice_owl">Schuhu</string>
+    <string name="voice_hamster">Fiep</string>
+    <string name="voice_detail_companion">Dein Begleiter, der dich wach haben will</string>
+    <string name="pw_reason_companions">Premium schaltet alle Begleiter frei. Oder kauf deinen Liebling einzeln.</string>
+    <string name="pw_benefit_companions">Sechs weitere Begleiter, jeder mit eigener Stimme</string>
+    <string name="tricks_title_pet">Die Tricks deines Begleiters</string>
+    <string name="tricks_detail_pet">Eine Serie bringt deinem Begleiter nach 3, 7, 14, 30, 60 und 100 Morgen einen Trick bei. Er behält sie, egal was mit der Serie passiert.</string>
+    <string name="trick_wave_detail_pet">Tippe deinen Begleiter an, und er winkt zurück.</string>
+    <string name="trick_collar_detail_pet">Ein Halsband mit gelbem Glöckchen, wohin dein Begleiter auch geht.</string>
+    <string name="covers_ready_title_pet">Dein Begleiter hält dir den Rücken frei</string>
+    <string name="wind_down_detail_pet">Atme ein paar Minuten mit deinem Begleiter: vier ein, sechs aus. Ein sanftes Tippen markiert jeden Wechsel, du kannst also die Augen schließen.</string>
     <string-array name="weekday_letter">
         <item>S</item>
         <item>M</item>
@@ -652,6 +686,14 @@ Wach sicher auf.</string>
     <plurals name="days_in_a_row">
         <item quantity="one">%d Tag in Folge</item>
         <item quantity="other">%d Tage in Folge</item>
+    </plurals>
+    <plurals name="pet_mornings_progress">
+        <item quantity="one">%1$d von %2$d Morgen</item>
+        <item quantity="other">%1$d von %2$d Morgen</item>
+    </plurals>
+    <plurals name="pet_nights_progress">
+        <item quantity="one">%1$d von %2$d Nacht</item>
+        <item quantity="other">%1$d von %2$d Nächten</item>
     </plurals>
     <plurals name="sleep_earlier_nights_locked">
         <item quantity="one">%d frühere Nacht – mit Premium ansehen</item>

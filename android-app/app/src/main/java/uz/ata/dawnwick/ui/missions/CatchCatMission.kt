@@ -58,7 +58,10 @@ import uz.ata.dawnwick.ui.theme.Spacing
  * just before it goes, and jumps somewhere well away. A tap on the floor startles it.
  */
 @Composable
-fun CatchCatMission(config: MissionConfig.CatchCat, onSuccess: () -> Unit) {
+fun CatchCatMission(config: MissionConfig.CatchCat, onSuccess: () -> Unit) = uz.ata.dawnwick.ui.cat.CatOnly { CatchCatMissionCat(config, onSuccess) }
+
+@Composable
+private fun CatchCatMissionCat(config: MissionConfig.CatchCat, onSuccess: () -> Unit) {
     val mission = remember { CatchMission(config.catches) }
     var now by remember { mutableLongStateOf(System.currentTimeMillis()) }
     val haptic = rememberHaptics()

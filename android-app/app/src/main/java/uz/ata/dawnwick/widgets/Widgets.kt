@@ -150,17 +150,42 @@ class CatWidget : GlanceAppWidget() {
             missedLast -> R.drawable.icon_preview_unimpressed
             else -> R.drawable.icon_preview_classic
         }
+        // Any other companion is drawn for the widget, in the same moods.
+        val pet = graph.companion.value
+        val drawn = if (pet == uz.ata.dawnwick.companion.Pet.CAT) null else petBitmap(pet, when {
+            night -> uz.ata.dawnwick.ui.cat.CatMood.SLEEPING
+            wonToday -> uz.ata.dawnwick.ui.cat.CatMood.PROUD
+            missedLast -> uz.ata.dawnwick.ui.cat.CatMood.GRUMPY
+            else -> uz.ata.dawnwick.ui.cat.CatMood.AWAKE
+        }, night)
         provideContent {
             Column(
                 GlanceModifier.fillMaxSize().background(c(if (night) Ink else Yolk)).cornerRadius(22.dp).padding(12.dp)
                     .clickable(openApp(context, tab = 0)),
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
-                Image(ImageProvider(face), null, GlanceModifier.size(84.dp).cornerRadius(18.dp))
+                if (drawn != null) Image(ImageProvider(drawn), null, GlanceModifier.size(84.dp))
+                else Image(ImageProvider(face), null, GlanceModifier.size(84.dp).cornerRadius(18.dp))
                 Text(line, style = TextStyle(c(if (night) Paper else Ink), 14.sp, FontWeight.Bold), maxLines = 2)
             }
         }
     }
+}
+
+/** A companion drawn off screen, the way the app draws it, for a widget. */
+private fun petBitmap(pet: uz.ata.dawnwick.companion.Pet, mood: uz.ata.dawnwick.ui.cat.CatMood, night: Boolean): android.graphics.Bitmap {
+    val px = 256
+    val bitmap = android.graphics.Bitmap.createBitmap(px, px, android.graphics.Bitmap.Config.ARGB_8888)
+    val canvas = androidx.compose.ui.graphics.Canvas(android.graphics.Canvas(bitmap))
+    androidx.compose.ui.graphics.drawscope.CanvasDrawScope().draw(
+        androidx.compose.ui.unit.Density(1f), androidx.compose.ui.unit.LayoutDirection.Ltr, canvas,
+        androidx.compose.ui.geometry.Size(px.toFloat(), px.toFloat()),
+    ) {
+        with(uz.ata.dawnwick.ui.cat.CompanionArt) {
+            drawCompanion(pet, mood, if (night) uz.ata.dawnwick.ui.cat.CatGround.DARK else uz.ata.dawnwick.ui.cat.CatGround.LIGHT)
+        }
+    }
+    return bitmap
 }
 
 class CatWidgetReceiver : GlanceAppWidgetReceiver() { override val glanceAppWidget: GlanceAppWidget = CatWidget() }

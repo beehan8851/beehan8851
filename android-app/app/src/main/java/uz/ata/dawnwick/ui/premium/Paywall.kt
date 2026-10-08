@@ -74,6 +74,7 @@ private fun PremiumFeature.prompt(): Int = when (this) {
     PremiumFeature.HOME_WIDGET -> R.string.pw_reason_widget
     PremiumFeature.CAT_NAPS -> R.string.pw_reason_naps
     PremiumFeature.CAT_NAPS_UNLIMITED -> R.string.pw_reason_naps_unlimited
+    PremiumFeature.COMPANIONS -> R.string.pw_reason_companions
 }
 
 tailrec fun Context.findActivity(): Activity? = when (this) {
@@ -133,7 +134,7 @@ fun PaywallScreen(reason: PremiumFeature, onClose: () -> Unit) {
             Column(Modifier.padding(Spacing.s), verticalArrangement = Arrangement.spacedBy(Spacing.m)) {
                 Column(verticalArrangement = Arrangement.spacedBy(Spacing.sm)) {
                     listOf(R.string.pw_benefit_alarms, R.string.pw_benefit_sleep, R.string.pw_benefit_widgets,
-                        R.string.pw_benefit_icons, R.string.pw_benefit_naps, R.string.pw_benefit_wake_check).forEach { Benefit(it) }
+                        R.string.pw_benefit_companions, R.string.pw_benefit_icons, R.string.pw_benefit_naps, R.string.pw_benefit_wake_check).forEach { Benefit(it) }
                 }
                 when (val s = plansState) {
                     PlansState.Loading -> Row(verticalAlignment = Alignment.CenterVertically) {

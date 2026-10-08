@@ -114,6 +114,7 @@ class RingController(private val context: Context, private val graph: AppGraph) 
             service.completeOccurrence(alarm)
             // A won morning; a test alarm is not one.
             graph.streak.recordCompletion(graph.repository.fetchAll())
+            graph.refreshCompanion()
             uz.ata.dawnwick.widgets.DawnWidgets.refresh(context)
             returnToToday = true
         }

@@ -568,6 +568,40 @@
     <string name="onb_step_of">第 %1$d 步，共 %2$d 步</string>
     <string name="onb_wake_time">起床時間</string>
     <string name="onb_how_turn_off">你要怎麼關掉它</string>
+    <string name="pets_title">夥伴</string>
+    <string name="pets_footer">夥伴會在「今天」、鬧鐘、睡眠和小工具中陪著你，牠的叫聲就是鬧鐘的「喵」鈴聲。遊戲仍然屬於小貓。</string>
+    <string name="pet_cat">小貓</string>
+    <string name="pet_puppy">小狗</string>
+    <string name="pet_chick">小雞</string>
+    <string name="pet_canary">金絲雀</string>
+    <string name="pet_lamb">小羊</string>
+    <string name="pet_owl">小貓頭鷹</string>
+    <string name="pet_hamster">倉鼠</string>
+    <string name="pet_chosen">已選</string>
+    <string name="pet_choose">選擇</string>
+    <string name="pet_tap_to_hear">聽聽牠的聲音</string>
+    <string name="pet_unlock_streak">連續 %d 個早晨起床即可解鎖</string>
+    <string name="pet_unlock_nights">記錄 %d 晚睡眠即可解鎖</string>
+    <string name="pet_buy">購買 · %s</string>
+    <string name="pet_or_premium">或透過 Premium 取得全部夥伴</string>
+    <string name="pet_store_unavailable">此版本尚未設定商店。</string>
+    <string name="pet_unlocked">%s 現在是你的了！</string>
+    <string name="voice_cat">喵</string>
+    <string name="voice_puppy">汪汪</string>
+    <string name="voice_chick">喔喔喔</string>
+    <string name="voice_canary">鳥鳴</string>
+    <string name="voice_lamb">咩</string>
+    <string name="voice_owl">咕咕</string>
+    <string name="voice_hamster">吱吱</string>
+    <string name="voice_detail_companion">想叫你起床的夥伴</string>
+    <string name="pw_reason_companions">Premium 解鎖全部夥伴。也可以單獨購買你喜歡的那一個。</string>
+    <string name="pw_benefit_companions">另外 6 位夥伴，各有自己的聲音</string>
+    <string name="tricks_title_pet">夥伴的小把戲</string>
+    <string name="tricks_detail_pet">連續紀錄會在第 3、7、14、30、60 和 100 個早晨教夥伴一個小把戲。即使連續紀錄中斷，牠也不會忘。</string>
+    <string name="trick_wave_detail_pet">輕點夥伴，牠會向你揮手。</string>
+    <string name="trick_collar_detail_pet">無論夥伴去哪裡，都戴著黃色鈴鐺項圈。</string>
+    <string name="covers_ready_title_pet">夥伴會幫你撐著</string>
+    <string name="wind_down_detail_pet">和夥伴一起呼吸幾分鐘：吸氣四拍，吐氣六拍。每次轉換都有輕微震動提示，你可以閉上眼睛。</string>
     <string-array name="weekday_letter">
         <item>日</item>
         <item>一</item>
@@ -645,6 +679,12 @@
     </plurals>
     <plurals name="days_in_a_row">
         <item quantity="other">連續 %d 天</item>
+    </plurals>
+    <plurals name="pet_mornings_progress">
+        <item quantity="other">%1$d / %2$d 個早晨</item>
+    </plurals>
+    <plurals name="pet_nights_progress">
+        <item quantity="other">%1$d / %2$d 晚</item>
     </plurals>
     <plurals name="sleep_earlier_nights_locked">
         <item quantity="other">之前 %d 晚 — 用 Premium 查看</item>

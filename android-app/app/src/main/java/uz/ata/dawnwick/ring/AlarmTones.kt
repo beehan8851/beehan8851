@@ -167,7 +167,8 @@ class TonePlayer(private val context: Context, private val alarmStream: Boolean)
         // The designed recordings the iOS app ships, where there is one; Default is
         // synthesised there too.
         val file = when (sound) {
-            AlarmSound.MEOW -> R.raw.meow
+            // The companion's own call: the cat meows, the puppy barks, the chick crows.
+            AlarmSound.MEOW -> uz.ata.dawnwick.ui.cat.PetVoices.alarm((context.applicationContext as uz.ata.dawnwick.DawnwickApp).graph.companion.value)
             AlarmSound.GENTLE -> R.raw.tone_gentle
             AlarmSound.RISE -> R.raw.tone_rise
             AlarmSound.PULSE -> R.raw.tone_pulse

@@ -568,6 +568,40 @@
     <string name="onb_step_of">ステップ%1$d／%2$d</string>
     <string name="onb_wake_time">起床時刻</string>
     <string name="onb_how_turn_off">止め方</string>
+    <string name="pets_title">なかま</string>
+    <string name="pets_footer">なかまは「今日」、アラーム、睡眠、ウィジェットで一緒にいて、その鳴き声がアラームの「ニャー」の音になります。ゲームはネコのままです。</string>
+    <string name="pet_cat">ネコ</string>
+    <string name="pet_puppy">子イヌ</string>
+    <string name="pet_chick">ひよこ</string>
+    <string name="pet_canary">カナリア</string>
+    <string name="pet_lamb">子ヒツジ</string>
+    <string name="pet_owl">子フクロウ</string>
+    <string name="pet_hamster">ハムスター</string>
+    <string name="pet_chosen">選択中</string>
+    <string name="pet_choose">選ぶ</string>
+    <string name="pet_tap_to_hear">鳴き声を聞く</string>
+    <string name="pet_unlock_streak">%d日連続で起きると解放されます</string>
+    <string name="pet_unlock_nights">%d晩の睡眠を記録すると解放されます</string>
+    <string name="pet_buy">購入 · %s</string>
+    <string name="pet_or_premium">またはPremiumですべてのなかまを</string>
+    <string name="pet_store_unavailable">このビルドではストアがまだ設定されていません。</string>
+    <string name="pet_unlocked">%sがなかまになりました！</string>
+    <string name="voice_cat">ニャー</string>
+    <string name="voice_puppy">ワン</string>
+    <string name="voice_chick">コケコッコー</string>
+    <string name="voice_canary">さえずり</string>
+    <string name="voice_lamb">メェー</string>
+    <string name="voice_owl">ホーホー</string>
+    <string name="voice_hamster">チュー</string>
+    <string name="voice_detail_companion">起きてほしいなかま</string>
+    <string name="pw_reason_companions">Premiumならすべてのなかまが解放されます。好きな子だけを個別に購入することもできます。</string>
+    <string name="pw_benefit_companions">鳴き声もそれぞれ違う、6匹のなかま</string>
+    <string name="tricks_title_pet">なかまの技</string>
+    <string name="tricks_detail_pet">連続記録で、なかまは3・7・14・30・60・100日目に技を覚えます。記録が途切れても技は忘れません。</string>
+    <string name="trick_wave_detail_pet">なかまをタップすると手を振り返します。</string>
+    <string name="trick_collar_detail_pet">なかまがどこへ行っても、黄色い鈴の首輪と一緒。</string>
+    <string name="covers_ready_title_pet">なかまがカバーしてくれます</string>
+    <string name="wind_down_detail_pet">なかまと数分間呼吸しましょう。4秒で吸って、6秒で吐きます。切り替わりは軽い振動で知らせるので、目を閉じていて大丈夫です。</string>
     <string-array name="weekday_letter">
         <item>日</item>
         <item>月</item>
@@ -645,6 +679,12 @@
     </plurals>
     <plurals name="days_in_a_row">
         <item quantity="other">%d日連続</item>
+    </plurals>
+    <plurals name="pet_mornings_progress">
+        <item quantity="other">%1$d / %2$d日</item>
+    </plurals>
+    <plurals name="pet_nights_progress">
+        <item quantity="other">%1$d / %2$d晩</item>
     </plurals>
     <plurals name="sleep_earlier_nights_locked">
         <item quantity="other">これまでの%d晩分 — Premiumで表示</item>

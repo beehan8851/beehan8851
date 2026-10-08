@@ -204,10 +204,11 @@ const val STARTLE_HOLD_MS = 1100L
  */
 @Composable
 fun CatStage(mood: CatMood, modifier: Modifier = Modifier, ground: CatGround = CatGround.LIGHT, animated: Boolean = true) {
-    BoxWithConstraints(modifier.aspectRatio(CatArt.aspectRatio(CatMood.AWAKE)).clearAndSetSemantics {}, contentAlignment = Alignment.BottomCenter) {
-        val spread = CatArt.designSize(mood).width / CatArt.designSize(CatMood.AWAKE).width
+    val sp = currentCompanion()
+    BoxWithConstraints(modifier.aspectRatio(companionAspectRatio(sp, CatMood.AWAKE)).clearAndSetSemantics {}, contentAlignment = Alignment.BottomCenter) {
+        val spread = companionDesignSize(sp, mood).width / companionDesignSize(sp, CatMood.AWAKE).width
         val w = maxWidth * spread
-        val h = w / CatArt.aspectRatio(mood)
+        val h = w / companionAspectRatio(sp, mood)
         Box(Modifier.requiredSize(w, h).offset(y = 0.dp)) { CatMascot(mood, Modifier.fillMaxWidth(), ground, animated) }
     }
 }

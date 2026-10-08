@@ -23,6 +23,24 @@ class AppGraph(context: Context) {
     val alarmService = AlarmService(repository, engine, registry, entitlements = { isPremium })
     val isPremium get() = subscription.isPremium
 
+    val companions = uz.ata.dawnwick.companion.CompanionStore(store)
+
+    /** Everything that decides which companions are open, read now. Earned ones are kept for good. */
+    fun companionProgress(): uz.ata.dawnwick.companion.CompanionProgress {
+        val nights = sleep.repository.loadCompleted().count { (it.durationMillis ?: 0) >= 60 * 60_000L }
+        var p = uz.ata.dawnwick.companion.CompanionProgress(
+            premium = isPremium, bestStreak = streak.load().bestStreak, nightsTracked = nights,
+            purchased = subscription.purchased.value, earned = companions.earned,
+        )
+        val fresh = p.newlyEarned()
+        if (fresh.isNotEmpty()) { companions.earned = p.earned + fresh; p = p.copy(earned = p.earned + fresh) }
+        return p
+    }
+
+    /** The companion on screen everywhere but the games. */
+    val companion = kotlinx.coroutines.flow.MutableStateFlow(uz.ata.dawnwick.companion.Pet.CAT)
+    fun refreshCompanion() { companion.value = companions.shown(companionProgress()) }
+
     /** A paywall someone asked for, with the reason; the app's root shows it over everything. */
     val paywall = kotlinx.coroutines.flow.MutableStateFlow<uz.ata.dawnwick.premium.PremiumFeature?>(null)
     fun showPaywall(reason: uz.ata.dawnwick.premium.PremiumFeature = uz.ata.dawnwick.premium.PremiumFeature.GENERAL) { paywall.value = reason }
@@ -44,7 +62,9 @@ class DawnwickApp : Application() {
     override fun onCreate() {
         super.onCreate()
         graph = AppGraph(this)
+        graph.subscription.onEntitlementsChanged = { graph.refreshCompanion() }
         graph.subscription.start()
+        graph.refreshCompanion()
         RingNotifications.createChannels(this)
         uz.ata.dawnwick.ui.cat.CatSounds.init(this)
     }

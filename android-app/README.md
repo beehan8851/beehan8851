@@ -44,6 +44,27 @@ and an offering `default` with annual and monthly packages. Without a key there 
 store: debug builds run with Premium open so everything can be tried, release builds
 run free.
 
+## Companions
+
+Besides the cat, six companions can stand in for it everywhere but the games: puppy,
+chick, canary, lamb, owlet and hamster (`companion/Companions.kt`, drawn in
+`ui/cat/CompanionArt.kt` with the cat's eyes and moods, so the cat's own `CatArt` is untouched).
+Each has its own voice: an alarm call that replaces the "Meow" tone, three tap sounds and a
+calm loop (`res/raw/pet_*.ogg`; sources and licences in `SOUNDS.md`, all CC0).
+
+| Companion | How it opens |
+|---|---|
+| Cat | free |
+| Chick | a 14-morning streak (best streak, kept once earned) |
+| Owlet | 7 tracked nights of an hour or more (kept once earned) |
+| Puppy, canary, lamb, hamster | Premium, or bought one at a time |
+
+Premium opens every companion. The one-off purchases are non-consumable in-app products in
+Google Play, `dawnwick_companion_puppy`, `dawnwick_companion_canary`, `dawnwick_companion_lamb`
+and `dawnwick_companion_hamster` (about $1.99 each), added to RevenueCat as products; ownership
+is read from RevenueCat's `allPurchasedProductIds`. If Premium ends, a bought or earned companion
+stays; a companion that came only with Premium gives way to the cat until Premium returns.
+
 ## Release signing
 
 Create `keystore.properties` next to `settings.gradle.kts` (it is git-ignored):

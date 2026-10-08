@@ -143,7 +143,7 @@ object WeatherStyle {
 }
 
 @Composable
-private fun FullPage(title: String, onClose: () -> Unit, action: (@Composable () -> Unit)? = null, content: @Composable () -> Unit) {
+internal fun FullPage(title: String, onClose: () -> Unit, action: (@Composable () -> Unit)? = null, content: @Composable () -> Unit) {
     Dialog(onDismissRequest = onClose, properties = DialogProperties(usePlatformDefaultWidth = false, decorFitsSystemWindows = false)) {
         DawnTheme { CatTricksProvider {
             Column(Modifier.fillMaxSize().background(Dawn.colors.background).safeDrawingPadding()) {
@@ -273,8 +273,8 @@ fun StreakPage(record: StreakRecord, live: Int, alarms: List<Alarm>, since: Loca
 
         // Tricks.
         Column(verticalArrangement = Arrangement.spacedBy(Spacing.xs)) {
-            Text(stringResource(R.string.tricks_title), style = DawnType.headline, color = colors.textPrimary)
-            Text(stringResource(R.string.tricks_detail), style = DawnType.footnote, color = colors.textSecondary)
+            Text(stringResource(if (uz.ata.dawnwick.ui.cat.currentCompanion() == uz.ata.dawnwick.companion.Pet.CAT) R.string.tricks_title else R.string.tricks_title_pet), style = DawnType.headline, color = colors.textPrimary)
+            Text(stringResource(if (uz.ata.dawnwick.ui.cat.currentCompanion() == uz.ata.dawnwick.companion.Pet.CAT) R.string.tricks_detail else R.string.tricks_detail_pet), style = DawnType.footnote, color = colors.textSecondary)
             Box(Modifier.fillMaxWidth().clip(RoundedCornerShape(Radius.m)).background(colors.surfacePrimary).padding(Spacing.s)) {
                 TricksPanel(record.bestStreak, live)
             }
@@ -296,7 +296,7 @@ fun StreakPage(record: StreakRecord, live: Int, alarms: List<Alarm>, since: Loca
                 }
                 Spacer(Modifier.width(Spacing.xs))
                 Column {
-                    Text(stringResource(if (record.covers > 0) R.string.covers_ready_title else R.string.covers_none), style = DawnType.headline, color = colors.textPrimary)
+                    Text(stringResource(if (record.covers > 0) (if (uz.ata.dawnwick.ui.cat.currentCompanion() == uz.ata.dawnwick.companion.Pet.CAT) R.string.covers_ready_title else R.string.covers_ready_title_pet) else R.string.covers_none), style = DawnType.headline, color = colors.textPrimary)
                     Text(stringResource(R.string.covers_ready, record.covers, StreakRecord.MAX_COVERS), style = DawnType.footnote, color = colors.textSecondary)
                     if (record.covers < StreakRecord.MAX_COVERS) {
                         val nextAt = (live / StreakRecord.COVER_EVERY + 1) * StreakRecord.COVER_EVERY
@@ -379,7 +379,7 @@ private fun TricksPanel(best: Int, current: Int) {
                     Text(stringResource(R.string.learned), style = DawnType.footnote.copy(fontWeight = FontWeight.Bold), color = colors.accent)
                 }
             }
-            Text(stringResource(trickDetail(shown)), style = DawnType.footnote, color = colors.textSecondary)
+            Text(stringResource(trickDetail(shown, uz.ata.dawnwick.ui.cat.currentCompanion())), style = DawnType.footnote, color = colors.textSecondary)
             if (best < shown.days) {
                 Box(Modifier.padding(top = 4.dp).fillMaxWidth().height(8.dp).clip(RoundedCornerShape(4.dp)).background(colors.textPrimary.copy(alpha = 0.1f))) {
                     Box(Modifier.fillMaxWidth((current / shown.days.toFloat()).coerceIn(0f, 1f)).height(8.dp).background(colors.accent))

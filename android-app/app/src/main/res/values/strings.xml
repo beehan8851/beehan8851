@@ -569,6 +569,40 @@ Wake confidently.</string>
     <string name="onb_step_of">Step %1$d of %2$d</string>
     <string name="onb_wake_time">Wake time</string>
     <string name="onb_how_turn_off">How you\'ll turn it off</string>
+    <string name="pets_title">Companion</string>
+    <string name="pets_footer">Your companion is with you on Today, at the alarm, in Sleep and on the widgets, and its call is the alarm\'s “Meow” sound. The games stay the cat\'s.</string>
+    <string name="pet_cat">Cat</string>
+    <string name="pet_puppy">Puppy</string>
+    <string name="pet_chick">Chick</string>
+    <string name="pet_canary">Canary</string>
+    <string name="pet_lamb">Lamb</string>
+    <string name="pet_owl">Owlet</string>
+    <string name="pet_hamster">Hamster</string>
+    <string name="pet_chosen">Chosen</string>
+    <string name="pet_choose">Choose</string>
+    <string name="pet_tap_to_hear">Hear its voice</string>
+    <string name="pet_unlock_streak">Wake up %d mornings in a row to unlock</string>
+    <string name="pet_unlock_nights">Track your sleep for %d nights to unlock</string>
+    <string name="pet_buy">Buy · %s</string>
+    <string name="pet_or_premium">Or get every companion with Premium</string>
+    <string name="pet_store_unavailable">The store isn\'t set up in this build yet.</string>
+    <string name="pet_unlocked">%s is yours!</string>
+    <string name="voice_cat">Meow</string>
+    <string name="voice_puppy">Woof</string>
+    <string name="voice_chick">Cock-a-doodle-doo</string>
+    <string name="voice_canary">Birdsong</string>
+    <string name="voice_lamb">Baa</string>
+    <string name="voice_owl">Hoot</string>
+    <string name="voice_hamster">Squeak</string>
+    <string name="voice_detail_companion">Your companion, wanting you up</string>
+    <string name="pw_reason_companions">Premium opens every companion. Or buy the one you like on its own.</string>
+    <string name="pw_benefit_companions">Six more companions, each with its own voice</string>
+    <string name="tricks_title_pet">Your companion\'s tricks</string>
+    <string name="tricks_detail_pet">A streak teaches your companion a trick at 3, 7, 14, 30, 60 and 100 mornings. It keeps them, whatever happens to the streak.</string>
+    <string name="trick_wave_detail_pet">Tap your companion and it waves back.</string>
+    <string name="trick_collar_detail_pet">A collar with a yolk bell, everywhere your companion goes.</string>
+    <string name="covers_ready_title_pet">Your companion has your back</string>
+    <string name="wind_down_detail_pet">Breathe with your companion for a few minutes: in for four, out for six. A soft tap marks each turn, so you can close your eyes.</string>
     <string-array name="weekday_letter">
         <item>S</item>
         <item>M</item>
@@ -653,6 +687,14 @@ Wake confidently.</string>
     <plurals name="days_in_a_row">
         <item quantity="one">%d day in a row</item>
         <item quantity="other">%d days in a row</item>
+    </plurals>
+    <plurals name="pet_mornings_progress">
+        <item quantity="one">%1$d of %2$d morning</item>
+        <item quantity="other">%1$d of %2$d mornings</item>
+    </plurals>
+    <plurals name="pet_nights_progress">
+        <item quantity="one">%1$d of %2$d night</item>
+        <item quantity="other">%1$d of %2$d nights</item>
     </plurals>
     <plurals name="sleep_earlier_nights_locked">
         <item quantity="one">%d earlier night — see it with Premium</item>

@@ -172,6 +172,13 @@ fun SettingsScreen() {
                 }
             }
             RowDivider()
+            var petPicker by remember { mutableStateOf(false) }
+            val pet = uz.ata.dawnwick.ui.cat.currentCompanion()
+            SectionRow(stringResource(R.string.pets_title), subtitle = stringResource(petName(pet)), onClick = { petPicker = true }) {
+                PetPortrait(pet, uz.ata.dawnwick.ui.cat.CatMood.AWAKE, Modifier.size(40.dp), animated = false)
+            }
+            if (petPicker) PetPicker { petPicker = false }
+            RowDivider()
             var iconPicker by remember { mutableStateOf(false) }
             val currentIcon = remember(iconPicker) { AppIcon.current(context) }
             SectionRow(stringResource(R.string.app_icon), onClick = { iconPicker = true }) {

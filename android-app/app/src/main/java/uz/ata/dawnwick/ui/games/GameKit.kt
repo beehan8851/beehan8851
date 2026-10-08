@@ -142,7 +142,10 @@ fun GamePoster(game: MorningGame, width: Dp) {
  * daylight, and back to where it was opened from when it closes.
  */
 @Composable
-fun GameHost(game: MorningGame, onClose: () -> Unit) {
+fun GameHost(game: MorningGame, onClose: () -> Unit) = uz.ata.dawnwick.ui.cat.CatOnly { GameHostCat(game, onClose) }
+
+@Composable
+private fun GameHostCat(game: MorningGame, onClose: () -> Unit) {
     Dialog(onDismissRequest = onClose, properties = DialogProperties(usePlatformDefaultWidth = false, decorFitsSystemWindows = false)) {
         DarkStatusIcons()
         DaylightTheme {
@@ -362,7 +365,10 @@ fun PlayDisc(size: Dp = 40.dp) {
 
 /** A game on an ink card, as Today shows the game of the day: the title and a line, the picture, the play button. */
 @Composable
-fun GameCard(game: MorningGame, best: Int, onOpen: () -> Unit) {
+fun GameCard(game: MorningGame, best: Int, onOpen: () -> Unit) = uz.ata.dawnwick.ui.cat.CatOnly { GameCardCat(game, best, onOpen) }
+
+@Composable
+private fun GameCardCat(game: MorningGame, best: Int, onOpen: () -> Unit) {
     val colors = Dawn.colors
     Row(
         Modifier.fillMaxWidth().pressable(onClick = onOpen).clip(RoundedCornerShape(Radius.l)).background(colors.tile).padding(Spacing.s).padding(start = Spacing.xxs),
@@ -382,7 +388,10 @@ fun GameCard(game: MorningGame, best: Int, onOpen: () -> Unit) {
  * trains and its record.
  */
 @Composable
-fun PlayScreen() {
+fun PlayScreen() = uz.ata.dawnwick.ui.cat.CatOnly { PlayScreenCat() }
+
+@Composable
+private fun PlayScreenCat() {
     val context = LocalContext.current
     val store = context.graph.store
     var playing by remember { androidx.compose.runtime.mutableStateOf<MorningGame?>(null) }

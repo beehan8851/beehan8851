@@ -568,6 +568,40 @@
     <string name="onb_step_of">%1$d/%2$d단계</string>
     <string name="onb_wake_time">기상 시각</string>
     <string name="onb_how_turn_off">끄는 방법</string>
+    <string name="pets_title">동반자</string>
+    <string name="pets_footer">동반자는 오늘, 알람, 수면, 위젯에서 함께하며, 그 울음소리가 알람의 \'야옹\' 소리가 됩니다. 게임은 고양이 그대로입니다.</string>
+    <string name="pet_cat">고양이</string>
+    <string name="pet_puppy">강아지</string>
+    <string name="pet_chick">병아리</string>
+    <string name="pet_canary">카나리아</string>
+    <string name="pet_lamb">아기 양</string>
+    <string name="pet_owl">아기 부엉이</string>
+    <string name="pet_hamster">햄스터</string>
+    <string name="pet_chosen">선택됨</string>
+    <string name="pet_choose">선택</string>
+    <string name="pet_tap_to_hear">목소리 듣기</string>
+    <string name="pet_unlock_streak">%d일 연속으로 일어나면 열립니다</string>
+    <string name="pet_unlock_nights">%d일 밤 수면을 기록하면 열립니다</string>
+    <string name="pet_buy">구매 · %s</string>
+    <string name="pet_or_premium">또는 Premium으로 모든 동반자를</string>
+    <string name="pet_store_unavailable">이 빌드에서는 스토어가 아직 설정되지 않았습니다.</string>
+    <string name="pet_unlocked">%s이(가) 이제 함께해요!</string>
+    <string name="voice_cat">야옹</string>
+    <string name="voice_puppy">멍멍</string>
+    <string name="voice_chick">꼬끼오</string>
+    <string name="voice_canary">지저귐</string>
+    <string name="voice_lamb">매애</string>
+    <string name="voice_owl">부엉</string>
+    <string name="voice_hamster">찍찍</string>
+    <string name="voice_detail_companion">당신이 일어나길 바라는 동반자</string>
+    <string name="pw_reason_companions">Premium은 모든 동반자를 엽니다. 마음에 드는 동반자만 따로 구매할 수도 있어요.</string>
+    <string name="pw_benefit_companions">각자 목소리를 가진 동반자 6마리 추가</string>
+    <string name="tricks_title_pet">동반자의 재주</string>
+    <string name="tricks_detail_pet">연속 기록 3, 7, 14, 30, 60, 100일째에 동반자가 재주를 배웁니다. 기록이 끊겨도 재주는 남아요.</string>
+    <string name="trick_wave_detail_pet">동반자를 누르면 손을 흔들어 줘요.</string>
+    <string name="trick_collar_detail_pet">동반자가 어디를 가든 노란 방울 목걸이와 함께해요.</string>
+    <string name="covers_ready_title_pet">동반자가 지켜 줘요</string>
+    <string name="wind_down_detail_pet">동반자와 몇 분간 호흡하세요. 넷에 들이쉬고 여섯에 내쉽니다. 바뀔 때마다 가볍게 진동하니 눈을 감아도 돼요.</string>
     <string-array name="weekday_letter">
         <item>일</item>
         <item>월</item>
@@ -645,6 +679,12 @@
     </plurals>
     <plurals name="days_in_a_row">
         <item quantity="other">%d일 연속</item>
+    </plurals>
+    <plurals name="pet_mornings_progress">
+        <item quantity="other">%1$d / %2$d일</item>
+    </plurals>
+    <plurals name="pet_nights_progress">
+        <item quantity="other">%1$d / %2$d일 밤</item>
     </plurals>
     <plurals name="sleep_earlier_nights_locked">
         <item quantity="other">이전 %d일 밤 — Premium으로 보기</item>

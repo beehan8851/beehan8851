@@ -469,7 +469,7 @@ object CatArt {
         Shapes.roundedPolygon(listOf(o(e.x - 14, e.y - 20), o(e.x + 14, e.y - 20), o(e.x + 14, e.y + top + right), o(e.x - 14, e.y + top + left)), 0.1f),
     )
 
-    private fun DrawScope.eyes(mood: CatMood, t: Double, wide: Boolean, squeeze: Float, squint: Float = 0f) {
+    internal fun DrawScope.eyes(mood: CatMood, t: Double, wide: Boolean, squeeze: Float, squint: Float = 0f) {
         val eyes = listOf(o(-27, 7), o(27, 7))
         if (wide) {
             for (e in eyes) {
@@ -526,7 +526,7 @@ object CatArt {
      * of the purr: out for a second, a pause, in for less and softer — the same breath
      * as the sound, so with the sound off the purr still shows.
      */
-    private fun DrawScope.purr(p: Offset, side: Float, strength: Float, t: Double, ground: CatGround) {
+    internal fun DrawScope.purr(p: Offset, side: Float, strength: Float, t: Double, ground: CatGround) {
         if (strength <= 0.02f) return
         val b = t % 2.0
         val breath = when {
@@ -564,7 +564,7 @@ object CatArt {
         }
     }
 
-    private fun DrawScope.charm(c: Offset, medal: Boolean) {
+    internal fun DrawScope.charm(c: Offset, medal: Boolean) {
         if (medal) {
             fill(Shapes.ellipse(c.x - 12, c.y - 10, 24f, 24f), CatPalette.moonShade)
             fill(Shapes.ellipse(c.x - 9.5f, c.y - 7.5f, 19f, 19f), CatPalette.moon)
@@ -583,7 +583,7 @@ object CatArt {
     /** The crescent the cat sleeps on; it never changes, so it is made once. */
     private val moonShape: Path by lazy { Shapes.dilate(Shapes.sliver(Offset.Zero, 88f, 62f, 42f), 6f) }
 
-    private fun DrawScope.moon() {
+    internal fun DrawScope.moon() {
         fill(moonShape, CatPalette.moon)
         fill(Shapes.subtract(moonShape, moonShape.shifted(0f, 8f)), CatPalette.moonLight)
         fill(Shapes.subtract(moonShape, moonShape.shifted(-5f, -10f)), CatPalette.moonShade)

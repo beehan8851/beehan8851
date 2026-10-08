@@ -568,6 +568,40 @@ Ishonch bilan uyg\'oning.</string>
     <string name="onb_step_of">%1$d-qadam / %2$d</string>
     <string name="onb_wake_time">Uyg\'onish vaqti</string>
     <string name="onb_how_turn_off">Qanday o\'chirasiz</string>
+    <string name="pets_title">Hamroh</string>
+    <string name="pets_footer">Hamrohingiz Bugun sahifasida, budilnikda, Uyquda va vidjetlarda siz bilan bo\'ladi, uning ovozi esa budilnikning “Miyov” ohangi bo\'ladi. O\'yinlar mushukniki bo\'lib qoladi.</string>
+    <string name="pet_cat">Mushuk</string>
+    <string name="pet_puppy">Kuchukcha</string>
+    <string name="pet_chick">Jo\'jacha</string>
+    <string name="pet_canary">Kanareyka</string>
+    <string name="pet_lamb">Qo\'zichoq</string>
+    <string name="pet_owl">Boyo\'g\'licha</string>
+    <string name="pet_hamster">Hamyak</string>
+    <string name="pet_chosen">Tanlangan</string>
+    <string name="pet_choose">Tanlash</string>
+    <string name="pet_tap_to_hear">Ovozini eshitish</string>
+    <string name="pet_unlock_streak">Ochish uchun ketma-ket %d tong turing</string>
+    <string name="pet_unlock_nights">Ochish uchun %d kecha uyqungizni kuzating</string>
+    <string name="pet_buy">Sotib olish · %s</string>
+    <string name="pet_or_premium">Yoki Premium bilan barcha hamrohlarni oling</string>
+    <string name="pet_store_unavailable">Bu versiyada do\'kon hali sozlanmagan.</string>
+    <string name="pet_unlocked">%s endi sizniki!</string>
+    <string name="voice_cat">Miyov</string>
+    <string name="voice_puppy">Vov</string>
+    <string name="voice_chick">Qu-qu-qu</string>
+    <string name="voice_canary">Sayrash</string>
+    <string name="voice_lamb">Ma-a</string>
+    <string name="voice_owl">Uhu</string>
+    <string name="voice_hamster">Chiy-chiy</string>
+    <string name="voice_detail_companion">Hamrohingiz turishingizni istayapti</string>
+    <string name="pw_reason_companions">Premium barcha hamrohlarni ochadi. Yoki yoqqanini alohida sotib oling.</string>
+    <string name="pw_benefit_companions">Har biri o\'z ovoziga ega yana 6 ta hamroh</string>
+    <string name="tricks_title_pet">Hamrohingizning hiylalari</string>
+    <string name="tricks_detail_pet">Seriya hamrohingizga 3, 7, 14, 30, 60 va 100 tongda hiyla o\'rgatadi. Seriya uzilsa ham ular qoladi.</string>
+    <string name="trick_wave_detail_pet">Hamrohingizni bosing — u qo\'l silkitadi.</string>
+    <string name="trick_collar_detail_pet">Hamrohingiz qayerga borsa, sariq qo\'ng\'iroqli bo\'yinbog\' bilan.</string>
+    <string name="covers_ready_title_pet">Hamrohingiz sizni qo\'llab-quvvatlaydi</string>
+    <string name="wind_down_detail_pet">Bir necha daqiqa hamrohingiz bilan nafas oling: to\'rt soniya ichga, olti soniya tashqariga. Har burilishda yengil titrash bo\'ladi, ko\'zingizni yumishingiz mumkin.</string>
     <string-array name="weekday_letter">
         <item>Ya</item>
         <item>Du</item>
@@ -652,6 +686,14 @@ Ishonch bilan uyg\'oning.</string>
     <plurals name="days_in_a_row">
         <item quantity="one">ketma-ket %d kun</item>
         <item quantity="other">ketma-ket %d kun</item>
+    </plurals>
+    <plurals name="pet_mornings_progress">
+        <item quantity="one">%1$d / %2$d tong</item>
+        <item quantity="other">%1$d / %2$d tong</item>
+    </plurals>
+    <plurals name="pet_nights_progress">
+        <item quantity="one">%1$d / %2$d kecha</item>
+        <item quantity="other">%1$d / %2$d kecha</item>
     </plurals>
     <plurals name="sleep_earlier_nights_locked">
         <item quantity="one">Yana %d ta oldingi tun — Premium bilan ko\'ring</item>

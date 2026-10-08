@@ -289,7 +289,7 @@ fun WindDown(nextAlarm: Long?, onStartTracking: () -> Unit, onClose: () -> Unit)
                                     CatMascot(CatMood.YAWNING, Modifier.width(118.dp), ground = CatGround.DARK)
                                 }
                                 Text(stringResource(R.string.wind_down_title), style = DawnType.display(34), color = DawnColors.Paper)
-                                Text(stringResource(R.string.wind_down_detail), style = DawnType.callout, color = DawnColors.NightTextSecondary)
+                                Text(stringResource(if (uz.ata.dawnwick.ui.cat.currentCompanion() == uz.ata.dawnwick.companion.Pet.CAT) R.string.wind_down_detail else R.string.wind_down_detail_pet), style = DawnType.callout, color = DawnColors.NightTextSecondary)
                                 Text(stringResource(R.string.wind_down_length), style = DawnType.callout.copy(fontWeight = FontWeight.Bold), color = DawnColors.NightTextSecondary)
                                 Row(horizontalArrangement = Arrangement.spacedBy(Spacing.xs)) {
                                     listOf(3, 5, 10).forEach { m ->

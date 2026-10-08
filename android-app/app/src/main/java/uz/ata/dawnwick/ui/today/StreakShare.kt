@@ -1,5 +1,6 @@
 package uz.ata.dawnwick.ui.today
 
+import uz.ata.dawnwick.graph
 import android.content.Context
 import android.content.Intent
 import android.graphics.Paint
@@ -94,14 +95,16 @@ object StreakShare {
                 }
             }
 
-            // The cat in the corner.
+            // The companion in the corner.
+            val sp = context.graph.companion.value
             val catW = 150 * k
-            val catH = catW / CatArt.aspectRatio(CatMood.PROUD)
+            val catH = catW / uz.ata.dawnwick.ui.cat.companionAspectRatio(sp, CatMood.PROUD)
             translate(W * k - catW - 20 * k, H * k - catH - 22 * k) {
                 // drawCat fits the cat to the scope's size: lend it the corner's.
                 val whole = drawContext.size
                 drawContext.size = Size(catW, catH)
-                drawCat(CatMood.PROUD, CatGround.LIGHT, 0.6, dressing = dressing)
+                if (sp == uz.ata.dawnwick.companion.Pet.CAT) drawCat(CatMood.PROUD, CatGround.LIGHT, 0.6, dressing = dressing)
+                else with(uz.ata.dawnwick.ui.cat.CompanionArt) { drawCompanion(sp, CatMood.PROUD, CatGround.LIGHT, 0.6, dressing = dressing) }
                 drawContext.size = whole
             }
         }

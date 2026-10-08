@@ -68,6 +68,8 @@ class MainActivity : ComponentActivity() {
         // Reconcile on every return: Android forgets alarms more readily than iOS.
         val graph = graph
         Thread { graph.alarmService.reconcile(skipIds = graph.registry.allReArmIds) }.start()
+        // A streak or a night may have earned a companion while the app was away.
+        graph.refreshCompanion()
         // Something is ringing: its screen goes first.
         if (graph.ring.state.value != null) startActivity(Intent(this, RingActivity::class.java))
     }

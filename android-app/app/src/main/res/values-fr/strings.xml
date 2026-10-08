@@ -568,6 +568,40 @@ Réveillez-vous sereinement.</string>
     <string name="onb_step_of">Étape %1$d sur %2$d</string>
     <string name="onb_wake_time">Heure de réveil</string>
     <string name="onb_how_turn_off">Comment vous l\'arrêterez</string>
+    <string name="pets_title">Compagnon</string>
+    <string name="pets_footer">Votre compagnon est avec vous dans Aujourd\'hui, au réveil, dans Sommeil et sur les widgets, et son cri remplace le son « Miaou » de l\'alarme. Les jeux restent ceux du chat.</string>
+    <string name="pet_cat">Chat</string>
+    <string name="pet_puppy">Chiot</string>
+    <string name="pet_chick">Poussin</string>
+    <string name="pet_canary">Canari</string>
+    <string name="pet_lamb">Agneau</string>
+    <string name="pet_owl">Chouette</string>
+    <string name="pet_hamster">Hamster</string>
+    <string name="pet_chosen">Choisi</string>
+    <string name="pet_choose">Choisir</string>
+    <string name="pet_tap_to_hear">Écouter sa voix</string>
+    <string name="pet_unlock_streak">Réveillez-vous %d matins d\'affilée pour le débloquer</string>
+    <string name="pet_unlock_nights">Suivez votre sommeil %d nuits pour le débloquer</string>
+    <string name="pet_buy">Acheter · %s</string>
+    <string name="pet_or_premium">Ou tous les compagnons avec Premium</string>
+    <string name="pet_store_unavailable">La boutique n\'est pas encore configurée dans cette version.</string>
+    <string name="pet_unlocked">%s est à vous !</string>
+    <string name="voice_cat">Miaou</string>
+    <string name="voice_puppy">Ouaf</string>
+    <string name="voice_chick">Cocorico</string>
+    <string name="voice_canary">Chant d\'oiseau</string>
+    <string name="voice_lamb">Bêê</string>
+    <string name="voice_owl">Hou-hou</string>
+    <string name="voice_hamster">Couic</string>
+    <string name="voice_detail_companion">Votre compagnon, qui veut vous voir debout</string>
+    <string name="pw_reason_companions">Premium débloque tous les compagnons. Ou achetez votre préféré séparément.</string>
+    <string name="pw_benefit_companions">Six compagnons de plus, chacun avec sa voix</string>
+    <string name="tricks_title_pet">Les tours de votre compagnon</string>
+    <string name="tricks_detail_pet">Une série apprend un tour à votre compagnon à 3, 7, 14, 30, 60 et 100 matins. Il les garde, quoi qu\'il arrive à la série.</string>
+    <string name="trick_wave_detail_pet">Touchez votre compagnon et il vous fait signe.</string>
+    <string name="trick_collar_detail_pet">Un collier à clochette jaune, partout où va votre compagnon.</string>
+    <string name="covers_ready_title_pet">Votre compagnon vous couvre</string>
+    <string name="wind_down_detail_pet">Respirez quelques minutes avec votre compagnon : inspirez sur quatre, expirez sur six. Une légère vibration marque chaque changement, vous pouvez fermer les yeux.</string>
     <string-array name="weekday_letter">
         <item>D</item>
         <item>L</item>
@@ -659,6 +693,16 @@ Réveillez-vous sereinement.</string>
         <item quantity="one">%d jour d\'affilée</item>
         <item quantity="other">%d jours d\'affilée</item>
         <item quantity="many">%d jours d\'affilée</item>
+    </plurals>
+    <plurals name="pet_mornings_progress">
+        <item quantity="one">%1$d sur %2$d matin</item>
+        <item quantity="other">%1$d sur %2$d matins</item>
+        <item quantity="many">%1$d sur %2$d matins</item>
+    </plurals>
+    <plurals name="pet_nights_progress">
+        <item quantity="one">%1$d sur %2$d nuit</item>
+        <item quantity="other">%1$d sur %2$d nuits</item>
+        <item quantity="many">%1$d sur %2$d nuits</item>
     </plurals>
     <plurals name="sleep_earlier_nights_locked">
         <item quantity="one">%d nuit précédente — à voir avec Premium</item>

@@ -568,6 +568,40 @@ Güvenle uyan.</string>
     <string name="onb_step_of">Adım %1$d / %2$d</string>
     <string name="onb_wake_time">Uyanma saati</string>
     <string name="onb_how_turn_off">Nasıl kapatacaksın</string>
+    <string name="pets_title">Arkadaş</string>
+    <string name="pets_footer">Arkadaşın Bugün\'de, alarmda, Uyku\'da ve widget\'larda seninle olur; sesi alarmın “Miyav” sesi olur. Oyunlar kedinin kalır.</string>
+    <string name="pet_cat">Kedi</string>
+    <string name="pet_puppy">Köpek yavrusu</string>
+    <string name="pet_chick">Civciv</string>
+    <string name="pet_canary">Kanarya</string>
+    <string name="pet_lamb">Kuzu</string>
+    <string name="pet_owl">Baykuş yavrusu</string>
+    <string name="pet_hamster">Hamster</string>
+    <string name="pet_chosen">Seçildi</string>
+    <string name="pet_choose">Seç</string>
+    <string name="pet_tap_to_hear">Sesini dinle</string>
+    <string name="pet_unlock_streak">Açmak için üst üste %d sabah uyan</string>
+    <string name="pet_unlock_nights">Açmak için %d gece uykunu takip et</string>
+    <string name="pet_buy">Satın al · %s</string>
+    <string name="pet_or_premium">Ya da Premium ile tüm arkadaşlar</string>
+    <string name="pet_store_unavailable">Mağaza bu sürümde henüz ayarlanmadı.</string>
+    <string name="pet_unlocked">%s artık senin!</string>
+    <string name="voice_cat">Miyav</string>
+    <string name="voice_puppy">Hav</string>
+    <string name="voice_chick">Ü-ürü-üü</string>
+    <string name="voice_canary">Kuş cıvıltısı</string>
+    <string name="voice_lamb">Mee</string>
+    <string name="voice_owl">Hu-hu</string>
+    <string name="voice_hamster">Cik cik</string>
+    <string name="voice_detail_companion">Kalkmanı isteyen arkadaşın</string>
+    <string name="pw_reason_companions">Premium tüm arkadaşları açar. Ya da sevdiğini tek başına satın al.</string>
+    <string name="pw_benefit_companions">Her birinin kendi sesi olan altı arkadaş daha</string>
+    <string name="tricks_title_pet">Arkadaşının numaraları</string>
+    <string name="tricks_detail_pet">Seri, arkadaşına 3, 7, 14, 30, 60 ve 100. sabahlarda bir numara öğretir. Seriye ne olursa olsun bunları unutmaz.</string>
+    <string name="trick_wave_detail_pet">Arkadaşına dokun, sana el sallasın.</string>
+    <string name="trick_collar_detail_pet">Arkadaşın nereye giderse gitsin sarı çıngıraklı bir tasma.</string>
+    <string name="covers_ready_title_pet">Arkadaşın arkanda</string>
+    <string name="wind_down_detail_pet">Birkaç dakika arkadaşınla nefes al: dörtte al, altıda ver. Her geçişi hafif bir titreşim belirtir, gözlerini kapatabilirsin.</string>
     <string-array name="weekday_letter">
         <item>P</item>
         <item>P</item>
@@ -652,6 +686,14 @@ Güvenle uyan.</string>
     <plurals name="days_in_a_row">
         <item quantity="one">Üst üste %d gün</item>
         <item quantity="other">Üst üste %d gün</item>
+    </plurals>
+    <plurals name="pet_mornings_progress">
+        <item quantity="one">%1$d / %2$d sabah</item>
+        <item quantity="other">%1$d / %2$d sabah</item>
+    </plurals>
+    <plurals name="pet_nights_progress">
+        <item quantity="one">%1$d / %2$d gece</item>
+        <item quantity="other">%1$d / %2$d gece</item>
     </plurals>
     <plurals name="sleep_earlier_nights_locked">
         <item quantity="one">Önceki %d gece — Premium ile gör</item>

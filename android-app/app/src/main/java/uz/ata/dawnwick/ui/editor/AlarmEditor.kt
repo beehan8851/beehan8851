@@ -519,10 +519,30 @@ private fun <T> MenuRow(title: String, options: List<T>, selected: T, name: (T) 
 }
 
 @Composable
-fun soundName(s: AlarmSound) = LocalContext.current.resources.getStringArray(R.array.sound_names)[s.ordinal]
+fun soundName(s: AlarmSound): String {
+    val pet = uz.ata.dawnwick.ui.cat.currentCompanion()
+    if (s == AlarmSound.MEOW && pet != uz.ata.dawnwick.companion.Pet.CAT) return androidx.compose.ui.res.stringResource(petVoiceName(pet))
+    return LocalContext.current.resources.getStringArray(R.array.sound_names)[s.ordinal]
+}
+
+/** The name of the companion's call where the cat's is "Meow". */
+fun petVoiceName(pet: uz.ata.dawnwick.companion.Pet) = when (pet) {
+    uz.ata.dawnwick.companion.Pet.PUPPY -> R.string.voice_puppy
+    uz.ata.dawnwick.companion.Pet.CHICK -> R.string.voice_chick
+    uz.ata.dawnwick.companion.Pet.CANARY -> R.string.voice_canary
+    uz.ata.dawnwick.companion.Pet.LAMB -> R.string.voice_lamb
+    uz.ata.dawnwick.companion.Pet.OWL -> R.string.voice_owl
+    uz.ata.dawnwick.companion.Pet.HAMSTER -> R.string.voice_hamster
+    uz.ata.dawnwick.companion.Pet.CAT -> R.string.voice_cat
+}
 
 @Composable
-private fun soundDetail(s: AlarmSound) = LocalContext.current.resources.getStringArray(R.array.sound_details)[s.ordinal]
+private fun soundDetail(s: AlarmSound): String {
+    if (s == AlarmSound.MEOW && uz.ata.dawnwick.ui.cat.currentCompanion() != uz.ata.dawnwick.companion.Pet.CAT) {
+        return androidx.compose.ui.res.stringResource(R.string.voice_detail_companion)
+    }
+    return LocalContext.current.resources.getStringArray(R.array.sound_details)[s.ordinal]
+}
 
 private fun gradualName(g: GradualWake, context: android.content.Context) = context.resources.getStringArray(R.array.gradual_names)[g.ordinal]
 

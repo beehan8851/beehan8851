@@ -1,5 +1,6 @@
 package uz.ata.dawnwick.ui.cat
 
+import uz.ata.dawnwick.companion.Pet
 import android.os.SystemClock
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.aspectRatio
@@ -107,12 +108,35 @@ fun CatMascot(
     val wide = eyesWide || LocalCatEyesWide.current
     val petting = LocalCatPetting.current
     val dressing = LocalCatDressing.current
-    Canvas(modifier.aspectRatio(CatArt.aspectRatio(mood)).clearAndSetSemantics {}) {
+    val sp = currentCompanion()
+    Canvas(modifier.aspectRatio(companionAspectRatio(sp, mood)).clearAndSetSemantics {}) {
         // Read every frame through `t`, so the stroke eases in and out smoothly.
         val petted = if (t >= 0) petting.amount(SystemClock.uptimeMillis()) else 0f
-        drawCat(mood, ground, t, wide, dressing, petted, petting.lean, petting.purrSide, breath)
+        if (sp == Pet.CAT) drawCat(mood, ground, t, wide, dressing, petted, petting.lean, petting.purrSide, breath)
+        else with(CompanionArt) { drawCompanion(sp, mood, ground, t, wide, dressing, petted, petting.lean, petting.purrSide, breath) }
     }
 }
+
+/** Set inside the games: they are the cat's, whichever companion is chosen. */
+val LocalForcedCompanion = androidx.compose.runtime.staticCompositionLocalOf<Pet?> { null }
+
+/** Everything inside shows the cat. */
+@Composable
+fun CatOnly(content: @Composable () -> Unit) =
+    androidx.compose.runtime.CompositionLocalProvider(LocalForcedCompanion provides Pet.CAT, content = content)
+
+/** The companion drawn here: the cat in the games, the chosen one everywhere else. */
+@Composable
+fun currentCompanion(): Pet {
+    LocalForcedCompanion.current?.let { return it }
+    val context = LocalContext.current
+    return androidx.compose.runtime.produceState(context.graph.companion.value) {
+        context.graph.companion.collect { value = it }
+    }.value
+}
+
+fun companionDesignSize(sp: Pet, mood: CatMood) = if (sp == Pet.CAT) CatArt.designSize(mood) else CompanionArt.designSize(mood)
+fun companionAspectRatio(sp: Pet, mood: CatMood) = companionDesignSize(sp, mood).let { it.width / it.height }
 
 /** Every cat inside knows the tricks the best streak has taught it, and wears what it earned. */
 @Composable

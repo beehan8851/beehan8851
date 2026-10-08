@@ -568,6 +568,40 @@ Despierta con seguridad.</string>
     <string name="onb_step_of">Paso %1$d de %2$d</string>
     <string name="onb_wake_time">Hora de despertar</string>
     <string name="onb_how_turn_off">Cómo la apagarás</string>
+    <string name="pets_title">Compañero</string>
+    <string name="pets_footer">Tu compañero te acompaña en Hoy, en la alarma, en Sueño y en los widgets, y su llamada es el sonido «Miau» de la alarma. Los juegos siguen siendo del gato.</string>
+    <string name="pet_cat">Gato</string>
+    <string name="pet_puppy">Cachorro</string>
+    <string name="pet_chick">Pollito</string>
+    <string name="pet_canary">Canario</string>
+    <string name="pet_lamb">Corderito</string>
+    <string name="pet_owl">Búho</string>
+    <string name="pet_hamster">Hámster</string>
+    <string name="pet_chosen">Elegido</string>
+    <string name="pet_choose">Elegir</string>
+    <string name="pet_tap_to_hear">Escuchar su voz</string>
+    <string name="pet_unlock_streak">Despiértate %d mañanas seguidas para desbloquearlo</string>
+    <string name="pet_unlock_nights">Registra tu sueño %d noches para desbloquearlo</string>
+    <string name="pet_buy">Comprar · %s</string>
+    <string name="pet_or_premium">O todos los compañeros con Premium</string>
+    <string name="pet_store_unavailable">La tienda aún no está configurada en esta versión.</string>
+    <string name="pet_unlocked">¡%s ya es tuyo!</string>
+    <string name="voice_cat">Miau</string>
+    <string name="voice_puppy">Guau</string>
+    <string name="voice_chick">Quiquiriquí</string>
+    <string name="voice_canary">Canto</string>
+    <string name="voice_lamb">Bee</string>
+    <string name="voice_owl">Uh-uh</string>
+    <string name="voice_hamster">Chillido</string>
+    <string name="voice_detail_companion">Tu compañero, que quiere que te levantes</string>
+    <string name="pw_reason_companions">Premium desbloquea todos los compañeros. O compra tu favorito por separado.</string>
+    <string name="pw_benefit_companions">Seis compañeros más, cada uno con su voz</string>
+    <string name="tricks_title_pet">Los trucos de tu compañero</string>
+    <string name="tricks_detail_pet">Una racha le enseña un truco a tu compañero a las 3, 7, 14, 30, 60 y 100 mañanas. Los conserva pase lo que pase con la racha.</string>
+    <string name="trick_wave_detail_pet">Toca a tu compañero y te saludará.</string>
+    <string name="trick_collar_detail_pet">Un collar con un cascabel amarillo, vaya donde vaya tu compañero.</string>
+    <string name="covers_ready_title_pet">Tu compañero te cubre</string>
+    <string name="wind_down_detail_pet">Respira con tu compañero unos minutos: cuatro al inhalar, seis al exhalar. Un toque suave marca cada cambio, así que puedes cerrar los ojos.</string>
     <string-array name="weekday_letter">
         <item>D</item>
         <item>L</item>
@@ -659,6 +693,16 @@ Despierta con seguridad.</string>
         <item quantity="one">%d día seguido</item>
         <item quantity="other">%d días seguidos</item>
         <item quantity="many">%d días seguidos</item>
+    </plurals>
+    <plurals name="pet_mornings_progress">
+        <item quantity="one">%1$d de %2$d mañana</item>
+        <item quantity="other">%1$d de %2$d mañanas</item>
+        <item quantity="many">%1$d de %2$d mañanas</item>
+    </plurals>
+    <plurals name="pet_nights_progress">
+        <item quantity="one">%1$d de %2$d noche</item>
+        <item quantity="other">%1$d de %2$d noches</item>
+        <item quantity="many">%1$d de %2$d noches</item>
     </plurals>
     <plurals name="sleep_earlier_nights_locked">
         <item quantity="one">%d noche anterior: mírala con Premium</item>
