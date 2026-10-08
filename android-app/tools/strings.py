@@ -615,6 +615,12 @@ S = {  # key: (en, uz, ru)
  "trick_collar_detail_pet": ("A collar with a yolk bell, everywhere your companion goes.", "Hamrohingiz qayerga borsa, sariq qo'ng'iroqli bo'yinbog' bilan.", "Ошейник с жёлтым колокольчиком, куда бы ни пошёл компаньон."),
  "covers_ready_title_pet": ("Your companion has your back", "Hamrohingiz sizni qo'llab-quvvatlaydi", "Компаньон вас прикроет"),
  "wind_down_detail_pet": ("Breathe with your companion for a few minutes: in for four, out for six. A soft tap marks each turn, so you can close your eyes.", "Bir necha daqiqa hamrohingiz bilan nafas oling: to'rt soniya ichga, olti soniya tashqariga. Har burilishda yengil titrash bo'ladi, ko'zingizni yumishingiz mumkin.", "Подышите с компаньоном несколько минут: вдох на четыре, выдох на шесть. Лёгкий толчок отмечает каждую смену — можно закрыть глаза."),
+ "crash_title": ("Dawnwick ran into a problem", "Dawnwick'da xatolik yuz berdi", "В Dawnwick произошла ошибка"),
+ "crash_body": ("Send the text below to the developer: it says exactly what went wrong. Then tap Continue.", "Quyidagi matnni dasturchiga yuboring: unda nima noto'g'ri bo'lgani aniq yozilgan. Keyin “Davom etish”ni bosing.", "Отправьте текст ниже разработчику: в нём точно сказано, что пошло не так. Затем нажмите «Продолжить»."),
+ "crash_copy": ("Copy", "Nusxa olish", "Копировать"),
+ "crash_share": ("Share", "Ulashish", "Поделиться"),
+ "crash_continue": ("Continue", "Davom etish", "Продолжить"),
+ "crash_copied": ("Copied", "Nusxa olindi", "Скопировано"),
 }
 
 ARRAYS = {

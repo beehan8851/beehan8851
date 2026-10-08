@@ -602,6 +602,12 @@ Despierta con seguridad.</string>
     <string name="trick_collar_detail_pet">Un collar con un cascabel amarillo, vaya donde vaya tu compañero.</string>
     <string name="covers_ready_title_pet">Tu compañero te cubre</string>
     <string name="wind_down_detail_pet">Respira con tu compañero unos minutos: cuatro al inhalar, seis al exhalar. Un toque suave marca cada cambio, así que puedes cerrar los ojos.</string>
+    <string name="crash_title">Dawnwick tuvo un problema</string>
+    <string name="crash_body">Envía el texto de abajo al desarrollador: dice exactamente qué falló. Luego toca Continuar.</string>
+    <string name="crash_copy">Copiar</string>
+    <string name="crash_share">Compartir</string>
+    <string name="crash_continue">Continuar</string>
+    <string name="crash_copied">Copiado</string>
     <string-array name="weekday_letter">
         <item>D</item>
         <item>L</item>

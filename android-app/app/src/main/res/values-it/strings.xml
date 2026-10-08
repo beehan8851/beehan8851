@@ -602,6 +602,12 @@ Svegliati sicuro.</string>
     <string name="trick_collar_detail_pet">Un collare con un campanellino giallo, ovunque vada il tuo compagno.</string>
     <string name="covers_ready_title_pet">Il tuo compagno ti copre</string>
     <string name="wind_down_detail_pet">Respira con il tuo compagno per qualche minuto: quattro per inspirare, sei per espirare. Un tocco leggero segna ogni cambio, così puoi chiudere gli occhi.</string>
+    <string name="crash_title">Dawnwick ha riscontrato un problema</string>
+    <string name="crash_body">Invia il testo qui sotto allo sviluppatore: dice esattamente cosa è andato storto. Poi tocca Continua.</string>
+    <string name="crash_copy">Copia</string>
+    <string name="crash_share">Condividi</string>
+    <string name="crash_continue">Continua</string>
+    <string name="crash_copied">Copiato</string>
     <string-array name="weekday_letter">
         <item>D</item>
         <item>L</item>

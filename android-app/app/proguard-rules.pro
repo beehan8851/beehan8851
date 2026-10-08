@@ -12,3 +12,6 @@
 # with their no-argument constructors; R8 full mode would strip those.
 -keep class * implements com.google.firebase.components.ComponentRegistrar { <init>(); }
 -keep class com.google.mlkit.**.*Registrar { <init>(); }
+
+# Crash reports name the file and line (see core/CrashReporter); retrace them with the build's mapping.txt.
+-keepattributes SourceFile,LineNumberTable

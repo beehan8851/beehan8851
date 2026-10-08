@@ -602,6 +602,12 @@ Réveillez-vous sereinement.</string>
     <string name="trick_collar_detail_pet">Un collier à clochette jaune, partout où va votre compagnon.</string>
     <string name="covers_ready_title_pet">Votre compagnon vous couvre</string>
     <string name="wind_down_detail_pet">Respirez quelques minutes avec votre compagnon : inspirez sur quatre, expirez sur six. Une légère vibration marque chaque changement, vous pouvez fermer les yeux.</string>
+    <string name="crash_title">Dawnwick a rencontré un problème</string>
+    <string name="crash_body">Envoyez le texte ci-dessous au développeur : il indique exactement ce qui s\'est mal passé. Touchez ensuite Continuer.</string>
+    <string name="crash_copy">Copier</string>
+    <string name="crash_share">Partager</string>
+    <string name="crash_continue">Continuer</string>
+    <string name="crash_copied">Copié</string>
     <string-array name="weekday_letter">
         <item>D</item>
         <item>L</item>

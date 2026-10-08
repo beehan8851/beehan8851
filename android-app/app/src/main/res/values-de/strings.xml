@@ -602,6 +602,12 @@ Wach sicher auf.</string>
     <string name="trick_collar_detail_pet">Ein Halsband mit gelbem Glöckchen, wohin dein Begleiter auch geht.</string>
     <string name="covers_ready_title_pet">Dein Begleiter hält dir den Rücken frei</string>
     <string name="wind_down_detail_pet">Atme ein paar Minuten mit deinem Begleiter: vier ein, sechs aus. Ein sanftes Tippen markiert jeden Wechsel, du kannst also die Augen schließen.</string>
+    <string name="crash_title">Bei Dawnwick ist ein Problem aufgetreten</string>
+    <string name="crash_body">Schick den Text unten an den Entwickler: Er beschreibt genau, was schiefging. Tippe dann auf „Weiter“.</string>
+    <string name="crash_copy">Kopieren</string>
+    <string name="crash_share">Teilen</string>
+    <string name="crash_continue">Weiter</string>
+    <string name="crash_copied">Kopiert</string>
     <string-array name="weekday_letter">
         <item>S</item>
         <item>M</item>

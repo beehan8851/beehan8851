@@ -602,6 +602,12 @@
     <string name="trick_collar_detail_pet">なかまがどこへ行っても、黄色い鈴の首輪と一緒。</string>
     <string name="covers_ready_title_pet">なかまがカバーしてくれます</string>
     <string name="wind_down_detail_pet">なかまと数分間呼吸しましょう。4秒で吸って、6秒で吐きます。切り替わりは軽い振動で知らせるので、目を閉じていて大丈夫です。</string>
+    <string name="crash_title">Dawnwickで問題が発生しました</string>
+    <string name="crash_body">下のテキストを開発者に送ってください。何が起きたかが正確に書かれています。そのあと「続ける」をタップしてください。</string>
+    <string name="crash_copy">コピー</string>
+    <string name="crash_share">共有</string>
+    <string name="crash_continue">続ける</string>
+    <string name="crash_copied">コピーしました</string>
     <string-array name="weekday_letter">
         <item>日</item>
         <item>月</item>

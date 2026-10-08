@@ -603,6 +603,12 @@ Wake confidently.</string>
     <string name="trick_collar_detail_pet">A collar with a yolk bell, everywhere your companion goes.</string>
     <string name="covers_ready_title_pet">Your companion has your back</string>
     <string name="wind_down_detail_pet">Breathe with your companion for a few minutes: in for four, out for six. A soft tap marks each turn, so you can close your eyes.</string>
+    <string name="crash_title">Dawnwick ran into a problem</string>
+    <string name="crash_body">Send the text below to the developer: it says exactly what went wrong. Then tap Continue.</string>
+    <string name="crash_copy">Copy</string>
+    <string name="crash_share">Share</string>
+    <string name="crash_continue">Continue</string>
+    <string name="crash_copied">Copied</string>
     <string-array name="weekday_letter">
         <item>S</item>
         <item>M</item>

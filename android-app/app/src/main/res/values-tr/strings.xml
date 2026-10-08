@@ -602,6 +602,12 @@ Güvenle uyan.</string>
     <string name="trick_collar_detail_pet">Arkadaşın nereye giderse gitsin sarı çıngıraklı bir tasma.</string>
     <string name="covers_ready_title_pet">Arkadaşın arkanda</string>
     <string name="wind_down_detail_pet">Birkaç dakika arkadaşınla nefes al: dörtte al, altıda ver. Her geçişi hafif bir titreşim belirtir, gözlerini kapatabilirsin.</string>
+    <string name="crash_title">Dawnwick bir sorunla karşılaştı</string>
+    <string name="crash_body">Aşağıdaki metni geliştiriciye gönder: neyin yanlış gittiğini tam olarak söylüyor. Sonra Devam\'a dokun.</string>
+    <string name="crash_copy">Kopyala</string>
+    <string name="crash_share">Paylaş</string>
+    <string name="crash_continue">Devam</string>
+    <string name="crash_copied">Kopyalandı</string>
     <string-array name="weekday_letter">
         <item>P</item>
         <item>P</item>

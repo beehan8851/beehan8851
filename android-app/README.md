@@ -65,6 +65,15 @@ and `dawnwick_companion_hamster` (about $1.99 each), added to RevenueCat as prod
 is read from RevenueCat's `allPurchasedProductIds`. If Premium ends, a bought or earned companion
 stays; a companion that came only with Premium gives way to the cat until Premium returns.
 
+## Crash reports
+
+If the app crashes, the next launch shows the report instead of the app (`core/CrashReporter.kt`,
+`CrashActivity`): what crashed, on which Android and phone, with Copy and Share buttons, so a
+tester without a computer can send it. A crash during start-up makes the next launch skip
+start-up until the report is dismissed; a later crash leaves alarms running. Release builds keep
+file and line numbers; class names are shortened by R8, so retrace with that build's
+`app/build/outputs/mapping/release/mapping.txt` (`retrace mapping.txt crash.txt`).
+
 ## Release signing
 
 Create `keystore.properties` next to `settings.gradle.kts` (it is git-ignored):

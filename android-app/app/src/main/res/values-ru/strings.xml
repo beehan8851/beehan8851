@@ -602,6 +602,12 @@
     <string name="trick_collar_detail_pet">Ошейник с жёлтым колокольчиком, куда бы ни пошёл компаньон.</string>
     <string name="covers_ready_title_pet">Компаньон вас прикроет</string>
     <string name="wind_down_detail_pet">Подышите с компаньоном несколько минут: вдох на четыре, выдох на шесть. Лёгкий толчок отмечает каждую смену — можно закрыть глаза.</string>
+    <string name="crash_title">В Dawnwick произошла ошибка</string>
+    <string name="crash_body">Отправьте текст ниже разработчику: в нём точно сказано, что пошло не так. Затем нажмите «Продолжить».</string>
+    <string name="crash_copy">Копировать</string>
+    <string name="crash_share">Поделиться</string>
+    <string name="crash_continue">Продолжить</string>
+    <string name="crash_copied">Скопировано</string>
     <string-array name="weekday_letter">
         <item>Вс</item>
         <item>Пн</item>

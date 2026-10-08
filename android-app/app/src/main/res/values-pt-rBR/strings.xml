@@ -602,6 +602,12 @@ Acorde com confiança.</string>
     <string name="trick_collar_detail_pet">Uma coleira com sininho amarelo, aonde quer que seu companheiro vá.</string>
     <string name="covers_ready_title_pet">Seu companheiro te cobre</string>
     <string name="wind_down_detail_pet">Respire com seu companheiro por alguns minutos: inspire em quatro, expire em seis. Um toque suave marca cada troca, então você pode fechar os olhos.</string>
+    <string name="crash_title">O Dawnwick encontrou um problema</string>
+    <string name="crash_body">Envie o texto abaixo ao desenvolvedor: ele diz exatamente o que deu errado. Depois toque em Continuar.</string>
+    <string name="crash_copy">Copiar</string>
+    <string name="crash_share">Compartilhar</string>
+    <string name="crash_continue">Continuar</string>
+    <string name="crash_copied">Copiado</string>
     <string-array name="weekday_letter">
         <item>D</item>
         <item>S</item>

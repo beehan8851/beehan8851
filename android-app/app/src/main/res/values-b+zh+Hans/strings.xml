@@ -602,6 +602,12 @@
     <string name="trick_collar_detail_pet">无论伙伴去哪儿，都戴着黄色铃铛项圈。</string>
     <string name="covers_ready_title_pet">伙伴会帮你兜着</string>
     <string name="wind_down_detail_pet">和伙伴一起呼吸几分钟：吸气四拍，呼气六拍。每次转换都有轻微振动提示，你可以闭上眼睛。</string>
+    <string name="crash_title">Dawnwick 遇到了问题</string>
+    <string name="crash_body">请把下面的文字发给开发者，其中准确说明了出了什么问题。然后轻点“继续”。</string>
+    <string name="crash_copy">复制</string>
+    <string name="crash_share">分享</string>
+    <string name="crash_continue">继续</string>
+    <string name="crash_copied">已复制</string>
     <string-array name="weekday_letter">
         <item>日</item>
         <item>一</item>

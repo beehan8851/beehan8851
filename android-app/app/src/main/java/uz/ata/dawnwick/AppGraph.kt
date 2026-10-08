@@ -61,12 +61,17 @@ class DawnwickApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        uz.ata.dawnwick.core.CrashReporter.install(this)
+        // The last start crashed: starting again would crash again, so only the report is shown.
+        if (uz.ata.dawnwick.core.CrashReporter.startupCrashPending(this)) return
+        uz.ata.dawnwick.core.CrashReporter.startupBegins()
         graph = AppGraph(this)
         graph.subscription.onEntitlementsChanged = { graph.refreshCompanion() }
         graph.subscription.start()
         graph.refreshCompanion()
         RingNotifications.createChannels(this)
         uz.ata.dawnwick.ui.cat.CatSounds.init(this)
+        uz.ata.dawnwick.core.CrashReporter.startupEnds()
     }
 }
 

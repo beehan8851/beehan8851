@@ -54,6 +54,8 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".core.CrashActivity" android:exported="false" android:theme="@style/Theme.Dawnwick" />
+
         <!-- The launcher entry, one per app icon; exactly one is enabled (ui/settings/AppIcons.kt). -->
         <activity-alias
             android:name=".IconClassic"

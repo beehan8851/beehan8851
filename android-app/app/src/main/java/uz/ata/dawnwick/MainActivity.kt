@@ -50,6 +50,12 @@ import uz.ata.dawnwick.ui.theme.DawnTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // The app crashed last time: say what happened before anything else.
+        if (uz.ata.dawnwick.core.CrashReporter.pending(this) != null) {
+            startActivity(Intent(this, uz.ata.dawnwick.core.CrashActivity::class.java))
+            finish()
+            return
+        }
         enableEdgeToEdge()
         route(intent)
         setContent {
@@ -65,6 +71,7 @@ class MainActivity : ComponentActivity() {
 
     override fun onResume() {
         super.onResume()
+        if (isFinishing) return
         // Reconcile on every return: Android forgets alarms more readily than iOS.
         val graph = graph
         Thread { graph.alarmService.reconcile(skipIds = graph.registry.allReArmIds) }.start()
@@ -89,6 +96,7 @@ class MainActivity : ComponentActivity() {
 
     override fun onPause() {
         super.onPause()
+        if (isFinishing && uz.ata.dawnwick.core.CrashReporter.pending(this) != null) return
         // Whatever changed while the app was open — alarms, streak, Premium — the widgets show it.
         uz.ata.dawnwick.widgets.DawnWidgets.refresh(this)
     }

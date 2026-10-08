@@ -602,6 +602,12 @@
     <string name="trick_collar_detail_pet">동반자가 어디를 가든 노란 방울 목걸이와 함께해요.</string>
     <string name="covers_ready_title_pet">동반자가 지켜 줘요</string>
     <string name="wind_down_detail_pet">동반자와 몇 분간 호흡하세요. 넷에 들이쉬고 여섯에 내쉽니다. 바뀔 때마다 가볍게 진동하니 눈을 감아도 돼요.</string>
+    <string name="crash_title">Dawnwick에 문제가 발생했습니다</string>
+    <string name="crash_body">아래 텍스트를 개발자에게 보내 주세요. 무엇이 잘못됐는지 정확히 적혀 있습니다. 그런 다음 계속을 누르세요.</string>
+    <string name="crash_copy">복사</string>
+    <string name="crash_share">공유</string>
+    <string name="crash_continue">계속</string>
+    <string name="crash_copied">복사됨</string>
     <string-array name="weekday_letter">
         <item>일</item>
         <item>월</item>

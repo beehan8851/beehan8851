@@ -602,6 +602,12 @@ Ishonch bilan uyg\'oning.</string>
     <string name="trick_collar_detail_pet">Hamrohingiz qayerga borsa, sariq qo\'ng\'iroqli bo\'yinbog\' bilan.</string>
     <string name="covers_ready_title_pet">Hamrohingiz sizni qo\'llab-quvvatlaydi</string>
     <string name="wind_down_detail_pet">Bir necha daqiqa hamrohingiz bilan nafas oling: to\'rt soniya ichga, olti soniya tashqariga. Har burilishda yengil titrash bo\'ladi, ko\'zingizni yumishingiz mumkin.</string>
+    <string name="crash_title">Dawnwick\'da xatolik yuz berdi</string>
+    <string name="crash_body">Quyidagi matnni dasturchiga yuboring: unda nima noto\'g\'ri bo\'lgani aniq yozilgan. Keyin “Davom etish”ni bosing.</string>
+    <string name="crash_copy">Nusxa olish</string>
+    <string name="crash_share">Ulashish</string>
+    <string name="crash_continue">Davom etish</string>
+    <string name="crash_copied">Nusxa olindi</string>
     <string-array name="weekday_letter">
         <item>Ya</item>
         <item>Du</item>

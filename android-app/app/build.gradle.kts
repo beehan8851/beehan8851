@@ -89,6 +89,8 @@ dependencies {
     implementation("androidx.health.connect:connect-client:1.1.0")
     implementation("com.revenuecat.purchases:purchases:8.10.6")
     implementation("androidx.glance:glance-appwidget:1.1.1")
+    // Glance brings WorkManager 2.7, which predates Android 14's rules (receivers must say whether they are exported).
+    implementation("androidx.work:work-runtime:2.11.2")
     debugImplementation("androidx.compose.ui:ui-tooling")
 
     testImplementation("junit:junit:4.13.2")
