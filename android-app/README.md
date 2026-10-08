@@ -73,4 +73,9 @@ Debug builds: `adb shell setprop debug.dawnwick.slowgames 1` slows the games rig
 down (a cat that sits for a minute, five-minute rounds) for testing by hand.
 
 `gradle.properties` caps the heap at 3 GB: the build machine has 7 GB.
-Strings live in `tools/strings.py` (English, Uzbek, Russian); run it after editing.
+Strings live in `tools/strings.py` (English, Uzbek, Russian) and `tools/translations/*.json`
+(German, Spanish, French, Italian, Japanese, Korean, Brazilian Portuguese, Turkish, Simplified
+and Traditional Chinese: the iOS app's languages). Run `python3 tools/strings.py` after editing
+either; never edit the generated `strings.xml`. Most of the ten come from the iOS app's
+translations; the Android-only strings were translated without a native speaker and are worth
+a review. Android 13+ lists every language in the app's system language setting.
