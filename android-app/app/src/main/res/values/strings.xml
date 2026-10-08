@@ -560,6 +560,15 @@ Wake confidently.</string>
     <string name="app_icon_note">Your launcher may take a moment to show the new icon.</string>
     <string name="restore_purchases">Restore purchases</string>
     <string name="terms_of_use">Terms of use</string>
+    <string name="connections">Connections</string>
+    <string name="health_connect">Health Connect</string>
+    <string name="connected">Connected</string>
+    <string name="not_connected">Not connected</string>
+    <string name="pw_benefit_icons">Four more app icons</string>
+    <string name="pw_free_includes">Free includes %d alarms with the Math and Shake missions.</string>
+    <string name="onb_step_of">Step %1$d of %2$d</string>
+    <string name="onb_wake_time">Wake time</string>
+    <string name="onb_how_turn_off">How you\'ll turn it off</string>
     <string-array name="weekday_letter">
         <item>S</item>
         <item>M</item>

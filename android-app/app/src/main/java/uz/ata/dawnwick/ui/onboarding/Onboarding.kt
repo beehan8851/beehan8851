@@ -83,6 +83,10 @@ fun OnboardingScreen(onFinished: () -> Unit) {
     Box(
         Modifier.fillMaxSize().background(if (welcome) DawnColors.Yolk else Dawn.colors.background).safeDrawingPadding(),
     ) {
+        if (!welcome) {
+            Text(stringResource(R.string.onb_step_of, step.ordinal + 1, Step.entries.size), style = DawnType.footnote,
+                color = Dawn.colors.textTertiary, modifier = Modifier.align(Alignment.TopCenter).padding(top = Spacing.xs))
+        }
         when (step) {
             Step.WELCOME -> WelcomeStep { step = Step.PERMISSIONS }
             Step.PERMISSIONS -> PermissionsStep { step = Step.FIRST_ALARM }
@@ -95,7 +99,7 @@ fun OnboardingScreen(onFinished: () -> Unit) {
 private fun StepFrame(footer: @Composable () -> Unit, content: @Composable () -> Unit) {
     Column(Modifier.fillMaxSize()) {
         Column(
-            Modifier.weight(1f).fillMaxWidth().verticalScroll(rememberScrollState()).padding(horizontal = Spacing.s, vertical = Spacing.m),
+            Modifier.weight(1f).fillMaxWidth().verticalScroll(rememberScrollState()).padding(start = Spacing.s, end = Spacing.s, top = Spacing.l, bottom = Spacing.m),
             verticalArrangement = Arrangement.spacedBy(Spacing.m),
         ) { content() }
         Column(Modifier.fillMaxWidth().padding(horizontal = Spacing.s, vertical = Spacing.s), verticalArrangement = Arrangement.spacedBy(Spacing.xs)) { footer() }
@@ -219,7 +223,9 @@ private fun FirstAlarmStep(onFinished: () -> Unit) {
         CatMascot(CatMood.PROUD, Modifier.fillMaxWidth().height(120.dp), ground = if (Dawn.colors.isDark) CatGround.DARK else CatGround.LIGHT)
         Text(stringResource(R.string.onb_first_alarm_title), style = DawnType.display(28), color = Dawn.colors.textPrimary)
         Text(stringResource(R.string.onb_first_alarm_subtitle), style = DawnType.callout, color = Dawn.colors.textSecondary)
+        Text(stringResource(R.string.onb_wake_time).uppercase(), style = DawnType.section, color = Dawn.colors.textSecondary)
         TimeDrum(hour, minute, Dawn.colors.textPrimary) { h, m -> hour = h; minute = m }
+        Text(stringResource(R.string.onb_how_turn_off).uppercase(), style = DawnType.section, color = Dawn.colors.textSecondary)
         Column(verticalArrangement = Arrangement.spacedBy(Spacing.xs)) {
             FirstMission.entries.forEach { option ->
                 val selected = option == mission

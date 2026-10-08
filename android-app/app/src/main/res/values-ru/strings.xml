@@ -559,6 +559,15 @@
     <string name="app_icon_note">Новый значок может появиться не сразу.</string>
     <string name="restore_purchases">Восстановить покупки</string>
     <string name="terms_of_use">Условия использования</string>
+    <string name="connections">Подключения</string>
+    <string name="health_connect">Health Connect</string>
+    <string name="connected">Подключено</string>
+    <string name="not_connected">Не подключено</string>
+    <string name="pw_benefit_icons">Ещё четыре значка приложения</string>
+    <string name="pw_free_includes">Бесплатно — %d будильника с заданиями «Математика» и «Встряхнуть».</string>
+    <string name="onb_step_of">Шаг %1$d из %2$d</string>
+    <string name="onb_wake_time">Время подъёма</string>
+    <string name="onb_how_turn_off">Как вы его выключите</string>
     <string-array name="weekday_letter">
         <item>Вс</item>
         <item>Пн</item>

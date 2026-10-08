@@ -559,6 +559,15 @@ Ishonch bilan uyg\'oning.</string>
     <string name="app_icon_note">Yangi belgi bosh ekranda biroz vaqtdan keyin ko\'rinishi mumkin.</string>
     <string name="restore_purchases">Xaridlarni tiklash</string>
     <string name="terms_of_use">Foydalanish shartlari</string>
+    <string name="connections">Ulanishlar</string>
+    <string name="health_connect">Health Connect</string>
+    <string name="connected">Ulangan</string>
+    <string name="not_connected">Ulanmagan</string>
+    <string name="pw_benefit_icons">Yana to\'rtta ilova belgisi</string>
+    <string name="pw_free_includes">Bepul versiyada Matematika va Silkitish missiyalari bilan %d ta budilnik.</string>
+    <string name="onb_step_of">%1$d-qadam / %2$d</string>
+    <string name="onb_wake_time">Uyg\'onish vaqti</string>
+    <string name="onb_how_turn_off">Qanday o\'chirasiz</string>
     <string-array name="weekday_letter">
         <item>Ya</item>
         <item>Du</item>

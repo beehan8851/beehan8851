@@ -571,6 +571,15 @@ S = {  # key: (en, uz, ru)
  "app_icon_note": ("Your launcher may take a moment to show the new icon.", "Yangi belgi bosh ekranda biroz vaqtdan keyin ko'rinishi mumkin.", "Новый значок может появиться не сразу."),
  "restore_purchases": ("Restore purchases", "Xaridlarni tiklash", "Восстановить покупки"),
  "terms_of_use": ("Terms of use", "Foydalanish shartlari", "Условия использования"),
+ "connections": ("Connections", "Ulanishlar", "Подключения"),
+ "health_connect": ("Health Connect", "Health Connect", "Health Connect"),
+ "connected": ("Connected", "Ulangan", "Подключено"),
+ "not_connected": ("Not connected", "Ulanmagan", "Не подключено"),
+ "pw_benefit_icons": ("Four more app icons", "Yana to'rtta ilova belgisi", "Ещё четыре значка приложения"),
+ "pw_free_includes": ("Free includes %d alarms with the Math and Shake missions.", "Bepul versiyada Matematika va Silkitish missiyalari bilan %d ta budilnik.", "Бесплатно — %d будильника с заданиями «Математика» и «Встряхнуть»."),
+ "onb_step_of": ("Step %1$d of %2$d", "%1$d-qadam / %2$d", "Шаг %1$d из %2$d"),
+ "onb_wake_time": ("Wake time", "Uyg'onish vaqti", "Время подъёма"),
+ "onb_how_turn_off": ("How you'll turn it off", "Qanday o'chirasiz", "Как вы его выключите"),
 }
 
 ARRAYS = {

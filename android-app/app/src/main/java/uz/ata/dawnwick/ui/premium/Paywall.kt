@@ -133,7 +133,7 @@ fun PaywallScreen(reason: PremiumFeature, onClose: () -> Unit) {
             Column(Modifier.padding(Spacing.s), verticalArrangement = Arrangement.spacedBy(Spacing.m)) {
                 Column(verticalArrangement = Arrangement.spacedBy(Spacing.sm)) {
                     listOf(R.string.pw_benefit_alarms, R.string.pw_benefit_sleep, R.string.pw_benefit_widgets,
-                        R.string.pw_benefit_naps, R.string.pw_benefit_wake_check).forEach { Benefit(it) }
+                        R.string.pw_benefit_icons, R.string.pw_benefit_naps, R.string.pw_benefit_wake_check).forEach { Benefit(it) }
                 }
                 when (val s = plansState) {
                     PlansState.Loading -> Row(verticalAlignment = Alignment.CenterVertically) {
@@ -181,6 +181,8 @@ fun PaywallScreen(reason: PremiumFeature, onClose: () -> Unit) {
             TextButton(onClick = onClose, modifier = Modifier.fillMaxWidth()) {
                 Text(stringResource(R.string.pw_continue_free), style = DawnType.headline, color = Dawn.colors.textSecondary)
             }
+            Text(stringResource(R.string.pw_free_includes, uz.ata.dawnwick.alarm.FreeTier.ENABLED_ALARM_LIMIT),
+                style = DawnType.footnote, color = Dawn.colors.textTertiary, modifier = Modifier.align(Alignment.CenterHorizontally))
         }
     }
 }

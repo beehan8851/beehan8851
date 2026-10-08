@@ -1,5 +1,6 @@
 package uz.ata.dawnwick.ui.settings
 
+import kotlinx.coroutines.launch
 import androidx.compose.ui.draw.clip
 import androidx.compose.material.icons.rounded.Description
 import androidx.compose.foundation.background
@@ -116,6 +117,26 @@ fun SettingsScreen() {
                 SectionRow(stringResource(p.title), subtitle = if (granted) null else stringResource(p.detail), onClick = { p.open(context) }) {
                     Icon(if (granted) Icons.Rounded.CheckCircle else Icons.Rounded.ErrorOutline, null,
                         tint = if (granted) colors.success else colors.warning, modifier = Modifier.size(22.dp))
+                }
+            }
+        }
+
+        // Health Connect, Android's Apple Health: the sleep a phone or watch already records.
+        val health = context.graph.health
+        var healthState by remember { mutableStateOf<uz.ata.dawnwick.sleep.HealthSleep.State?>(null) }
+        val healthScope = androidx.compose.runtime.rememberCoroutineScope()
+        androidx.compose.runtime.LaunchedEffect(tick) { healthState = health.state() }
+        val healthLauncher = androidx.activity.compose.rememberLauncherForActivityResult(health.requestContract()) {
+            healthScope.launch { healthState = health.state() }
+        }
+        val hs = healthState
+        if (hs != null && hs != uz.ata.dawnwick.sleep.HealthSleep.State.UNAVAILABLE) {
+            Section(stringResource(R.string.connections)) {
+                val connected = hs == uz.ata.dawnwick.sleep.HealthSleep.State.CONNECTED
+                SectionRow(stringResource(R.string.health_connect),
+                    onClick = if (connected) null else ({ healthLauncher.launch(setOf(health.permission)) })) {
+                    Text(stringResource(if (connected) R.string.connected else R.string.not_connected),
+                        style = DawnType.body, color = if (connected) colors.textSecondary else colors.accent)
                 }
             }
         }
