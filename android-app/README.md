@@ -12,7 +12,7 @@ Kotlin, Jetpack Compose, no cross-platform layer.
 | 3 | Today: weather (Open-Meteo), calendar, morning brief, streak | **done** |
 | 4 | Sleep: tracking, noise monitor, white noise, wind-down, bedtime reminder, Health Connect | **done** |
 | 5 | Games: Catch the cat, Laser, Which box?, Cat Naps, Play tab, Today's game | **done** |
-| 6 | Onboarding, Premium (RevenueCat paywall, free-tier gates), widgets (Glance: Next Alarm, Cat, Streak, Sleep) | **done**, not yet built: written without an Android SDK |
+| 6 | Onboarding, Premium (RevenueCat paywall, free-tier gates, sleep history, Premium missions swapped for Math at ring time on a lapsed account), app icons (activity-alias), widgets (Glance: Next Alarm, Cat, Streak, Sleep), release signing | **done**, not yet built: written without an Android SDK |
 
 ## How an alarm rings
 
@@ -43,6 +43,20 @@ or pass `-PrevenuecatKey=goog_xxxxxxxx`. RevenueCat needs an entitlement `premiu
 and an offering `default` with annual and monthly packages. Without a key there is no
 store: debug builds run with Premium open so everything can be tried, release builds
 run free.
+
+## Release signing
+
+Create `keystore.properties` next to `settings.gradle.kts` (it is git-ignored):
+
+```
+storeFile=/full/path/to/dawnwick.jks
+storePassword=...
+keyAlias=dawnwick
+keyPassword=...
+```
+
+Without it, release builds are signed with the debug key: they install on a phone but
+Google Play refuses them.
 
 ## Build
 

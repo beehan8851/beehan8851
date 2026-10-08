@@ -134,6 +134,7 @@
     <string name="mission_no_step_sensor">Bu telefon qadamlarni sanay olmaydi, shuning uchun Qadamlar ishlamaydi.</string>
     <string name="mission_no_camera">Bu telefonda kamera yo\'q, shuning uchun QR kod ishlamaydi.</string>
     <string name="mission_permission_swapped">%s uchun ruxsat olib qo\'yilgan — o\'rniga Matematikani yeching.</string>
+    <string name="mission_premium_swapped">%s Premium talab qiladi — o\'rniga Matematikani yeching.</string>
     <string name="mission_screen_reader_swapped">%s TalkBack bilan ishlamaydi — o\'rniga Matematikani yeching.</string>
     <string name="steps_instruction">Uyg\'onish uchun yuring!</string>
     <string name="steps_unavailable">Bu qurilmada qadam sanash mavjud emas.</string>
@@ -547,6 +548,17 @@ Ishonch bilan uyg\'oning.</string>
     <string name="widget_no_nights">Hali tunlar yo\'q</string>
     <string name="widget_locked">Premium vidjet. Ochish uchun bosing.</string>
     <string name="widget_hours_minutes">%1$d soat %2$d daq</string>
+    <string name="app_icon">Ilova belgisi</string>
+    <string name="app_icon_footer">Bosh ekrandagi mushuk — kayfiyatingizga mosi.</string>
+    <string name="app_icon_classic">Klassik</string>
+    <string name="app_icon_night">Tun</string>
+    <string name="app_icon_proud">Mag\'rur</string>
+    <string name="app_icon_startled">Cho\'chigan</string>
+    <string name="app_icon_unimpressed">Befarq</string>
+    <string name="app_icon_failed">Belgini o\'zgartirib bo\'lmadi.</string>
+    <string name="app_icon_note">Yangi belgi bosh ekranda biroz vaqtdan keyin ko\'rinishi mumkin.</string>
+    <string name="restore_purchases">Xaridlarni tiklash</string>
+    <string name="terms_of_use">Foydalanish shartlari</string>
     <string-array name="weekday_letter">
         <item>Ya</item>
         <item>Du</item>
@@ -631,5 +643,9 @@ Ishonch bilan uyg\'oning.</string>
     <plurals name="days_in_a_row">
         <item quantity="one">ketma-ket %d kun</item>
         <item quantity="other">ketma-ket %d kun</item>
+    </plurals>
+    <plurals name="sleep_earlier_nights_locked">
+        <item quantity="one">Yana %d ta oldingi tun — Premium bilan ko\'ring</item>
+        <item quantity="other">Yana %d ta oldingi tun — Premium bilan ko\'ring</item>
     </plurals>
 </resources>

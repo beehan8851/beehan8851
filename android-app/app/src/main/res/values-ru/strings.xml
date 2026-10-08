@@ -134,6 +134,7 @@
     <string name="mission_no_step_sensor">Этот телефон не умеет считать шаги, поэтому «Шаги» недоступны.</string>
     <string name="mission_no_camera">В этом телефоне нет камеры, поэтому «QR-код» недоступен.</string>
     <string name="mission_permission_swapped">Для «%s» больше нет разрешения — решите математику.</string>
+    <string name="mission_premium_swapped">Для «%s» нужен Premium — решите пример.</string>
     <string name="mission_screen_reader_swapped">«%s» нельзя пройти с TalkBack — решите математику.</string>
     <string name="steps_instruction">Идите, чтобы проснуться!</string>
     <string name="steps_unavailable">Подсчёт шагов недоступен на этом устройстве.</string>
@@ -547,6 +548,17 @@
     <string name="widget_no_nights">Ночей пока нет</string>
     <string name="widget_locked">Виджет Premium. Нажмите, чтобы открыть.</string>
     <string name="widget_hours_minutes">%1$d ч %2$d мин</string>
+    <string name="app_icon">Значок приложения</string>
+    <string name="app_icon_footer">Кот на главном экране — в подходящем вам настроении.</string>
+    <string name="app_icon_classic">Классика</string>
+    <string name="app_icon_night">Ночь</string>
+    <string name="app_icon_proud">Гордый</string>
+    <string name="app_icon_startled">Испуганный</string>
+    <string name="app_icon_unimpressed">Невпечатлённый</string>
+    <string name="app_icon_failed">Не удалось сменить значок.</string>
+    <string name="app_icon_note">Новый значок может появиться не сразу.</string>
+    <string name="restore_purchases">Восстановить покупки</string>
+    <string name="terms_of_use">Условия использования</string>
     <string-array name="weekday_letter">
         <item>Вс</item>
         <item>Пн</item>
@@ -645,5 +657,11 @@
         <item quantity="few">%d дня подряд</item>
         <item quantity="many">%d дней подряд</item>
         <item quantity="other">%d дня подряд</item>
+    </plurals>
+    <plurals name="sleep_earlier_nights_locked">
+        <item quantity="one">Ещё %d ночь — смотрите в Premium</item>
+        <item quantity="few">Ещё %d ночи — смотрите в Premium</item>
+        <item quantity="many">Ещё %d ночей — смотрите в Premium</item>
+        <item quantity="other">Ещё %d ночи — смотрите в Premium</item>
     </plurals>
 </resources>

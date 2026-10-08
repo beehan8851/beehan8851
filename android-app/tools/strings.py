@@ -145,6 +145,7 @@ S = {  # key: (en, uz, ru)
  "mission_no_step_sensor": ("This phone can't count steps, so Steps can't be used.", "Bu telefon qadamlarni sanay olmaydi, shuning uchun Qadamlar ishlamaydi.", "Этот телефон не умеет считать шаги, поэтому «Шаги» недоступны."),
  "mission_no_camera": ("This phone has no camera, so QR code can't be used.", "Bu telefonda kamera yo'q, shuning uchun QR kod ishlamaydi.", "В этом телефоне нет камеры, поэтому «QR-код» недоступен."),
  "mission_permission_swapped": ("%s isn't allowed on this phone any more — solve Math instead.", "%s uchun ruxsat olib qo'yilgan — o'rniga Matematikani yeching.", "Для «%s» больше нет разрешения — решите математику."),
+ "mission_premium_swapped": ("%s needs Premium — solve Math instead.", "%s Premium talab qiladi — o'rniga Matematikani yeching.", "Для «%s» нужен Premium — решите пример."),
  "mission_screen_reader_swapped": ("%s can't be used with TalkBack — solve Math instead.", "%s TalkBack bilan ishlamaydi — o'rniga Matematikani yeching.", "«%s» нельзя пройти с TalkBack — решите математику."),
  "steps_instruction": ("Walk to wake up!", "Uyg'onish uchun yuring!", "Идите, чтобы проснуться!"),
  "steps_unavailable": ("Step counting unavailable on this device.", "Bu qurilmada qadam sanash mavjud emas.", "Подсчёт шагов недоступен на этом устройстве."),
@@ -559,6 +560,17 @@ S = {  # key: (en, uz, ru)
  "widget_no_nights": ("No nights yet", "Hali tunlar yo'q", "Ночей пока нет"),
  "widget_locked": ("Premium widget. Tap to unlock.", "Premium vidjet. Ochish uchun bosing.", "Виджет Premium. Нажмите, чтобы открыть."),
  "widget_hours_minutes": ("%1$dh %2$dm", "%1$d soat %2$d daq", "%1$d ч %2$d мин"),
+ "app_icon": ("App icon", "Ilova belgisi", "Значок приложения"),
+ "app_icon_footer": ("The cat on your home screen, in the mood that suits you.", "Bosh ekrandagi mushuk — kayfiyatingizga mosi.", "Кот на главном экране — в подходящем вам настроении."),
+ "app_icon_classic": ("Classic", "Klassik", "Классика"),
+ "app_icon_night": ("Night", "Tun", "Ночь"),
+ "app_icon_proud": ("Proud", "Mag'rur", "Гордый"),
+ "app_icon_startled": ("Startled", "Cho'chigan", "Испуганный"),
+ "app_icon_unimpressed": ("Unimpressed", "Befarq", "Невпечатлённый"),
+ "app_icon_failed": ("The icon couldn't be changed.", "Belgini o'zgartirib bo'lmadi.", "Не удалось сменить значок."),
+ "app_icon_note": ("Your launcher may take a moment to show the new icon.", "Yangi belgi bosh ekranda biroz vaqtdan keyin ko'rinishi mumkin.", "Новый значок может появиться не сразу."),
+ "restore_purchases": ("Restore purchases", "Xaridlarni tiklash", "Восстановить покупки"),
+ "terms_of_use": ("Terms of use", "Foydalanish shartlari", "Условия использования"),
 }
 
 ARRAYS = {
@@ -585,6 +597,7 @@ PLURALS = {  # en (one, other) · uz other · ru (one, few, many)
  "noise_events": (("%d noise event", "%d noise events"), "%d ta shovqin", ("%d шум", "%d шума", "%d шумов")),
  "points": (("%d point", "%d points"), "%d ochko", ("%d очко", "%d очка", "%d очков")),
  "days_in_a_row": (("%d day in a row", "%d days in a row"), "ketma-ket %d kun", ("%d день подряд", "%d дня подряд", "%d дней подряд")),
+ "sleep_earlier_nights_locked": (("%d earlier night — see it with Premium", "%d earlier nights — see them with Premium"), "Yana %d ta oldingi tun — Premium bilan ko'ring", ("Ещё %d ночь — смотрите в Premium", "Ещё %d ночи — смотрите в Premium", "Ещё %d ночей — смотрите в Premium")),
 }
 
 

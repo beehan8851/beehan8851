@@ -1,5 +1,7 @@
 package uz.ata.dawnwick.ui.settings
 
+import androidx.compose.ui.draw.clip
+import androidx.compose.material.icons.rounded.Description
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -91,6 +93,19 @@ fun SettingsScreen() {
             } else {
                 SectionRow(stringResource(R.string.settings_premium_get), subtitle = stringResource(R.string.pw_subtitle),
                     onClick = { context.graph.showPaywall() })
+                if (subscription.storeAvailable) {
+                    RowDivider()
+                    SectionRow(stringResource(R.string.restore_purchases), titleColor = colors.accent, onClick = {
+                        subscription.restore { outcome ->
+                            val message = when (outcome) {
+                                uz.ata.dawnwick.premium.PurchaseOutcome.Purchased -> R.string.pw_welcome
+                                uz.ata.dawnwick.premium.PurchaseOutcome.NothingToRestore -> R.string.pw_nothing_to_restore
+                                else -> R.string.pw_unavailable_detail
+                            }
+                            android.widget.Toast.makeText(context, message, android.widget.Toast.LENGTH_LONG).show()
+                        }
+                    })
+                }
             }
         }
 
@@ -135,6 +150,14 @@ fun SettingsScreen() {
                     }
                 }
             }
+            RowDivider()
+            var iconPicker by remember { mutableStateOf(false) }
+            val currentIcon = remember(iconPicker) { AppIcon.current(context) }
+            SectionRow(stringResource(R.string.app_icon), onClick = { iconPicker = true }) {
+                androidx.compose.foundation.Image(androidx.compose.ui.res.painterResource(currentIcon.preview), null,
+                    Modifier.size(32.dp).clip(androidx.compose.foundation.shape.RoundedCornerShape(8.dp)))
+            }
+            if (iconPicker) AppIconPicker { iconPicker = false }
         }
 
         // About: where to get help and how the data is handled. The version lives in
@@ -149,6 +172,8 @@ fun SettingsScreen() {
             LinkRow(Icons.Rounded.Email, stringResource(R.string.help_contact)) { openUrl(context, LegalLinks.SUPPORT) }
             RowDivider()
             LinkRow(Icons.Rounded.PanTool, stringResource(R.string.privacy_policy)) { openUrl(context, LegalLinks.PRIVACY) }
+            RowDivider()
+            LinkRow(Icons.Rounded.Description, stringResource(R.string.terms_of_use)) { openUrl(context, uz.ata.dawnwick.premium.SubscriptionService.TERMS_URL) }
         }
 
         // The version, at the end of the list, under the cat asleep on its moon.

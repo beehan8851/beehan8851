@@ -1,5 +1,6 @@
 package uz.ata.dawnwick.ui.missions
 
+import uz.ata.dawnwick.graph
 import android.content.Context
 import android.hardware.Sensor
 import android.hardware.SensorManager
@@ -102,6 +103,10 @@ object MissionCapability {
 
     /** Why it cannot run right now — everything above, plus permissions and setup. */
     private fun reasonCannotRun(context: Context, m: MissionConfig): String? {
+        // A lapsed subscription: the alarm still rings, the morning is not the place for a paywall.
+        if (m.kind.isPremium && !context.graph.isPremium) {
+            return context.getString(R.string.mission_premium_swapped, context.getString(missionNameRes(m.kind)))
+        }
         reasonUnavailable(context, m.kind)?.let { return it }
         if (!m.isConfigured) return context.getString(R.string.mission_needs_setup_swapped)
         val name = context.getString(missionNameRes(m.kind))

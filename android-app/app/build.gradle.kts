@@ -24,13 +24,27 @@ android {
         buildConfigField("String", "REVENUECAT_API_KEY", "\"$rcKey\"")
     }
 
+    // The release key, from keystore.properties next to settings.gradle.kts (never committed):
+    //   storeFile=/path/to/dawnwick.jks  storePassword=…  keyAlias=…  keyPassword=…
+    val keystoreProps = rootProject.file("keystore.properties").takeIf { it.exists() }?.let { f ->
+        java.util.Properties().apply { f.inputStream().use { load(it) } }
+    }
+    signingConfigs {
+        if (keystoreProps != null) create("release") {
+            storeFile = file(keystoreProps.getProperty("storeFile"))
+            storePassword = keystoreProps.getProperty("storePassword")
+            keyAlias = keystoreProps.getProperty("keyAlias")
+            keyPassword = keystoreProps.getProperty("keyPassword")
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-            // Until a release key exists, release builds are signed with the debug key.
-            signingConfig = signingConfigs.getByName("debug")
+            // Without keystore.properties, release builds are signed with the debug key: fine on a phone, refused by Google Play.
+            signingConfig = signingConfigs.findByName("release") ?: signingConfigs.getByName("debug")
         }
     }
     compileOptions {

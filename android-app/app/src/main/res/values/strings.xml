@@ -135,6 +135,7 @@
     <string name="mission_no_step_sensor">This phone can\'t count steps, so Steps can\'t be used.</string>
     <string name="mission_no_camera">This phone has no camera, so QR code can\'t be used.</string>
     <string name="mission_permission_swapped">%s isn\'t allowed on this phone any more — solve Math instead.</string>
+    <string name="mission_premium_swapped">%s needs Premium — solve Math instead.</string>
     <string name="mission_screen_reader_swapped">%s can\'t be used with TalkBack — solve Math instead.</string>
     <string name="steps_instruction">Walk to wake up!</string>
     <string name="steps_unavailable">Step counting unavailable on this device.</string>
@@ -548,6 +549,17 @@ Wake confidently.</string>
     <string name="widget_no_nights">No nights yet</string>
     <string name="widget_locked">Premium widget. Tap to unlock.</string>
     <string name="widget_hours_minutes">%1$dh %2$dm</string>
+    <string name="app_icon">App icon</string>
+    <string name="app_icon_footer">The cat on your home screen, in the mood that suits you.</string>
+    <string name="app_icon_classic">Classic</string>
+    <string name="app_icon_night">Night</string>
+    <string name="app_icon_proud">Proud</string>
+    <string name="app_icon_startled">Startled</string>
+    <string name="app_icon_unimpressed">Unimpressed</string>
+    <string name="app_icon_failed">The icon couldn\'t be changed.</string>
+    <string name="app_icon_note">Your launcher may take a moment to show the new icon.</string>
+    <string name="restore_purchases">Restore purchases</string>
+    <string name="terms_of_use">Terms of use</string>
     <string-array name="weekday_letter">
         <item>S</item>
         <item>M</item>
@@ -632,5 +644,9 @@ Wake confidently.</string>
     <plurals name="days_in_a_row">
         <item quantity="one">%d day in a row</item>
         <item quantity="other">%d days in a row</item>
+    </plurals>
+    <plurals name="sleep_earlier_nights_locked">
+        <item quantity="one">%d earlier night — see it with Premium</item>
+        <item quantity="other">%d earlier nights — see them with Premium</item>
     </plurals>
 </resources>

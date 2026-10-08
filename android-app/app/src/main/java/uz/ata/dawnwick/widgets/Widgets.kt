@@ -143,13 +143,20 @@ class CatWidget : GlanceAppWidget() {
             next != null -> context.getString(R.string.widget_cat_ready)
             else -> context.getString(R.string.widget_cat_no_alarm)
         }
+        // The cat's face from the app icons: asleep at night, proud on a won morning, unimpressed after a missed one.
+        val face = when {
+            night -> R.drawable.icon_preview_night
+            wonToday -> R.drawable.icon_preview_proud
+            missedLast -> R.drawable.icon_preview_unimpressed
+            else -> R.drawable.icon_preview_classic
+        }
         provideContent {
             Column(
                 GlanceModifier.fillMaxSize().background(c(if (night) Ink else Yolk)).cornerRadius(22.dp).padding(12.dp)
                     .clickable(openApp(context, tab = 0)),
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
-                Image(ImageProvider(R.mipmap.ic_launcher_foreground), null, GlanceModifier.size(84.dp))
+                Image(ImageProvider(face), null, GlanceModifier.size(84.dp).cornerRadius(18.dp))
                 Text(line, style = TextStyle(c(if (night) Paper else Ink), 14.sp, FontWeight.Bold), maxLines = 2)
             }
         }

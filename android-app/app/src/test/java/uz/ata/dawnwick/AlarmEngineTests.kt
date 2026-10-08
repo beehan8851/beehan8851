@@ -167,6 +167,24 @@ class AlarmServiceTest {
         assertTrue(s.save(first.copy(label = "Edited")) is SaveResult.Success)
     }
 
+    @Test fun freeTierRefusesANewPremiumMission() {
+        val s = service(premium = false)
+        assertEquals(SaveResult.Failure(SaveError.PremiumMission), s.save(Alarm(missions = listOf(MissionConfig.Steps(20)))))
+        assertTrue(s.save(Alarm(missions = listOf(MissionConfig.Shake(10)))) is SaveResult.Success)
+    }
+
+    @Test fun lapsedSubscriptionKeepsItsPremiumMissions() {
+        val alarm = Alarm(missions = listOf(MissionConfig.Steps(20)))
+        assertTrue(service(premium = true).save(alarm) is SaveResult.Success)
+        // Premium ends: the alarm can still be edited without losing the mission it had.
+        assertTrue(service(premium = false).save(alarm.copy(label = "Run")) is SaveResult.Success)
+    }
+
+    @Test fun onlyMathAndShakeAreFree() {
+        val free = uz.ata.dawnwick.alarm.model.MissionKind.entries.filter { !it.isPremium }
+        assertEquals(setOf(uz.ata.dawnwick.alarm.model.MissionKind.MATH, uz.ata.dawnwick.alarm.model.MissionKind.SHAKE), free.toSet())
+    }
+
     @Test fun completingAOneTimeAlarmSwitchesItOff() {
         val alarm = Alarm(recurrence = AlarmRecurrence.OneTime(AlarmDate(2025, 1, 8)))
         val s = service()

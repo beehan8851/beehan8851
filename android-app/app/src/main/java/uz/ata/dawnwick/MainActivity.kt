@@ -159,6 +159,15 @@ private fun AppRoot() {
         }
     }
 
+    // A free account at its limit meets the paywall before the editor, not after filling it in.
+    fun newAlarm() {
+        if (!graph.isPremium && alarms.size >= uz.ata.dawnwick.alarm.FreeTier.ENABLED_ALARM_LIMIT) {
+            graph.showPaywall(uz.ata.dawnwick.premium.PremiumFeature.UNLIMITED_ALARMS)
+        } else {
+            editing = true to null
+        }
+    }
+
     val promptAt = graph.ring.wakeCheckPromptAt()
     if (wakeCheck != null && promptAt != null && now >= promptAt) {
         CatTricksProvider(best) { WakeCheckPrompt(onAwake = { graph.ring.acknowledgeWakeCheck() }, onFellAsleep = { graph.ring.failWakeCheck() }) }
@@ -190,8 +199,8 @@ private fun AppRoot() {
     ) { padding ->
         Box(Modifier.fillMaxSize().padding(padding).consumeWindowInsets(padding)) {
             when (Tab.entries[tab]) {
-                Tab.TODAY -> TodayScreen(alarms, onAddAlarm = { editing = true to null }, onAllGames = { tab = Tab.PLAY.ordinal })
-                Tab.ALARMS -> AlarmsScreen(alarms, onOpen = { editing = true to it }, onChanged = ::reload)
+                Tab.TODAY -> TodayScreen(alarms, onAddAlarm = ::newAlarm, onAllGames = { tab = Tab.PLAY.ordinal })
+                Tab.ALARMS -> AlarmsScreen(alarms, onOpen = { if (it == null) newAlarm() else { editing = true to it } }, onChanged = ::reload)
                 Tab.SLEEP -> uz.ata.dawnwick.ui.sleep.SleepScreen(alarms, windDownRequested, onWindDownHandled = { windDownRequested = false })
                 Tab.PLAY -> uz.ata.dawnwick.ui.games.PlayScreen()
                 Tab.SETTINGS -> SettingsScreen()

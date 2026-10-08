@@ -157,7 +157,11 @@ fun SleepScreen(alarms: List<Alarm>, windDownRequested: Boolean, onWindDownHandl
         Column(Modifier.fillMaxSize().background(Dawn.colors.background).verticalScroll(rememberScrollState()).padding(bottom = Spacing.l)) {
             Row(Modifier.fillMaxWidth().padding(start = Spacing.s, end = Spacing.xs, top = Spacing.s), verticalAlignment = Alignment.CenterVertically) {
                 Text(stringResource(R.string.tab_sleep), style = DawnType.display(34), color = Dawn.colors.textPrimary, modifier = Modifier.weight(1f))
-                TextButton(onClick = { showHistory = true }) { Text(stringResource(R.string.sleep_history_button), color = Dawn.colors.accent, fontWeight = FontWeight.Bold) }
+                TextButton(onClick = {
+                    // Last night is free; the full history and trend are Premium.
+                    if (graph.isPremium) showHistory = true
+                    else graph.showPaywall(uz.ata.dawnwick.premium.PremiumFeature.SLEEP_HISTORY)
+                }) { Text(stringResource(R.string.sleep_history_button), color = Dawn.colors.accent, fontWeight = FontWeight.Bold) }
             }
             Column(Modifier.padding(horizontal = Spacing.s).padding(top = Spacing.xs), verticalArrangement = Arrangement.spacedBy(Spacing.l)) {
                 Hero(next?.second, evening, onStart = { startTracking(context) }, onWindDown = { windDown = true })
@@ -363,7 +367,17 @@ private fun LastNightSection(sessions: List<SleepSession>, health: List<SleepEnt
                 Text(stringResource(R.string.health_connect_button), style = DawnType.body, color = colors.accent, modifier = Modifier.weight(1f))
             }
         }
-        earlier.forEach { day ->
+        val context = androidx.compose.ui.platform.LocalContext.current
+        if (earlier.isNotEmpty() && !context.graph.isPremium) {
+            Divider()
+            Row(Modifier.fillMaxWidth().defaultMinSize(minHeight = 48.dp)
+                .pressable { context.graph.showPaywall(uz.ata.dawnwick.premium.PremiumFeature.SLEEP_HISTORY) }
+                .padding(horizontal = Spacing.s), verticalAlignment = Alignment.CenterVertically) {
+                Text(androidx.compose.ui.res.pluralStringResource(R.plurals.sleep_earlier_nights_locked, earlier.size, earlier.size),
+                    style = DawnType.body, color = colors.accent, modifier = Modifier.weight(1f))
+            }
+        }
+        if (context.graph.isPremium) earlier.forEach { day ->
             Divider()
             Row(Modifier.fillMaxWidth().defaultMinSize(minHeight = 48.dp).padding(horizontal = Spacing.s), verticalAlignment = Alignment.CenterVertically) {
                 Text(day.date.dayOfWeek.getDisplayName(java.time.format.TextStyle.FULL_STANDALONE, java.util.Locale.getDefault()).replaceFirstChar { it.uppercase() },
