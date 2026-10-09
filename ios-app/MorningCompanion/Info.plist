@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>Dawnwick</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
+	<key>CFBundleShortVersionString</key>
+	<string>$(MARKETING_VERSION)</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>dev.numonov.dawnwick.alarm</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>dawnwick</string>
+			</array>
+		</dict>
+	</array>
+	<key>CFBundleVersion</key>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
+	<key>NSAlarmKitUsageDescription</key>
+	<string>Dawnwick schedules alarms so you can wake up and complete your morning mission.</string>
+	<key>NSCalendarsFullAccessUsageDescription</key>
+	<string>Dawnwick shows your first upcoming event in your morning brief.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Dawnwick uses the camera to scan QR codes during wake-up missions.</string>
+	<key>NSHealthShareUsageDescription</key>
+	<string>Dawnwick reads your sleep data to show last night and recent sleep history.</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>Dawnwick never writes to Health. It only reads your sleep data to show last night and recent sleep history.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Dawnwick uses your location to show local weather in your morning brief.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Dawnwick listens for ambient noise during sleep tracking to help you understand your sleep environment. Audio is never recorded or stored.</string>
+	<key>NSMotionUsageDescription</key>
+	<string>Dawnwick uses motion data for step counting and jump detection in wake-up missions.</string>
+	<key>NSSupportsLiveActivities</key>
+	<true/>
+	<key>UIApplicationSceneManifest</key>
+	<dict>
+		<key>UIApplicationSupportsMultipleScenes</key>
+		<false/>
+		<key>UISceneConfigurations</key>
+		<dict/>
+	</dict>
+	<key>UIApplicationSupportsIndirectInputEvents</key>
+	<true/>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>audio</string>
+	</array>
+	<key>UILaunchScreen</key>
+	<dict>
+		<key>UILaunchScreen</key>
+		<dict/>
+	</dict>
+	<key>UISupportedInterfaceOrientations~iphone</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+</dict>
+</plist>
