@@ -545,6 +545,7 @@
   "wake_missions": "기상 미션",
   "weather_add": "날씨 추가",
   "weather_location_off": "날씨에는 위치 정보가 필요한데 꺼져 있습니다",
+  "weather_location_services_off": "위치를 켜면 지금 있는 곳의 날씨를 볼 수 있어요",
   "weather_no_location": "현재 위치를 찾을 수 없습니다",
   "weather_offer": "지금 있는 곳의 날씨",
   "weather_title": "날씨",

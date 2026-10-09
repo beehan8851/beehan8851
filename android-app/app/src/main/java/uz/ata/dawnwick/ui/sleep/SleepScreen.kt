@@ -73,6 +73,7 @@ import uz.ata.dawnwick.sleep.SleepSession
 import uz.ata.dawnwick.sleep.SleepSound
 import uz.ata.dawnwick.ui.cat.CatGround
 import uz.ata.dawnwick.ui.cat.CatMascot
+import uz.ata.dawnwick.ui.cat.TappableCat
 import uz.ata.dawnwick.ui.cat.CatMood
 import uz.ata.dawnwick.ui.components.ButtonLabel
 import uz.ata.dawnwick.ui.components.YolkButton
@@ -154,7 +155,7 @@ fun SleepScreen(alarms: List<Alarm>, windDownRequested: Boolean, onWindDownHandl
         }
     } else {
         val evening = LocalTime.now().hour.let { it >= 17 || it < 5 }
-        Column(Modifier.fillMaxSize().background(Dawn.colors.background).verticalScroll(rememberScrollState()).padding(bottom = Spacing.l)) {
+        Column(Modifier.fillMaxSize().background(Dawn.colors.background).verticalScroll(rememberScrollState()).padding(bottom = Spacing.l + uz.ata.dawnwick.ui.components.LocalNavBarSpace.current)) {
             Row(Modifier.fillMaxWidth().padding(start = Spacing.s, end = Spacing.xs, top = Spacing.s), verticalAlignment = Alignment.CenterVertically) {
                 Text(stringResource(R.string.tab_sleep), style = DawnType.display(34), color = Dawn.colors.textPrimary, modifier = Modifier.weight(1f))
                 TextButton(onClick = {
@@ -202,7 +203,7 @@ private fun Hero(nextAlarm: Long?, evening: Boolean, onStart: () -> Unit, onWind
                 Text(stringResource(R.string.sleep_tonight), style = DawnType.headline, color = DawnColors.NightTextSecondary)
                 Text(summary, style = DawnType.headline.copy(fontWeight = FontWeight.SemiBold), color = DawnColors.Paper)
             }
-            CatMascot(CatMood.SLEEPING, Modifier.width(128.dp).offset(x = 8.dp), ground = CatGround.DARK)
+            TappableCat(CatMood.SLEEPING, 128.dp, Modifier.offset(x = 8.dp), ground = CatGround.DARK)
         }
         YolkButton(onClick = onStart) { ButtonLabel(stringResource(R.string.sleep_start)) }
         Row(
@@ -399,7 +400,7 @@ private fun SleepActive(session: SleepSession, next: Pair<Alarm, Long>?, onStopp
     var now by remember { mutableLongStateOf(System.currentTimeMillis()) }
     var confirm by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { while (true) { delay(1000); now = System.currentTimeMillis() } }
-    Column(Modifier.fillMaxSize().background(colors.background).verticalScroll(rememberScrollState()), horizontalAlignment = Alignment.CenterHorizontally) {
+    Column(Modifier.fillMaxSize().background(colors.background).verticalScroll(rememberScrollState()).padding(bottom = uz.ata.dawnwick.ui.components.LocalNavBarSpace.current), horizontalAlignment = Alignment.CenterHorizontally) {
         Text(stringResource(if (tracker.isRestored) R.string.sleep_restored else R.string.sleep_tracking_label), style = DawnType.callout, color = colors.textSecondary,
             modifier = Modifier.padding(top = Spacing.l))
         Spacer(Modifier.height(Spacing.l))
@@ -407,7 +408,7 @@ private fun SleepActive(session: SleepSession, next: Pair<Alarm, Long>?, onStopp
             Modifier.padding(horizontal = Spacing.s).fillMaxWidth().clip(RoundedCornerShape(Radius.xl)).background(DawnColors.Ink).padding(vertical = Spacing.m, horizontal = Spacing.s),
             horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(Spacing.s),
         ) {
-            CatMascot(CatMood.SLEEPING, Modifier.width(210.dp), ground = CatGround.DARK)
+            TappableCat(CatMood.SLEEPING, 210.dp, ground = CatGround.DARK)
             Text(stringResource(if (next == null) R.string.sleep_went_to_bed else R.string.sleep_alarm), style = DawnType.headline, color = DawnColors.NightTextSecondary)
             Text(TimeFormat.clock(context, next?.second ?: session.startMillis), style = DawnType.display(60), color = DawnColors.Paper)
             val elapsed = (now - session.startMillis) / 1000

@@ -12,7 +12,7 @@ import uz.ata.dawnwick.ring.RingNotifications
 import uz.ata.dawnwick.settings.AppPreferences
 
 /** Everything the app is made of, built once. */
-class AppGraph(context: Context) {
+class AppGraph(private val context: Context) {
     val store = PrefsStore(context)
     val preferences = AppPreferences(store)
     val repository = AlarmRepository(store)
@@ -39,7 +39,11 @@ class AppGraph(context: Context) {
 
     /** The companion on screen everywhere but the games. */
     val companion = kotlinx.coroutines.flow.MutableStateFlow(uz.ata.dawnwick.companion.Pet.CAT)
-    fun refreshCompanion() { companion.value = companions.shown(companionProgress()) }
+    fun refreshCompanion() {
+        companion.value = companions.shown(companionProgress())
+        // The home screen shows it too: its own icon, or the cat's chosen one.
+        uz.ata.dawnwick.ui.settings.LauncherIcon.follow(context, companion.value)
+    }
 
     /** A paywall someone asked for, with the reason; the app's root shows it over everything. */
     val paywall = kotlinx.coroutines.flow.MutableStateFlow<uz.ata.dawnwick.premium.PremiumFeature?>(null)

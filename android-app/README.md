@@ -46,7 +46,7 @@ run free.
 
 ## Companions
 
-Besides the cat, six companions can stand in for it everywhere but the games: puppy,
+Besides the cat, six companions can stand in for it everywhere, the games included: puppy,
 chick, canary, lamb, owlet and hamster (`companion/Companions.kt`, drawn in
 `ui/cat/CompanionArt.kt` with the cat's eyes and moods, so the cat's own `CatArt` is untouched).
 Each has its own voice: an alarm call that replaces the "Meow" tone, three tap sounds and a
@@ -64,6 +64,28 @@ Google Play, `dawnwick_companion_puppy`, `dawnwick_companion_canary`, `dawnwick_
 and `dawnwick_companion_hamster` (about $1.99 each), added to RevenueCat as products; ownership
 is read from RevenueCat's `allPurchasedProductIds`. If Premium ends, a bought or earned companion
 stays; a companion that came only with Premium gives way to the cat until Premium returns.
+
+The games' words that name the cat ("Catch the cat", "Cat Naps", the rules) have a version for
+each companion in every language, written from per-language sentence shapes in `tools/pets.py`;
+`tools/strings.py` writes them as `<key>_<pet>` strings and the lookup table
+`ui/games/PetStrings.kt` (`petString()` picks the one for the companion on screen). The home
+screen icon follows the companion too: each has a launcher `activity-alias` (`IconPuppy` …) and
+`LauncherIcon.follow` switches to it; choosing the cat brings back the cat icon last picked.
+
+## Weather and location
+
+Weather is Open-Meteo (free, no key). The place comes from Play services' fused location, then
+the platform's own providers; if location is allowed but switched off, Google's "Turn on
+location?" sheet is offered (once per run, and from the card), and if no fix comes at all the
+city is taken from the connection's IP address (`IpLocator`: geojs.io, then ipapi.co).
+
+## Tab bar and language switch
+
+The tab bar floats over the screens as frosted glass (`ui/components/GlassNavBar.kt`, Haze):
+blurred on Android 12+, a near-solid tint before that, with one yolk pill that slides between
+tabs. Screens leave `LocalNavBarSpace` free at the bottom. Changing the app's language
+(Settings › Appearance › Language) happens in place — `configChanges="locale|layoutDirection"`
+on the main activity — under a snapshot of the old screen that blurs and fades away.
 
 ## Crash reports
 

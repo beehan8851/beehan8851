@@ -91,6 +91,9 @@ import uz.ata.dawnwick.games.CatNapRecord
 import uz.ata.dawnwick.graph
 import uz.ata.dawnwick.ui.cat.CatGround
 import uz.ata.dawnwick.ui.cat.CatMascot
+import uz.ata.dawnwick.ui.cat.CompanionArt
+import uz.ata.dawnwick.ui.cat.currentCompanion
+import uz.ata.dawnwick.companion.Pet
 import uz.ata.dawnwick.ui.cat.CatMood
 import uz.ata.dawnwick.ui.cat.CatSounds
 import uz.ata.dawnwick.ui.cat.Shapes
@@ -249,9 +252,9 @@ fun CatNapScreen(onClose: () -> Unit) {
                         if (isUnlimited) stringResource(R.string.naps_unlimited_eyebrow).uppercase() else puzzleLine(number),
                         style = DawnType.eyebrow, color = Dawn.colors.textSecondary, textAlign = TextAlign.Center,
                     )
-                    GameTitle(stringResource(R.string.game_naps))
+                    GameTitle(petString(R.string.game_naps))
                 }
-                GameRules(stringResource(R.string.naps_rules))
+                GameRules(petString(R.string.naps_rules))
                 LevelPicker(level, solvedLevels) { option ->
                     if (option == level) return@LevelPicker
                     if (isUnlimited) unlimitedSeed = seedFor(option, false) ?: return@LevelPicker
@@ -300,7 +303,7 @@ fun CatNapScreen(onClose: () -> Unit) {
                 onToday = { open(today) },
                 onArchive = { archive = true },
                 onShare = {
-                    val lines = mutableListOf(context.getString(R.string.naps_share_text, number, context.resources.getStringArray(R.array.difficulty)[level.ordinal], napClock(solve?.seconds ?: 0)))
+                    val lines = mutableListOf(context.getString(PetStrings.of(R.string.naps_share_text, graph.companion.value), number, context.resources.getStringArray(R.array.difficulty)[level.ordinal], napClock(solve?.seconds ?: 0)))
                     if ((game?.hints ?: 0) == 0) lines += context.getString(R.string.naps_no_hints)
                     lines += "😴".repeat(game?.size ?: 0)
                     context.startActivity(Intent.createChooser(Intent(Intent.ACTION_SEND).setType("text/plain").putExtra(Intent.EXTRA_TEXT, lines.joinToString("\n")), null))
@@ -381,7 +384,7 @@ private fun NapBoard(
             game.solved -> stringResource(R.string.naps_all_asleep) to DawnColors.Ink
             game.clashing.isNotEmpty() -> stringResource(R.string.naps_too_close) to NapArt.clash
             game.catCount == 0 -> stringResource(R.string.naps_tip) to Dawn.colors.textSecondary
-            else -> stringResource(R.string.naps_count, game.catCount, game.size) to Dawn.colors.textSecondary
+            else -> petString(R.string.naps_count, game.catCount, game.size) to Dawn.colors.textSecondary
         }
         HintLine(line, strong = false, color = color)
         Row(horizontalArrangement = Arrangement.spacedBy(Spacing.s)) {
@@ -409,6 +412,7 @@ private fun NapGrid(
     haptics: uz.ata.dawnwick.ui.haptics.Haptics, onChanged: () -> Unit,
 ) {
     val still = reduceMotion()
+    val pet = currentCompanion()
     Canvas(
         modifier.pointerInput(game) {
             val n = game.size
@@ -479,7 +483,7 @@ private fun NapGrid(
             val box = Rect(rect.left + inset, rect.top + inset, rect.right - inset, rect.bottom - inset)
             val scaled = Rect(box.center.x - box.width * scale / 2, box.center.y - box.height * scale / 2, box.center.x + box.width * scale / 2, box.center.y + box.height * scale / 2)
             val breath = if (still) 0f else sin(t * 2 * PI / 3.6 + index).toFloat()
-            with(NapArt) { drawNapCat(scaled, index in game.awake, breath) }
+            with(NapArt) { drawNapCat(scaled, index in game.awake, breath, pet, t + index * 0.7) }
             if (game.solved && !still && solvedAt != null) with(NapArt) { drawZ(rect, (now - solvedAt) / 1000.0, index / n * 0.12) }
         }
     }
@@ -571,6 +575,7 @@ private fun NapArchive(today: Int, record: CatNapRecord, onClose: () -> Unit, pi
 /** The game's picture on its intro and on the cards: a little board, three cats asleep. */
 @Composable
 fun CatNapPoster(modifier: Modifier = Modifier) {
+    val pet = currentCompanion()
     Canvas(modifier.aspectRatio(1f).clearAndSetSemantics {}) {
         val n = 4
         val cell = size.minDimension / n
@@ -578,7 +583,7 @@ fun CatNapPoster(modifier: Modifier = Modifier) {
             drawBoard(n, POSTER_REGIONS, cell, emptySet(), emptySet(), max(2f, cell / 16))
             for (index in listOf(1, 7, 8)) {
                 val r = Rect(index % n * cell, index / n * cell, (index % n + 1) * cell, (index / n + 1) * cell)
-                drawNapCat(r.deflate(cell * 0.06f), false, 0f)
+                drawNapCat(r.deflate(cell * 0.06f), false, 0f, pet)
             }
         }
     }
@@ -661,7 +666,12 @@ object NapArt {
     }
 
     /** The cat in a 100 × 100 square: curled asleep, or sitting up with its eyes open. `breath` −1…1 lifts the curl. */
-    fun DrawScope.drawNapCat(rect: Rect, awake: Boolean, breath: Float) {
+    fun DrawScope.drawNapCat(rect: Rect, awake: Boolean, breath: Float, pet: Pet = Pet.CAT, t: Double = 0.6) {
+        // Another companion naps in its own sleeping pose, and sits up wide awake when it is too close to one.
+        if (pet != Pet.CAT) {
+            with(CompanionArt) { drawCompanionIn(rect, pet, if (awake) CatMood.STARTLED else CatMood.SLEEPING, CatGround.LIGHT, t) }
+            return
+        }
         val k = minOf(rect.width, rect.height) / 100
         val line = Stroke(4.5f, cap = StrokeCap.Round, join = StrokeJoin.Round)
         at(rect.center.x - 50 * k, rect.center.y - 50 * k, sx = k) {

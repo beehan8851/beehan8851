@@ -6,7 +6,11 @@ import android.content.Context
 import android.content.res.Configuration
 import android.os.Build
 import android.os.LocaleList
+import android.content.res.Resources
+import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.asImageBitmap
 import java.util.Locale
+import kotlinx.coroutines.flow.MutableStateFlow
 
 /**
  * The app's own language, apart from the phone's. Android 13 and later keep it for the
@@ -48,23 +52,53 @@ object AppLanguage {
 
     fun name(tag: String?) = all.firstOrNull { it.first == tag }?.second
 
-    /** Switches to `tag` (`null`: the phone's language) and redraws `activity` in it. */
+    /**
+     * The screen as it was just before a switch. The app's root lays it over the new
+     * language and lets it melt away, blurring as it fades, instead of a cut.
+     */
+    val veil = MutableStateFlow<ImageBitmap?>(null)
+
+    /** Bumped when the language changes in place before Android 13, so the screen reads its words again. */
+    val revision = MutableStateFlow(0)
+
+    /**
+     * Switches to `tag` (`null`: the phone's language) without restarting anything:
+     * the main screen handles the change itself (`configChanges` in the manifest).
+     */
     fun set(activity: Activity, tag: String?) {
+        // The screen copied from the GPU's own frame (a software redraw would miss the blur),
+        // then the switch once the copy is in hand.
+        val view = activity.window.decorView
+        if (view.width > 0 && view.height > 0) {
+            val shot = android.graphics.Bitmap.createBitmap(view.width, view.height, android.graphics.Bitmap.Config.ARGB_8888)
+            val started = runCatching {
+                android.view.PixelCopy.request(activity.window, shot, { result ->
+                    if (result == android.view.PixelCopy.SUCCESS) veil.value = shot.asImageBitmap()
+                    apply(activity, tag)
+                }, android.os.Handler(android.os.Looper.getMainLooper()))
+            }.isSuccess
+            if (started) return
+        }
+        apply(activity, tag)
+    }
+
+    private fun apply(activity: Activity, tag: String?) {
         if (Build.VERSION.SDK_INT >= 33) {
-            // Android keeps it and recreates the app's screens itself.
+            // Android keeps it, and tells the screen through onConfigurationChanged.
             activity.getSystemService(LocaleManager::class.java)?.applicationLocales =
                 if (tag == null) LocaleList.getEmptyLocaleList() else LocaleList.forLanguageTags(tag)
         } else {
             activity.getSharedPreferences(PREFS, Context.MODE_PRIVATE).edit().apply {
                 if (tag == null) remove(KEY) else putString(KEY, tag)
-            }.commit()
-            // The application context took its language when the process began; start a
-            // new one so notifications and widgets follow too.
-            activity.packageManager.getLaunchIntentForPackage(activity.packageName)?.let {
-                activity.startActivity(it.addFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK or android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK))
+            }.apply()
+            val locales = if (tag == null) Resources.getSystem().configuration.locales else LocaleList(Locale.forLanguageTag(tag))
+            Locale.setDefault(locales[0])
+            // This screen's words and the app's (notifications, widgets) both, in place.
+            for (resources in listOf(activity.resources, activity.applicationContext.resources)) {
+                val config = Configuration(resources.configuration).apply { setLocales(locales) }
+                @Suppress("DEPRECATION") resources.updateConfiguration(config, resources.displayMetrics)
             }
-            activity.finish()
-            Runtime.getRuntime().exit(0)
+            revision.value++
         }
     }
 

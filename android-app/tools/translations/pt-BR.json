@@ -545,6 +545,7 @@
   "wake_missions": "Missões de despertar",
   "weather_add": "Adicionar o tempo",
   "weather_location_off": "O tempo precisa da localização, que está desativada",
+  "weather_location_services_off": "Ative a localização para ver o tempo onde você está",
   "weather_no_location": "Não foi possível encontrar sua localização",
   "weather_offer": "O tempo onde você está",
   "weather_title": "Tempo",

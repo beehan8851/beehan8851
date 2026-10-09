@@ -545,6 +545,7 @@
   "wake_missions": "Uyanma görevleri",
   "weather_add": "Hava durumunu ekle",
   "weather_location_off": "Hava durumu konum ister, o da kapalı",
+  "weather_location_services_off": "Bulunduğun yerin havasını görmek için konumu aç",
   "weather_no_location": "Konumun bulunamadı",
   "weather_offer": "Bulunduğun yerin havası",
   "weather_title": "Hava",

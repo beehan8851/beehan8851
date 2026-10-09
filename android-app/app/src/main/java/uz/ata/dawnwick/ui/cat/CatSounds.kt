@@ -102,6 +102,14 @@ object CatSounds {
         p.play(takes[choice], 0.5f, 0.5f, 1, 0, 1f)
     }
 
+    /** Asleep and touched: the same voice, quiet and slow, a murmur that does not wake it. */
+    fun sleepy() {
+        val p = ensurePool() ?: return
+        val choice = (0 until 3).filter { it != last }.random()
+        last = choice
+        p.play(takes[choice], 0.28f, 0.28f, 1, 0, 0.78f)
+    }
+
     fun purrStart() {
         if (!::app.isInitialized) return
         fade?.let(main::removeCallbacks)

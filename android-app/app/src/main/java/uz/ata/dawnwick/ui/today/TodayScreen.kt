@@ -2,6 +2,7 @@ package uz.ata.dawnwick.ui.today
 
 import android.app.Activity
 import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -138,7 +139,21 @@ fun TodayScreen(alarms: List<Alarm>, onAddAlarm: () -> Unit, onAllGames: () -> U
     LaunchedEffect(Unit) { while (true) { delay(30_000); now = System.currentTimeMillis() } }
 
     val prefs = graph.store
-    val locationLauncher = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { prefs.putBoolean(ASKED_LOCATION, true); permissionTick++; refresh() }
+    // Location switched on from Google's sheet (or not): look again either way.
+    val turnOnLocation = rememberLauncherForActivityResult(ActivityResultContracts.StartIntentSenderForResult()) { permissionTick++; refresh() }
+    fun askToTurnOnLocation() {
+        LocationAsk.askedThisRun = true
+        activity?.let { a -> Locator.askToTurnOn(a) { sender -> turnOnLocation.launch(IntentSenderRequest.Builder(sender).build()) } }
+    }
+    val locationLauncher = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
+        prefs.putBoolean(ASKED_LOCATION, true); permissionTick++; refresh()
+        // Allowed, but the phone's location is off: ask to switch it on straight away.
+        if (granted && !Locator.enabled(context)) askToTurnOnLocation()
+    }
+    // Allowed before, but location is off now: ask once each time the app runs, not on every visit.
+    LaunchedEffect(Unit) {
+        if (Locator.allowed(context) && !Locator.enabled(context) && !LocationAsk.askedThisRun) askToTurnOnLocation()
+    }
     val calendarLauncher = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { prefs.putBoolean(ASKED_CALENDAR, true); permissionTick++; refresh() }
 
     val today = LocalDate.now()
@@ -169,7 +184,7 @@ fun TodayScreen(alarms: List<Alarm>, onAddAlarm: () -> Unit, onAllGames: () -> U
     }
 
     // The page shrinks to the space above the keyboard, so the focus line can scroll up into view.
-    Column(Modifier.fillMaxSize().background(Dawn.colors.background).imePadding().verticalScroll(rememberScrollState()).padding(bottom = Spacing.l)) {
+    Column(Modifier.fillMaxSize().background(Dawn.colors.background).imePadding().verticalScroll(rememberScrollState()).padding(bottom = Spacing.l + uz.ata.dawnwick.ui.components.LocalNavBarSpace.current)) {
         Text(
             stringResource(R.string.tab_today),
             style = DawnType.display(34), color = Dawn.colors.textPrimary,
@@ -224,6 +239,8 @@ fun TodayScreen(alarms: List<Alarm>, onAddAlarm: () -> Unit, onAllGames: () -> U
                 } else {
                     rows += { OfferRow(Icons.Rounded.WbCloudy, stringResource(R.string.weather_offer), stringResource(R.string.weather_add)) { locationLauncher.launch(Locator.PERMISSION) } }
                 }
+            } else if (!Locator.enabled(context)) {
+                rows += { OfferRow(Icons.Rounded.LocationOff, stringResource(R.string.weather_location_services_off), stringResource(R.string.turn_on)) { askToTurnOnLocation() } }
             } else if (brief.weatherProblem != null) {
                 rows += { InfoRow(Icons.Rounded.WbCloudy, stringResource(if (brief.weatherProblem == WeatherProblem.LOCATION) R.string.weather_no_location else R.string.weather_unavailable), null) }
             }
@@ -268,6 +285,9 @@ fun TodayScreen(alarms: List<Alarm>, onAddAlarm: () -> Unit, onAllGames: () -> U
 
 private val REVIEW_MILESTONES = setOf(3, 7, 30)
 private const val ASKED_LOCATION = "today.asked.location"
+
+/** Whether this run of the app has already asked to switch location on. */
+private object LocationAsk { var askedThisRun = false }
 private const val ASKED_CALENDAR = "today.asked.calendar"
 
 /** How the cat is doing: the morning first, then the clock. */

@@ -545,6 +545,7 @@
   "wake_missions": "起床ミッション",
   "weather_add": "天気を追加",
   "weather_location_off": "天気には位置情報が必要ですが、オフになっています",
+  "weather_location_services_off": "位置情報をオンにすると、今いる場所の天気が見られます",
   "weather_no_location": "現在地が見つかりませんでした",
   "weather_offer": "今いる場所の天気",
   "weather_title": "天気",

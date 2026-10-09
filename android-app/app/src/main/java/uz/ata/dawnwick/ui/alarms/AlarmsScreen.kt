@@ -107,7 +107,7 @@ fun AlarmsScreen(alarms: List<Alarm>, onOpen: (Alarm?) -> Unit, onChanged: () ->
             return@Column
         }
         val sorted = sortAlarms(alarms)
-        LazyColumn(contentPadding = PaddingValues(horizontal = Spacing.s, vertical = Spacing.xs), verticalArrangement = Arrangement.spacedBy(Spacing.xs)) {
+        LazyColumn(contentPadding = PaddingValues(start = Spacing.s, end = Spacing.s, top = Spacing.xs, bottom = Spacing.xs + uz.ata.dawnwick.ui.components.LocalNavBarSpace.current), verticalArrangement = Arrangement.spacedBy(Spacing.xs)) {
             val next = alarms.mapNotNull { NextAlarmCalculator.nextFireTime(it)?.toEpochMilli() }.minOrNull()
             if (next != null) item {
                 Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(start = Spacing.xs, bottom = Spacing.xxs)) {

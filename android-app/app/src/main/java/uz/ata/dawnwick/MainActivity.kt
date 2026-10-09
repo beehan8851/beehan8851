@@ -30,6 +30,15 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.foundation.layout.statusBars
+import androidx.compose.ui.Alignment
+import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.foundation.background
+import dev.chrisbanes.haze.hazeSource
+import androidx.compose.ui.draw.blur
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.Lifecycle
@@ -61,14 +70,34 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         route(intent)
         setContent {
+            // Before Android 13 a new language arrives in place, not as a configuration change: read the words again.
+            val revision by uz.ata.dawnwick.core.AppLanguage.revision.collectAsState()
+            val outer = androidx.compose.ui.platform.LocalConfiguration.current
+            val configuration = androidx.compose.runtime.remember(outer, revision) {
+                if (revision == 0) outer else android.content.res.Configuration(resources.configuration)
+            }
+            androidx.compose.runtime.CompositionLocalProvider(androidx.compose.ui.platform.LocalConfiguration provides configuration) {
             val appearance by graph.preferences.appearanceFlow.collectAsState()
             val dark = when (appearance) {
                 uz.ata.dawnwick.settings.Appearance.LIGHT -> false
                 uz.ata.dawnwick.settings.Appearance.DARK -> true
                 uz.ata.dawnwick.settings.Appearance.SYSTEM -> androidx.compose.foundation.isSystemInDarkTheme()
             }
-            DawnTheme(dark) { AppRoot() }
+            DawnTheme(dark) {
+                Box(Modifier.fillMaxSize()) {
+                    AppRoot()
+                    LanguageVeil()
+                }
+            }
+            }
         }
+    }
+
+    /** A new language (configChanges): the screen redraws itself in it; channels and widgets follow. */
+    override fun onConfigurationChanged(newConfig: android.content.res.Configuration) {
+        super.onConfigurationChanged(newConfig)
+        uz.ata.dawnwick.ring.RingNotifications.createChannels(this)
+        uz.ata.dawnwick.widgets.DawnWidgets.refresh(this)
     }
 
     override fun onResume() {
@@ -191,25 +220,15 @@ private fun AppRoot() {
         return
     }
 
-    CatTricksProvider(best) { Scaffold(
-        containerColor = Dawn.colors.background,
-        bottomBar = {
-            NavigationBar(containerColor = Dawn.colors.surfacePrimary) {
-                Tab.entries.forEachIndexed { i, t ->
-                    NavigationBarItem(
-                        selected = tab == i, onClick = { tab = i },
-                        icon = { Icon(t.icon, null) }, label = { Text(stringResource(t.title)) },
-                        colors = NavigationBarItemDefaults.colors(
-                            selectedIconColor = DawnColors.Ink, indicatorColor = DawnColors.Yolk,
-                            selectedTextColor = Dawn.colors.textPrimary, unselectedIconColor = Dawn.colors.textTertiary,
-                            unselectedTextColor = Dawn.colors.textTertiary,
-                        ),
-                    )
-                }
-            }
-        },
-    ) { padding ->
-        Box(Modifier.fillMaxSize().padding(padding).consumeWindowInsets(padding)) {
+    // The screens run to the bottom edge and the tab bar floats over them as frosted glass.
+    val haze = dev.chrisbanes.haze.rememberHazeState()
+    val navSpace = uz.ata.dawnwick.ui.components.glassNavBarSpace()
+    CatTricksProvider(best) { Box(Modifier.fillMaxSize().background(Dawn.colors.background)) {
+        Box(
+            Modifier.fillMaxSize().hazeSource(haze)
+                .windowInsetsPadding(androidx.compose.foundation.layout.WindowInsets.statusBars)
+                .consumeWindowInsets(androidx.compose.foundation.layout.WindowInsets.statusBars),
+        ) { androidx.compose.runtime.CompositionLocalProvider(uz.ata.dawnwick.ui.components.LocalNavBarSpace provides navSpace) {
             when (Tab.entries[tab]) {
                 Tab.TODAY -> TodayScreen(alarms, onAddAlarm = ::newAlarm, onAllGames = { tab = Tab.PLAY.ordinal })
                 Tab.ALARMS -> AlarmsScreen(alarms, onOpen = { if (it == null) newAlarm() else { editing = true to it } }, onChanged = ::reload)
@@ -217,6 +236,37 @@ private fun AppRoot() {
                 Tab.PLAY -> uz.ata.dawnwick.ui.games.PlayScreen()
                 Tab.SETTINGS -> SettingsScreen()
             }
-        }
+        } }
+        uz.ata.dawnwick.ui.components.GlassNavBar(
+            Tab.entries.map { uz.ata.dawnwick.ui.components.GlassTab(stringResource(it.title), it.icon) },
+            selected = tab, haze = haze, onSelect = { tab = it },
+            modifier = Modifier.align(Alignment.BottomCenter),
+        )
     } }
+}
+
+/**
+ * The screen as it was before a language switch, laid over the new one and melting
+ * away: it blurs as it fades, so the words change under a soft haze rather than a cut.
+ */
+@Composable
+private fun LanguageVeil() {
+    val shot by uz.ata.dawnwick.core.AppLanguage.veil.collectAsState()
+    val image = shot ?: return
+    val fade = androidx.compose.runtime.remember(image) { androidx.compose.animation.core.Animatable(1f) }
+    androidx.compose.runtime.LaunchedEffect(image) {
+        // A moment for the new words to lay out under the veil.
+        kotlinx.coroutines.delay(140)
+        fade.animateTo(0f, androidx.compose.animation.core.tween(560, easing = androidx.compose.animation.core.FastOutSlowInEasing))
+        uz.ata.dawnwick.core.AppLanguage.veil.value = null
+    }
+    androidx.compose.foundation.Image(
+        image, null,
+        Modifier.fillMaxSize()
+            .graphicsLayer { alpha = fade.value }
+            .blur(((1 - fade.value) * 28).dp)
+            // Eats taps while it is up, so nothing is pressed through a picture of the old screen.
+            .pointerInput(Unit) { awaitPointerEventScope { while (true) awaitPointerEvent() } },
+        contentScale = androidx.compose.ui.layout.ContentScale.FillBounds,
+    )
 }

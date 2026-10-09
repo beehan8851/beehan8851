@@ -9,7 +9,21 @@ import android.location.Location
 import android.location.LocationManager
 import android.os.Build
 import android.os.CancellationSignal
+import android.app.Activity
+import android.content.Intent
+import android.content.IntentSender
+import android.provider.Settings
 import androidx.core.content.ContextCompat
+import androidx.core.location.LocationManagerCompat
+import com.google.android.gms.common.ConnectionResult
+import com.google.android.gms.common.GoogleApiAvailability
+import com.google.android.gms.common.api.ResolvableApiException
+import com.google.android.gms.location.LocationRequest
+import com.google.android.gms.location.LocationServices
+import com.google.android.gms.location.LocationSettingsRequest
+import com.google.android.gms.location.Priority
+import com.google.android.gms.tasks.CancellationTokenSource
+import com.google.android.gms.tasks.Task
 import java.net.HttpURLConnection
 import java.net.URL
 import java.util.Locale
@@ -124,21 +138,53 @@ object OpenMeteo {
         )
     }
 
-    suspend fun fetch(latitude: Double, longitude: Double): String = withContext(Dispatchers.IO) {
-        val connection = URL(url(latitude, longitude)).openConnection() as HttpURLConnection
-        try {
-            connection.connectTimeout = 15_000
-            connection.readTimeout = 15_000
-            if (connection.responseCode !in 200..299) throw WeatherException(WeatherProblem.NETWORK)
-            connection.inputStream.bufferedReader().use { it.readText() }
-        } catch (e: WeatherException) {
-            throw e
-        } catch (e: Exception) {
-            throw WeatherException(WeatherProblem.NETWORK, e)
-        } finally {
-            connection.disconnect()
-        }
+    suspend fun fetch(latitude: Double, longitude: Double): String = httpGet(url(latitude, longitude))
+}
+
+/** A small GET, its failures as the weather's network problem. */
+internal suspend fun httpGet(url: String): String = withContext(Dispatchers.IO) {
+    val connection = URL(url).openConnection() as HttpURLConnection
+    try {
+        connection.connectTimeout = 15_000
+        connection.readTimeout = 15_000
+        connection.setRequestProperty("User-Agent", "Dawnwick (Android)")
+        if (connection.responseCode !in 200..299) throw WeatherException(WeatherProblem.NETWORK)
+        connection.inputStream.bufferedReader().use { it.readText() }
+    } catch (e: WeatherException) {
+        throw e
+    } catch (e: Exception) {
+        throw WeatherException(WeatherProblem.NETWORK, e)
+    } finally {
+        connection.disconnect()
     }
+}
+
+/**
+ * Roughly where the phone is from its internet address: the city, at best, which is
+ * all the weather needs. Only for when the phone itself can't say — location is
+ * allowed but off, or no fix comes. Two keyless services, the second if the first fails.
+ */
+object IpLocator {
+    data class Place(val latitude: Double, val longitude: Double, val city: String?)
+
+    @Serializable
+    private data class GeoJs(val latitude: String? = null, val longitude: String? = null, val city: String? = null)
+
+    @Serializable
+    private data class IpApi(val latitude: Double? = null, val longitude: Double? = null, val city: String? = null)
+
+    suspend fun locate(): Place? = runCatching {
+        val g = AppJson.decodeFromString<GeoJs>(httpGet("https://get.geojs.io/v1/ip/geo.json"))
+        Place(g.latitude!!.toDouble(), g.longitude!!.toDouble(), g.city?.takeIf { it.isNotBlank() })
+    }.recoverCatching {
+        val i = AppJson.decodeFromString<IpApi>(httpGet("https://ipapi.co/json/"))
+        Place(i.latitude!!, i.longitude!!, i.city?.takeIf { it.isNotBlank() })
+    }.getOrNull()
+}
+
+/** A Play services task, awaited: its result, or null if it failed. */
+private suspend fun <T> Task<T>.resultOrNull(): T? = suspendCancellableCoroutine { cont ->
+    addOnCompleteListener { task -> if (cont.isActive) cont.resume(if (task.isSuccessful) task.result else null) }
 }
 
 /** Where the phone is, roughly — a kilometre is plenty for the weather. */
@@ -147,9 +193,49 @@ object Locator {
 
     fun allowed(context: Context) = ContextCompat.checkSelfPermission(context, PERMISSION) == PackageManager.PERMISSION_GRANTED
 
+    /** Whether location is switched on for the phone, apart from this app's permission. */
+    fun enabled(context: Context) = runCatching { LocationManagerCompat.isLocationEnabled(context.getSystemService(LocationManager::class.java)) }.getOrDefault(true)
+
+    private fun playServices(context: Context) =
+        runCatching { GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(context) == ConnectionResult.SUCCESS }.getOrDefault(false)
+
+    /**
+     * Asks to switch location on: Google's own "Turn on location?" sheet where Play
+     * services are, the system's location settings where they are not.
+     */
+    fun askToTurnOn(activity: Activity, launch: (IntentSender) -> Unit) {
+        fun settings() = runCatching { activity.startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)) }
+        if (!playServices(activity)) { settings(); return }
+        val request = LocationSettingsRequest.Builder()
+            .addLocationRequest(LocationRequest.Builder(Priority.PRIORITY_BALANCED_POWER_ACCURACY, 10_000).build())
+            .setAlwaysShow(true)
+            .build()
+        LocationServices.getSettingsClient(activity).checkLocationSettings(request).addOnFailureListener { e ->
+            if (e is ResolvableApiException) runCatching { launch(e.resolution.intentSender) }.onFailure { settings() } else settings()
+        }
+    }
+
+    /** Play services' fused fix: the most dependable, indoors too. Null where it has none. */
     @SuppressLint("MissingPermission")
+    private suspend fun fused(context: Context): Location? = runCatching {
+        val client = LocationServices.getFusedLocationProviderClient(context)
+        val last = client.lastLocation.resultOrNull()
+        if (last != null && System.currentTimeMillis() - last.time < 15 * 60_000) return@runCatching last
+        val cancel = CancellationTokenSource()
+        val fresh = withTimeoutOrNull(15_000) { client.getCurrentLocation(Priority.PRIORITY_BALANCED_POWER_ACCURACY, cancel.token).resultOrNull() }
+        if (fresh == null) cancel.cancel()
+        fresh ?: last
+    }.getOrNull()
+
     suspend fun current(context: Context): Location {
         if (!allowed(context)) throw WeatherException(WeatherProblem.PERMISSION)
+        if (playServices(context)) fused(context)?.let { return it }
+        return fromLocationManager(context)
+    }
+
+    /** The platform's own providers, for phones without Play services or when they had nothing. */
+    @SuppressLint("MissingPermission")
+    private suspend fun fromLocationManager(context: Context): Location {
         val lm = context.getSystemService(LocationManager::class.java)
         val providers = listOf(LocationManager.NETWORK_PROVIDER, LocationManager.FUSED_PROVIDER, LocationManager.GPS_PROVIDER, LocationManager.PASSIVE_PROVIDER)
             .filter { runCatching { lm.isProviderEnabled(it) }.getOrDefault(false) }

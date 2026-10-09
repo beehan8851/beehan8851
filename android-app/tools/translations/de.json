@@ -545,6 +545,7 @@
   "wake_missions": "Weck-Missionen",
   "weather_add": "Wetter hinzufügen",
   "weather_location_off": "Wetter braucht den Standort, der aus ist",
+  "weather_location_services_off": "Schalte den Standort ein, um das Wetter an deinem Ort zu sehen",
   "weather_no_location": "Dein Standort wurde nicht gefunden",
   "weather_offer": "Das Wetter, wo du bist",
   "weather_title": "Wetter",

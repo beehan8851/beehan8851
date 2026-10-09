@@ -112,7 +112,7 @@ fun gameDetail(game: MorningGame, best: Int): String {
     return when (game) {
         MorningGame.CATCH -> if (best > 0) stringResource(R.string.detail_catch_best, best) else stringResource(R.string.detail_catch)
         MorningGame.LASER -> if (best > 0) stringResource(R.string.detail_laser_best, best) else stringResource(R.string.detail_laser)
-        MorningGame.BOXES -> if (best > 0) stringResource(R.string.detail_boxes_best, best) else stringResource(R.string.detail_boxes)
+        MorningGame.BOXES -> if (best > 0) petString(R.string.detail_boxes_best, best) else petString(R.string.detail_boxes)
         MorningGame.NAPS -> {
             val top = CatNapRecord(context.graph.store).solves(CatNapDay.number()).maxByOrNull { it.key.ordinal }
             when {
@@ -137,12 +137,16 @@ fun GamePoster(game: MorningGame, width: Dp) {
     }
 }
 
+/** A game's words for the companion on screen: "Catch the puppy" when the puppy is chosen. */
+@Composable
+fun petString(id: Int, vararg args: Any): String = stringResource(PetStrings.of(id, uz.ata.dawnwick.ui.cat.currentCompanion()), *args)
+
 /**
  * Opens `game` full screen, the way every game is opened: over everything, always in
  * daylight, and back to where it was opened from when it closes.
  */
 @Composable
-fun GameHost(game: MorningGame, onClose: () -> Unit) = uz.ata.dawnwick.ui.cat.CatOnly { GameHostCat(game, onClose) }
+fun GameHost(game: MorningGame, onClose: () -> Unit) = GameHostCat(game, onClose)
 
 @Composable
 private fun GameHostCat(game: MorningGame, onClose: () -> Unit) {
@@ -365,7 +369,7 @@ fun PlayDisc(size: Dp = 40.dp) {
 
 /** A game on an ink card, as Today shows the game of the day: the title and a line, the picture, the play button. */
 @Composable
-fun GameCard(game: MorningGame, best: Int, onOpen: () -> Unit) = uz.ata.dawnwick.ui.cat.CatOnly { GameCardCat(game, best, onOpen) }
+fun GameCard(game: MorningGame, best: Int, onOpen: () -> Unit) = GameCardCat(game, best, onOpen)
 
 @Composable
 private fun GameCardCat(game: MorningGame, best: Int, onOpen: () -> Unit) {
@@ -375,7 +379,7 @@ private fun GameCardCat(game: MorningGame, best: Int, onOpen: () -> Unit) {
         verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(Spacing.s),
     ) {
         Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(Spacing.xxs)) {
-            Text(stringResource(game.title), style = DawnType.display(20), color = colors.onTile)
+            Text(petString(game.title), style = DawnType.display(20), color = colors.onTile)
             Text(gameDetail(game, best), style = DawnType.footnote, color = DawnColors.NightTextSecondary)
         }
         GamePoster(game, 112.dp)
@@ -388,7 +392,7 @@ private fun GameCardCat(game: MorningGame, best: Int, onOpen: () -> Unit) {
  * trains and its record.
  */
 @Composable
-fun PlayScreen() = uz.ata.dawnwick.ui.cat.CatOnly { PlayScreenCat() }
+fun PlayScreen() = PlayScreenCat()
 
 @Composable
 private fun PlayScreenCat() {
@@ -397,7 +401,7 @@ private fun PlayScreenCat() {
     var playing by remember { androidx.compose.runtime.mutableStateOf<MorningGame?>(null) }
     var revision by remember { mutableLongStateOf(0) }
     val colors = Dawn.colors
-    Column(Modifier.fillMaxSize().background(colors.background).verticalScroll(rememberScrollState()).padding(bottom = Spacing.l)) {
+    Column(Modifier.fillMaxSize().background(colors.background).verticalScroll(rememberScrollState()).padding(bottom = Spacing.l + uz.ata.dawnwick.ui.components.LocalNavBarSpace.current)) {
         Text(stringResource(R.string.tab_play), style = DawnType.display(34), color = colors.textPrimary,
             modifier = Modifier.padding(start = Spacing.s, top = Spacing.s))
         Column(Modifier.padding(horizontal = Spacing.s).padding(top = Spacing.xs), verticalArrangement = Arrangement.spacedBy(Spacing.s)) {
@@ -411,7 +415,7 @@ private fun PlayScreenCat() {
                 ) {
                     Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(Spacing.xxs)) {
                         Text(stringResource(game.skill).uppercase(), style = DawnType.eyebrow, color = DawnColors.Yolk)
-                        Text(stringResource(game.title), style = DawnType.display(21), color = colors.onTile)
+                        Text(petString(game.title), style = DawnType.display(21), color = colors.onTile)
                         Text(gameDetail(game, best), style = DawnType.footnote, color = DawnColors.NightTextSecondary)
                     }
                     // The picture, with the play button tucked into its corner.

@@ -72,6 +72,16 @@ object CompanionArt {
         }
     }
 
+    /** `sp` fitted into `area` of the canvas: one picture among others, as on the nap board's cushions. */
+    fun DrawScope.drawCompanionIn(area: androidx.compose.ui.geometry.Rect, sp: Pet, mood: CatMood, ground: CatGround, t: Double) {
+        val design = designSize(mood)
+        val k = min(area.width / design.width, area.height / design.height)
+        at(area.left + (area.width - design.width * k) / 2, area.top + (area.height - design.height * k) / 2, sx = k) {
+            if (mood == CatMood.SLEEPING) sleeping(sp, ground, t, 0f, 0f, null)
+            else sitting(sp, mood, ground, t, false, CatDressing.NONE, 0f, 0f, 1f)
+        }
+    }
+
     // MARK: Poses
 
     private fun DrawScope.sleeping(sp: Pet, ground: CatGround, t: Double, petted: Float, lean: Float, paced: Double?) {

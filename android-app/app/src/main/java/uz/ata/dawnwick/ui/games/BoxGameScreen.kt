@@ -112,7 +112,7 @@ fun BoxGameScreen(onClose: () -> Unit) {
                 BoxPoster(Modifier.widthIn(max = 300.dp).fillMaxWidth().padding(bottom = Spacing.s))
             }) {
                 GameTitle(stringResource(R.string.game_boxes))
-                GameRules(stringResource(R.string.boxes_rules))
+                GameRules(petString(R.string.boxes_rules))
                 if (best > 0) Text(stringResource(R.string.game_best, best), style = DawnType.headline, color = DawnColors.Ink)
                 InkButton(::start) { Text(stringResource(R.string.game_play)) }
             }
@@ -136,7 +136,7 @@ fun BoxGameScreen(onClose: () -> Unit) {
                         revision++
                     }
                     val (hint, strong) = when (val s = game.step) {
-                        is BoxGame.Step.Showing, is BoxGame.Step.Hiding -> stringResource(R.string.boxes_watch) to false
+                        is BoxGame.Step.Showing, is BoxGame.Step.Hiding -> petString(R.string.boxes_watch) to false
                         is BoxGame.Step.Shuffling -> stringResource(R.string.boxes_keep_eye) to false
                         BoxGame.Step.Guessing -> stringResource(R.string.game_boxes) to true
                         is BoxGame.Step.Revealing -> stringResource(if (game.lastGuessRight) R.string.boxes_found else R.string.boxes_wrong) to true
@@ -287,7 +287,7 @@ object BoxArt {
 fun BoxDrawing(width: Dp, open: Float = 1f, cat: CatMood? = null, duck: Float = 0f, ground: BoxGround = BoxGround.PAPER) {
     val height = width * (BoxArt.DESIGN_H / BoxArt.DESIGN_W)
     val catWidth = width * (BoxArt.BODY_WIDTH / BoxArt.DESIGN_W) * 0.86f
-    val catHeight = catWidth / CatArt.aspectRatio(CatMood.AWAKE)
+    val catHeight = catWidth / uz.ata.dawnwick.ui.cat.companionAspectRatio(uz.ata.dawnwick.ui.cat.currentCompanion(), CatMood.AWAKE)
     val room = catHeight * 0.7f
     val rimY = height * BoxArt.RIM
     val bottom = height * (BoxArt.BODY_BOTTOM / BoxArt.DESIGN_H)

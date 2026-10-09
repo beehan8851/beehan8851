@@ -78,7 +78,7 @@ fun SettingsScreen() {
     var sound by remember { mutableStateOf(prefs.defaultSound) }
     var soundMenu by remember { mutableStateOf(false) }
     val colors = Dawn.colors
-    Column(Modifier.fillMaxSize().background(colors.background).verticalScroll(rememberScrollState())) {
+    Column(Modifier.fillMaxSize().background(colors.background).verticalScroll(rememberScrollState()).padding(bottom = uz.ata.dawnwick.ui.components.LocalNavBarSpace.current)) {
         Text(stringResource(R.string.tab_settings), style = DawnType.display(34), color = colors.textPrimary,
             modifier = Modifier.padding(start = Spacing.s, top = Spacing.s, bottom = Spacing.xs))
 
@@ -193,9 +193,9 @@ fun SettingsScreen() {
             if (petPicker) PetPicker { petPicker = false }
             RowDivider()
             var iconPicker by remember { mutableStateOf(false) }
-            val currentIcon = remember(iconPicker) { AppIcon.current(context) }
+            val currentIcon = remember(iconPicker, pet) { LauncherIcon.currentPet(context)?.let(LauncherIcon::petPreview) ?: AppIcon.current(context).preview }
             SectionRow(stringResource(R.string.app_icon), onClick = { iconPicker = true }) {
-                androidx.compose.foundation.Image(androidx.compose.ui.res.painterResource(currentIcon.preview), null,
+                androidx.compose.foundation.Image(androidx.compose.ui.res.painterResource(currentIcon), null,
                     Modifier.size(32.dp).clip(androidx.compose.foundation.shape.RoundedCornerShape(8.dp)))
             }
             if (iconPicker) AppIconPicker { iconPicker = false }

@@ -86,10 +86,19 @@ class MorningBriefRepository(private val context: Context, private val store: Ke
             null
         } else {
             try {
-                val location = Locator.current(context)
-                val name = async { Locator.placeName(context, location) }
-                val json = OpenMeteo.fetch(location.latitude, location.longitude)
-                OpenMeteo.parse(json, nowMillis, name.await())
+                val location = try { Locator.current(context) } catch (e: WeatherException) {
+                    if (e.problem != WeatherProblem.LOCATION) throw e
+                    null
+                }
+                if (location != null) {
+                    val name = async { Locator.placeName(context, location) }
+                    val json = OpenMeteo.fetch(location.latitude, location.longitude)
+                    OpenMeteo.parse(json, nowMillis, name.await())
+                } else {
+                    // The phone can't say where it is: the city its connection is in will do.
+                    val place = IpLocator.locate() ?: throw WeatherException(WeatherProblem.LOCATION)
+                    OpenMeteo.parse(OpenMeteo.fetch(place.latitude, place.longitude), nowMillis, place.city)
+                }
             } catch (e: WeatherException) {
                 android.util.Log.w(TAG, "Weather unavailable: ${e.problem}", e.cause)
                 problem = e.problem

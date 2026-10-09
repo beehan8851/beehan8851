@@ -273,6 +273,7 @@ fun TappableCat(mood: CatMood, width: Dp, modifier: Modifier = Modifier, ground:
             haptics.perform(Haptic.RIGID)
         } else {
             haptics.perform(if (sleeping) Haptic.SOFT else Haptic.LIGHT)
+            if (sleeping) CatSounds.sleepy()
             if (!sleeping && !startled) {
                 CatSounds.mrrp()
                 if (best >= 3) waving = true

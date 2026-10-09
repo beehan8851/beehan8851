@@ -545,6 +545,7 @@
   "wake_missions": "起床任务",
   "weather_add": "添加天气",
   "weather_location_off": "天气需要定位，而定位已关闭",
+  "weather_location_services_off": "打开定位，查看你所在地的天气",
   "weather_no_location": "找不到你的位置",
   "weather_offer": "你所在位置的天气",
   "weather_title": "天气",

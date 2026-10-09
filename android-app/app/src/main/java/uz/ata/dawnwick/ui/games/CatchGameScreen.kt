@@ -93,8 +93,8 @@ fun CatchGameScreen(onClose: () -> Unit) {
             CatchGame.Phase.READY -> GamePage(onClose, picture = {
                 CatOnDisc(CatMood.RINGING, 150.dp, 190.dp, Modifier.padding(bottom = Spacing.s))
             }) {
-                GameTitle(stringResource(R.string.game_catch))
-                GameRules(stringResource(R.string.catch_rules))
+                GameTitle(petString(R.string.game_catch))
+                GameRules(petString(R.string.catch_rules))
                 if (best > 0) Text(stringResource(R.string.game_best, best), style = DawnType.headline, color = uz.ata.dawnwick.ui.theme.DawnColors.Ink)
                 InkButton(::start) { Text(stringResource(R.string.game_play)) }
             }
@@ -121,7 +121,7 @@ private fun CatchBoard(game: CatchGame, now: Long, revision: Int, onClose: () ->
     BackHandler(onBack = onClose)
     val haptics = rememberHaptics()
     val still = reduceMotion()
-    val catLabel = stringResource(R.string.game_catch)
+    val catLabel = petString(R.string.game_catch)
     Column(Modifier.fillMaxSize().padding(horizontal = Spacing.m).padding(bottom = Spacing.s), verticalArrangement = Arrangement.spacedBy(Spacing.s)) {
         GameTopBar(onClose) { ScoreText(game.score) }
         TimerBar(game.remaining(now), game.roundLength)
@@ -130,7 +130,7 @@ private fun CatchBoard(game: CatchGame, now: Long, revision: Int, onClose: () ->
             val boardW = maxWidth
             val boardH = maxHeight
             val catWidth = 92.dp
-            val catHeight = catWidth / CatArt.aspectRatio(CatMood.AWAKE)
+            val catHeight = catWidth / uz.ata.dawnwick.ui.cat.companionAspectRatio(uz.ata.dawnwick.ui.cat.currentCompanion(), CatMood.AWAKE)
             // The cat's hit area: itself and a little more, as a finger is not a pin.
             val hitW = catWidth + 28.dp
             val hitH = catHeight + 28.dp
@@ -181,7 +181,7 @@ private fun CatchBoard(game: CatchGame, now: Long, revision: Int, onClose: () ->
             when {
                 game.isOnCombo -> stringResource(R.string.catch_combo)
                 game.combo > 1 -> stringResource(R.string.game_in_a_row, game.combo)
-                else -> stringResource(R.string.catch_hint)
+                else -> petString(R.string.catch_hint)
             },
             strong = game.isOnCombo,
         )

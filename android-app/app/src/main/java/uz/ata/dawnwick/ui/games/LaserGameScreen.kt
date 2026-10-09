@@ -53,6 +53,11 @@ import uz.ata.dawnwick.games.LaserGame
 import uz.ata.dawnwick.games.Pt
 import uz.ata.dawnwick.graph
 import uz.ata.dawnwick.ui.cat.CatArt
+import uz.ata.dawnwick.ui.cat.CompanionArt
+import uz.ata.dawnwick.ui.cat.companionAspectRatio
+import uz.ata.dawnwick.ui.cat.currentCompanion
+import uz.ata.dawnwick.companion.Pet
+import androidx.compose.ui.geometry.Rect
 import uz.ata.dawnwick.ui.cat.CatArt.drawStretch
 import uz.ata.dawnwick.ui.cat.CatGround
 import uz.ata.dawnwick.ui.cat.CatMood
@@ -118,7 +123,7 @@ fun LaserGameScreen(onClose: () -> Unit) {
                 LaserPoster(Modifier.widthIn(max = 320.dp).fillMaxWidth().padding(bottom = Spacing.s))
             }) {
                 GameTitle(stringResource(R.string.game_laser))
-                GameRules(stringResource(R.string.laser_rules))
+                GameRules(petString(R.string.laser_rules))
                 if (best > 0) Text(stringResource(R.string.game_best, best), style = DawnType.headline, color = DawnColors.Ink)
                 InkButton(::start) { Text(stringResource(R.string.game_play)) }
             }
@@ -210,7 +215,7 @@ private fun androidx.compose.foundation.layout.BoxScope.LaserBoardCat(game: Lase
             LaserGame.Cat.Waiting -> {
                 val w = 74.dp
                 CatStage(CatMood.AWAKE, Modifier.width(w).align(Alignment.Center)
-                    .offset(y = SideHeight / 2 - w / CatArt.aspectRatio(CatMood.AWAKE) / 2), CatGround.DARK)
+                    .offset(y = SideHeight / 2 - w / companionAspectRatio(currentCompanion(), CatMood.AWAKE) / 2), CatGround.DARK)
             }
             LaserGame.Cat.Chasing -> {
                 val stride = if (still) 0.5 else 0.5 + 0.5 * sin(t * 2 * PI * 3.4)
@@ -230,7 +235,15 @@ private fun androidx.compose.foundation.layout.BoxScope.LaserBoardCat(game: Lase
 
 @Composable
 private fun SideCat(facing: Double, reach: Float, t: Double, modifier: Modifier = Modifier) {
+    val pet = currentCompanion()
     Canvas(modifier.size(SideWidth, SideHeight)) {
+        // The cat stretches out after the dot; the others chase it sitting up, wide-eyed once it is in reach.
+        if (pet != Pet.CAT) {
+            scale(if (facing < 0) 1f else -1f, 1f) {
+                with(CompanionArt) { drawCompanionIn(Rect(Offset.Zero, size), pet, if (reach >= 1f) CatMood.RINGING else CatMood.AWAKE, CatGround.DARK, t) }
+            }
+            return@Canvas
+        }
         // Drawn facing left.
         scale(if (facing < 0) 1f else -1f, 1f) { drawStretch(CatGround.DARK, t, reach, 0f, hunting = true) }
     }
@@ -249,6 +262,7 @@ private fun LaserDot(modifier: Modifier = Modifier) {
 @Composable
 fun LaserPoster(modifier: Modifier = Modifier, room: Boolean = true) {
     val t = artClock()
+    val pet = currentCompanion()
     Row(
         modifier
             .then(if (room) Modifier.clip(RoundedCornerShape(Radius.xl)).background(DawnColors.Ink).padding(Spacing.m) else Modifier)
@@ -257,7 +271,8 @@ fun LaserPoster(modifier: Modifier = Modifier, room: Boolean = true) {
     ) {
         Box(Modifier.weight(1f).padding(bottom = 8.dp), contentAlignment = Alignment.Center) { LaserDot() }
         Canvas(Modifier.weight(3f).aspectRatio(CatArt.stretchDesignSize.width / CatArt.stretchDesignSize.height)) {
-            drawStretch(CatGround.DARK, t, 0f, 0f, hunting = true)
+            if (pet == Pet.CAT) drawStretch(CatGround.DARK, t, 0f, 0f, hunting = true)
+            else with(CompanionArt) { drawCompanionIn(Rect(Offset.Zero, size), pet, CatMood.AWAKE, CatGround.DARK, t) }
         }
     }
 }

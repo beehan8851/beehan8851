@@ -545,6 +545,7 @@
   "wake_missions": "Missions de réveil",
   "weather_add": "Ajouter la météo",
   "weather_location_off": "La météo a besoin de la localisation, qui est désactivée",
+  "weather_location_services_off": "Active la localisation pour voir la météo là où tu es",
   "weather_no_location": "Impossible de trouver où vous êtes",
   "weather_offer": "La météo là où vous êtes",
   "weather_title": "Météo",
